@@ -32,23 +32,23 @@ const MsgIcon = styled("img")({
   height: 28,
 });
 
-type SUCCESS = "success";
-type ERROR = "error";
+type SUCCESST = "success";
+type ERRORT = "error";
 
 const { SUCCESS_SIDE_BAND_COLOR, ERROR_SIDE_BAND_COLOR } = commonConstants;
 
 type SuccessSidebandT = typeof SUCCESS_SIDE_BAND_COLOR;
 type ErrorSidebandT = typeof ERROR_SIDE_BAND_COLOR;
 
-interface MessageProps {
+interface MessagePropsI {
   openFl: boolean;
   closeMessageFn?: Function;
   textToDisplay: string;
-  variant: SUCCESS | ERROR;
+  variant: SUCCESST | ERRORT;
   duration?: number;
 }
 
-const Message = (props: MessageProps) => {
+const Message = (props: MessagePropsI) => {
   const [imageSrc, setImageSrc] = useState("");
   const [altText, setAltText] = useState("");
   const [sidebandColor, setSidebandColor] = useState<SuccessSidebandT | ErrorSidebandT>(SUCCESS_SIDE_BAND_COLOR);

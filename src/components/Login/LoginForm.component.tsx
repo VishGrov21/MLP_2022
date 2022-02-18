@@ -15,6 +15,7 @@ const LoginFormContainer = styled(Stack)({
   width: "28rem",
   height: "28rem",
   padding: "20px 50px",
+  zIndex: 10,
 });
 
 const LogoImg = styled("img")({
@@ -83,7 +84,7 @@ const LoginForm = () => {
             <Field component={TextField} type='password' placeholder='**********' id='password' name='password' />
           </FieldContainer>
           <LoginButtonContainer>
-            <LoginButton type='submit' variant='contained'>
+            <LoginButton color='primary' type='submit' variant='contained'>
               Login
             </LoginButton>
           </LoginButtonContainer>
