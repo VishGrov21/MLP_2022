@@ -1,8 +1,9 @@
-import { TabComponent } from '../Tabs/Tabs.component';
+import { TabComponent } from 'components/Tabs/Tabs.component';
 import { styled, Stack } from "@mui/material";
-import globeIcon from "../../assets/images/economic.svg";
+import globeIcon from "assets/images/economic.svg";
+import { TabsI } from 'model/common.model';
 
-const economicTabs:Array<object> = [{tabhead: 'Labour'},{tabhead:'Economic Prosperity'}];
+const economicTabs:Array<TabsI> = [{tabhead: 'Labour'},{tabhead:'Economic Prosperity'}];
 
 const CategoryHead = styled(Stack)({
     flexDirection: 'row',

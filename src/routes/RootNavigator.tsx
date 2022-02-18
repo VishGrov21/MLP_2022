@@ -8,7 +8,7 @@ const RootNavigator = () => {
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<Navigate replace to='/login' />} />
-        <Route path='/supplyMetrics' element={<SupplyMetrics />} />
+        <Route path='/supply-metrics' element={<SupplyMetrics />} />
       </Routes>
     </BrowserRouter>
   );
