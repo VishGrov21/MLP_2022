@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "../pages/Login.page";
-import { Layout } from "../pages/Layout.page";
-import SupplyMetrics from "../pages/SupplyMetrics.page";
+import Login from "pages/Login.page";
+import { Layout } from "pages/Layout.page";
+import SupplyMetrics from "pages/SupplyMetrics.page";
 
 const RootNavigator = () => {
   return (
