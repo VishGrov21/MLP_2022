@@ -1,6 +1,6 @@
-import { Header } from "pages/Header.page";
+import Header from "pages/Header.page";
 import SideNav from "pages/SideNav.page";
-import { Footer } from "pages/Footer.page";
+import Footer from "pages/Footer.page";
 import { styled, Stack } from "@mui/material"
 
 const LayoutContainer = styled(Stack)({
@@ -11,7 +11,7 @@ interface layoutTypesI {
     children: object
 }
 
-export const Layout = (props: layoutTypesI) => {
+const Layout = (props: layoutTypesI) => {
     const { children } = props;
     return (
         <LayoutContainer>
@@ -24,3 +24,5 @@ export const Layout = (props: layoutTypesI) => {
         </LayoutContainer>
     )
 }
+
+export default Layout;
