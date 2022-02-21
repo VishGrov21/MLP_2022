@@ -1,6 +1,6 @@
-import { Header } from "./Header.page";
-import SideNav from "./SideNav.page";
-import { Footer } from "./Footer.page";
+import { Header } from "pages/Header.page";
+import SideNav from "pages/SideNav.page";
+import { Footer } from "pages/Footer.page";
 import { styled, Stack } from "@mui/material"
 
 const LayoutContainer = styled(Stack)({
