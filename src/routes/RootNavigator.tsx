@@ -6,16 +6,16 @@ import SupplyMetrics from "../pages/SupplyMetrics.page";
 const RootNavigator = () => {
   return (
     <BrowserRouter>
-        <Routes>       
-          <Route path='/login' element={<Login />} />
-          <Route path='/' element={<Navigate replace to='/login' />} />
-        </Routes>
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Navigate replace to='/login' />} />
+      </Routes>
 
-        <Layout>
-          <Routes>       
-            <Route path='/supply-metrics' element={<SupplyMetrics />} />
-          </Routes>
-        </Layout>
+      <Layout>
+        <Routes>
+          <Route path='/supply-metrics' element={<SupplyMetrics />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 };
