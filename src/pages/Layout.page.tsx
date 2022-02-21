@@ -1,25 +1,25 @@
-import { Header } from './Header.page';
-import SideNav from './SideNav.page';
-import { Footer } from './Footer.page';
-import { styled,Stack } from "@mui/material"
+import { Header } from "./Header.page";
+import SideNav from "./SideNav.page";
+import { Footer } from "./Footer.page";
+import { styled, Stack } from "@mui/material"
 
 const LayoutContainer = styled(Stack)({
-    flexDirection: 'row'
+    flexDirection: "row"
 });
 
-interface layoutTypes {
+interface layoutTypesI {
     children: object
 }
 
-export const Layout = (props:layoutTypes) => {
+export const Layout = (props: layoutTypesI) => {
     const { children } = props;
     return (
         <LayoutContainer>
-            <SideNav/>
+            <SideNav />
             <div>
-                <Header/>
-                    <div>{children}</div>
-                <Footer/>
+                <Header />
+                <div>{children}</div>
+                <Footer />
             </div>
         </LayoutContainer>
     )
