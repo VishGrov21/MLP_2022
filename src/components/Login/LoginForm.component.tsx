@@ -4,11 +4,9 @@ import { Box, Button, Stack } from "@mui/material";
 import { CheckboxWithLabel, TextField } from "formik-mui";
 import { styled } from "@mui/material/styles";
 import sustainItLogo from "assets/images/sustainItLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
-import { useState } from "react";
-import Message from "../common/Message.component";
 
 const LoginFormContainer = styled(Stack)({
   backgroundColor: "#fff",
@@ -59,11 +57,10 @@ const getLoginFormvalidations = () =>
   });
 
 const LoginForm = () => {
-  // True -> Success, False -> Error, null -> None
-  const [showMessage, setShowMessage] = useState<boolean | null>();
+  const navigate = useNavigate();
 
-  const handleLoginFormSubmit = () => {
-    setShowMessage(true);
+  const handleLoginFormSubmit = async () => {
+    navigate("/supply-metrics");
   };
 
   return (
@@ -102,12 +99,6 @@ const LoginForm = () => {
           </Stack>
         </Form>
       </Formik>
-      <Message
-        closeMessageFn={() => setShowMessage(null)}
-        textToDisplay='Login Successful'
-        openFl={showMessage === true}
-        variant='success'
-      />
     </LoginFormContainer>
   );
 };
