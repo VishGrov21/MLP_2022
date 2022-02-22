@@ -87,7 +87,7 @@ const Message = (props: MessagePropsI) => {
           <SideBand bgColor={sidebandColor} />
           <TextContainer direction='row' justifyContent='center' alignItems='center' spacing={2}>
             <MsgIcon src={imageSrc} alt={altText} />
-            <Typography sx={{ flexGrow: 1 }}>{textToDisplay}</Typography>
+            <Typography>{textToDisplay}</Typography>
           </TextContainer>
         </ContentContainer>
       </Snackbar>
