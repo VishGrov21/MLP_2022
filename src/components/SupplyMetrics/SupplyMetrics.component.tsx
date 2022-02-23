@@ -1,4 +1,4 @@
-import { TabComponent } from 'components/Tabs/Tabs.component';
+import { TabComponent } from 'components/tabs/Tabs.component';
 import { styled, Stack } from "@mui/material";
 import globeIcon from "assets/images/economic.svg";
 import { TabsI } from 'model/common.model';

@@ -42,6 +42,7 @@ const LoginButton = styled(Button)({
 const LoginFormInitState: LoginFormI = {
   email: "",
   password: "",
+  rememberMe: false,
 };
 
 const checkboxStyle = {
@@ -56,10 +57,15 @@ const getLoginFormvalidations = () =>
     password: Yup.string().required("Password is a required field"),
   });
 
-const LoginForm = () => {
+interface LoginPropsI {
+  setIsLogedIn: Function;
+}
+
+const LoginForm = (props: LoginPropsI) => {
   const navigate = useNavigate();
 
   const handleLoginFormSubmit = async () => {
+    props.setIsLogedIn(true);
     navigate("/supply-metrics");
   };
 
@@ -87,11 +93,12 @@ const LoginForm = () => {
           </LoginButtonContainer>
           <Stack justifyContent='space-between' direction='row'>
             <Field
+              name='rememberMe'
+              id='rememberMe'
               component={CheckboxWithLabel}
               type='checkbox'
               Label={{ label: "Remember Me" }}
               sx={checkboxStyle}
-              defaultChecked={false}
             />
             <Link to='/forgot-password' style={{ paddingTop: "10px", color: "Black" }}>
               Forgot Password
