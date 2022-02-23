@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import LoginForm from "components/Login/LoginForm.component";
+import LoginForm from "components/login/LoginForm.component";
 import leavesImg from "assets/images/leaves.png";
 import { theme }from "Theme.style";
 
@@ -17,10 +17,14 @@ const LeavesImg = styled("img")({
   height: "auto",
 });
 
-const Login = () => {
+interface LoginPropsI {
+  setIsLogedIn: Function;
+}
+
+const Login = (props: LoginPropsI) => {
   return (
     <LoginPageContainer justifyContent='center' alignItems='center'>
-      <LoginForm />
+      <LoginForm setIsLogedIn={props.setIsLogedIn} />
       <LeavesImg src={leavesImg} alt='Leaves' />
     </LoginPageContainer>
   );

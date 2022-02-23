@@ -1,21 +1,16 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "pages/Login.page";
-import Layout from "pages/Layout.page";
-import SupplyMetrics from "pages/SupplyMetrics.page";
+import Layout from "routes/Layout";
+import { useState } from "react";
 
 const RootNavigator = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/' element={<Navigate replace to='/login' />} />
+        <Route path='*' element={!isLoggedIn ? <Navigate replace to='/login' /> : <Layout />} />
+        <Route path='/login' element={<Login setIsLogedIn={setIsLoggedIn} />} />
       </Routes>
-
-      <Layout>
-        <Routes>
-          <Route path='/supply-metrics' element={<SupplyMetrics />} />
-        </Routes>
-      </Layout>
     </BrowserRouter>
   );
 };

@@ -25,7 +25,7 @@ const name = "Léa Yue Xu";
 const emailId = "leayue.xu@ldc.com";
 
 const company = "Cargill";
-const designation = "Business Analyst";
+const designation = "Product Owner";
 
 function ElevationScroll(props: Props) {
   const { children } = props;
@@ -144,7 +144,7 @@ const UserProfileHeader = () => {
     setAnchorEl(null);
     setExpandIcon(<DownArrowIcon />);
   };
-  
+
   const open = Boolean(anchorEl);
 
   return (

@@ -1,4 +1,4 @@
-import MetricsCategory from "components/SupplyMetrics/SupplyMetrics.component";
+import MetricsCategory from "components/supplyMetrics/SupplyMetrics.component";
 import { Box, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import infoIcon from "assets/images/info.svg";
@@ -48,7 +48,6 @@ const tabItems: TabsI[] = [{ Economic: { tabdata: economic, color: theme.palette
 const SupplyMetrics = () => {
   return (
     <>
-      <UserProfileHeader />
       <MetricsContainer>
         <Heading>Metrics</Heading>
 
