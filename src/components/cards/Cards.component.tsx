@@ -3,8 +3,8 @@ import { styled, CardContent, Stack } from "@mui/material";
 import ChildLabour from 'assets/images/childLabour.png';
 import pieChartIcon from 'assets/images/pieChartIcon.png';
 import barChartIcon from 'assets/images/barChartIcon.png';
-import Box from '@mui/material/Box';
-import Skeleton from "components/Skeleton/Skeleton.component";
+import { theme }from "Themes/Theme.style";
+import { TabsContentI } from 'model/common.model';
 
 const CardContainer = styled(Stack)({
         '& .MuiPaper-root': {
@@ -17,9 +17,6 @@ const CardContainer = styled(Stack)({
             cursor: 'pointer',
             padding: 0,
             margin: 0,
-            '& img': {
-                transform: 'rotate(90deg)',
-            }
         }
     },
   });
@@ -31,15 +28,20 @@ const ContentHead = styled(Stack)({
     '& span': {
         fontSize: '16px',
         fontWeight: '700',
-        color: '#6C757D',
+        color: theme.palette.greyShade.main,
         '& img': {
             marginRight: '10px',
         }
+    },
+    '& button': { 
+        '& img': {
+            transform: 'rotate(90deg)',
+        }  
     }
 });
 
 const ContentBody = styled(Stack)({
-    color: '#282828',
+    color: theme.palette.primary.main,
     '& h2': {
         margin: '15px 0',
         fontSize: '24px',
@@ -58,14 +60,17 @@ const ContentBody = styled(Stack)({
     '& button': {
         textAlign: 'right',
         '& img': {
-            background: '#EEEEEE',
+            background: theme.palette.secondary.dark,
             padding: '5px',
             borderRadius: '6px',
         }
     }
 })
+interface cardsI {
+    propdata: TabsContentI
+}
 
-export const Cards = (props:any) => {
+export const Cards = (props:cardsI) => {
 
     const card = (
           <CardContent> 
@@ -74,18 +79,18 @@ export const Cards = (props:any) => {
                     <button><img src="https://img.icons8.com/material/24/000000/more--v2.png"/></button>
               </ContentHead>
               <ContentBody>
-                <h2>{props.data.head}</h2>
-                <p>{props.data.content}</p>
-                {/* <span>{props.data.chartType}</span> */}
-                <button><img src={pieChartIcon}/></button>
+                <h2>{props.propdata.head}</h2>
+                <p>{props.propdata.content}</p>
+                {props.propdata.chartType !== '' &&
+                    <button><img src={(props.propdata.chartType === 'pieChart') ? pieChartIcon : barChartIcon} alt="chartIcon" /></button>
+                }
             </ContentBody>
           </CardContent>
       );
 
     return (
-        <CardContainer className='checking'>
-            {props.data ? <Card variant="outlined">{card}</Card> :
-            <Skeleton/>}
+        <CardContainer>
+            <Card variant="outlined">{card}</Card> 
         </CardContainer>
     )
 }

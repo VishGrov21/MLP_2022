@@ -4,7 +4,12 @@ import Footer from "pages/Footer.page";
 import { styled, Stack } from "@mui/material"
 
 const LayoutContainer = styled(Stack)({
-    flexDirection: "row"
+    flexDirection: "row",
+    '& > *': {
+        flexGrow: 1,
+        flexShrink: 1,
+        flexBasis: "30ch",
+    }
 });
 
 interface layoutTypesI {

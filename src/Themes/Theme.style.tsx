@@ -1,17 +1,15 @@
 import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
-    interface Theme {
-      status: {
-        danger: React.CSSProperties['color'];
-      };
-    }
-  
     interface Palette {
-      neutral: Palette['primary'];
+      yellow: Palette['primary'];
+      orange: Palette['primary'];
+      greyShade: Palette['primary'];
     }
     interface PaletteOptions {
-      neutral: PaletteOptions['primary'];
+      yellow: PaletteOptions['primary'];
+      orange: PaletteOptions['primary'];
+      greyShade: PaletteOptions['primary'];
     }
   
     interface PaletteColor {
@@ -20,25 +18,33 @@ declare module '@mui/material/styles' {
     interface SimplePaletteColorOptions {
       darker?: string;
     }
-    interface ThemeOptions {
-      status: {
-        danger: React.CSSProperties['color'];
-      };
-    }
   }
 
 export const theme = createTheme({
-  status: {
-    danger: '#e53e3e',
-  },
   palette: {
     primary: {
-      main: '#0971f1',
-      darker: '#053e85',
+        light: "#393939",
+        main: "#282828",
+        dark: "#000000",
     },
-    neutral: {
-      main: '#64748B',
-      contrastText: '#fff',
+    secondary: {   
+      main: "#ffffff",
+      dark: "#EEEEEE",
+      darker:"#E5E5E5",
     },
+    greyShade: {
+        light: "#CED4DA",
+        main: "#6C757D",
+        dark: "#9FA9B3",
+        darker: "#6C757D"
+    },
+    yellow: {
+      light: "#ECD276",
+      main: "#DAA900",
+    },
+    orange: {
+      light: "#E78E5F",
+      main: "#E27338",
+    }
   },
 });

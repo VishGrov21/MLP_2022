@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { Box, Typography,Tab, Tabs, styled,ImageList,ImageListItem } from '@mui/material';
+import { Box, Typography,Tab, Tabs, styled,ImageList,ImageListItem, Stack } from '@mui/material';
 import { Cards } from "components/cards/Cards.component";
+import { theme }from "Themes/Theme.style";
+import { TabsI,TabsContentI } from 'model/common.model';
+import Loader from 'assets/images/loader.svg';
 
 interface TabPanelI {
   children: string | object, 
@@ -35,7 +38,7 @@ function getallProps(index:number) {
 }
 
 interface TabComponentI {
-  tabItems: Array<Object>
+  tabItems: TabsI[]
 }
 
 export const TabComponent = (props:TabComponentI) => {
@@ -52,19 +55,19 @@ export const TabComponent = (props:TabComponentI) => {
         fontWeight: '500',
         fontSize: '20px',
         textTransform: 'capitalize',
-        color: '#9FA9B3',
+        color: theme.palette.greyShade.dark,
         alignItems: 'baseline',
         minWidth: 'auto',
         padding: 0,
         marginRight: '35px',
        '&.Mui-selected': {
-            color: '#000',
+            color: theme.palette.primary.dark,
             fontWeight: '700',
             textAlign: 'left',
         }
     },
     '& .MuiTabs-indicator': {
-        backgroundColor: '#E78E5F',
+        backgroundColor: theme.palette.orange.light,
         height: '5px',
         borderRadius: '10px',
     }
@@ -76,7 +79,7 @@ export const TabComponent = (props:TabComponentI) => {
           gridTemplateColumns: 'repeat(4, 1fr)',
           '& li': {
               margin: '0 20px 20px 0',
-              background: '#fff',
+              background: theme.palette.secondary.main,
               boxShadow: '0px 12px 24px rgba(69, 124, 189, 0.03)',
               borderRadius: '6px',
               '& .MuiCardContent-root': {
@@ -86,35 +89,45 @@ export const TabComponent = (props:TabComponentI) => {
           },
       },
     });
+  const LoaderContainer  = styled(Stack)({
+    flexDirection: "row",
+    alignItems: "center",
+    '& span': {
+      fontWeight: 500,
+      fontSize: "20px",
+      color: theme.palette.greyShade.dark,
+      marginLeft: "15px"
+    } 
+  });
 
   return (
       <TabContainer>
-          <Box sx={{ borderBottom: 1, borderColor: '#CED4DA' }}>
+          <Box sx={{ borderBottom: 1, borderColor: theme.palette.greyShade.light }}>
             <Tabs value={value} onChange={handleChange} aria-label="metrics-tab">
-                    {props.tabItems.map((data:any,index:number) => {
+                    {props.tabItems.map((data:TabsI,index:number) => {
                         return <Tab label={data.tabhead} {...getallProps(index)} key={index}/>
                     })}
             </Tabs>
           </Box>
 
-          {props.tabItems.map((data:any,i:number) => {
+          {props.tabItems.map((data:TabsI,i:number) => {
             return (
               <TabPanel value={value} index={i} key={i}>
                   <ListContainer>
                       <ImageList cols={4}>                      
                           {(data.content && data.content.length !== 0) 
                               ? 
-                              data.content.map((n:object,index:number) => {
+                              data.content.map((n:TabsContentI,index:number) => {
                                   return (
                                       <ImageListItem key={index} >
-                                          <Cards data = {data.content.length !== 0 ? n : false}/>
+                                          <Cards propdata = {data.content.length !== 0 ? n : {}}/>
                                       </ImageListItem>
                                   );
                               }) 
                               : 
-                              <ImageListItem>
-                                  <Cards data = {false}/>
-                              </ImageListItem>
+                              <LoaderContainer>
+                                <img src={Loader} alt="loader" /><span>Metrics coming up soon</span>
+                              </LoaderContainer>
                           }
                       </ImageList>
                   </ListContainer>

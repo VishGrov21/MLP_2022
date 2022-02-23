@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { theme }from "Themes/Theme.style";
 
 interface Props {
   children: React.ReactElement;
@@ -39,7 +40,7 @@ function ElevationScroll(props: Props) {
 }
 
 const StyledAppBar = styled(AppBar)({
-  backgroundColor: "#000",
+  backgroundColor: theme.palette.primary.dark,
   width: "100%",
   height: "5rem",
 });
@@ -52,7 +53,7 @@ const NameContainer = styled(Stack)({
 function expandIconStyles() {
   return {
     fontSize: "28px",
-    color: "white",
+    color: theme.palette.secondary.main,
   };
 }
 
@@ -68,9 +69,10 @@ const ProfileButton = styled(Button)({
 const MenuStyled = styled(Menu)({
   "& .MuiMenu-paper": {
     minWidth: "150px",
-    backgroundColor: "black",
-    color: "white",
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.secondary.main,
     maxWidth: "30%",
+    zIndex:"1",
   },
   "& .MuiMenu-list": {
     paddingTop: 0,
@@ -80,7 +82,7 @@ const MenuStyled = styled(Menu)({
 
 const MenuItemStyled = styled(MenuItem)({
   "&.MuiMenuItem-divider": {
-    borderBottomColor: "white",
+    borderBottomColor: theme.palette.secondary.main,
     flexDirection: "column",
     alignItems: "flex-start",
   },
@@ -152,7 +154,7 @@ const UserProfileHeader = () => {
           <ProfileButton onClick={showUserMenu} endIcon={expandIcon}>
             <NameContainer direction='row' spacing={1} justifyContent='flex-end' alignItems='center'>
               <Avatar {...stringAvatar(name)} />
-              <Typography sx={{ color: "white" }}>{name}</Typography>
+              <Typography sx={{ color: theme.palette.secondary.main }}>{name}</Typography>
             </NameContainer>
           </ProfileButton>
           <MenuStyled
@@ -179,7 +181,7 @@ const UserProfileHeader = () => {
             </MenuItemStyled>
             <MenuItemStyled onClick={closeUserMenu} sx={{ flexDirection: "row" }}>
               <ListItemIcon>
-                <LogoutIcon sx={{ color: "white" }} />
+                <LogoutIcon sx={{ color: theme.palette.secondary.main }} />
               </ListItemIcon>
               <Typography variant='inherit'>Log-out</Typography>
             </MenuItemStyled>
