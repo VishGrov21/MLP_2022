@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Box, Typography,Tab, Tabs, styled,ImageList,ImageListItem, Stack } from '@mui/material';
 import { Cards } from "components/cards/Cards.component";
-import { theme }from "Themes/Theme.style";
-import { TabsI,TabsContentI } from 'model/common.model';
+import { theme }from "Theme.style";
+import { TabsPropertyI,TabsContentI,TabsHeadI } from 'model/common.model';
 import Loader from 'assets/images/loader.svg';
 
 interface TabPanelI {
@@ -38,7 +38,7 @@ function getallProps(index:number) {
 }
 
 interface TabComponentI {
-  tabItems: TabsI[]
+  tabItems: TabsPropertyI
 }
 
 export const TabComponent = (props:TabComponentI) => {
@@ -67,7 +67,7 @@ export const TabComponent = (props:TabComponentI) => {
         }
     },
     '& .MuiTabs-indicator': {
-        backgroundColor: theme.palette.orange.light,
+        backgroundColor: props.tabItems.color.light,
         height: '5px',
         borderRadius: '10px',
     }
@@ -104,29 +104,29 @@ export const TabComponent = (props:TabComponentI) => {
       <TabContainer>
           <Box sx={{ borderBottom: 1, borderColor: theme.palette.greyShade.light }}>
             <Tabs value={value} onChange={handleChange} aria-label="metrics-tab">
-                    {props.tabItems.map((data:TabsI,index:number) => {
+                    {props.tabItems.tabdata.map((data:TabsHeadI,index:number) => {
                         return <Tab label={data.tabhead} {...getallProps(index)} key={index}/>
                     })}
             </Tabs>
           </Box>
 
-          {props.tabItems.map((data:TabsI,i:number) => {
+          {props.tabItems.tabdata.map((data:TabsHeadI,i:number) => {
             return (
               <TabPanel value={value} index={i} key={i}>
                   <ListContainer>
                       <ImageList cols={4}>                      
-                          {(data.content && data.content.length !== 0) 
+                          {(data.tabcontent && data.tabcontent.length !== 0) 
                               ? 
-                              data.content.map((n:TabsContentI,index:number) => {
+                              data.tabcontent.map((n:TabsContentI,index:number) => {
                                   return (
                                       <ImageListItem key={index} >
-                                          <Cards propdata = {data.content.length !== 0 ? n : {}}/>
+                                          <Cards propdata = {data.tabcontent.length !== 0 ? n : {}}/>
                                       </ImageListItem>
                                   );
                               }) 
                               : 
                               <LoaderContainer>
-                                <img src={Loader} alt="loader" /><span>Metrics coming up soon</span>
+                                <img src={Loader} alt="loader" /><span>Metrice coming up soon</span>
                               </LoaderContainer>
                           }
                       </ImageList>

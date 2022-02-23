@@ -3,7 +3,8 @@ import { styled, CardContent, Stack } from "@mui/material";
 import ChildLabour from 'assets/images/childLabour.png';
 import pieChartIcon from 'assets/images/pieChartIcon.png';
 import barChartIcon from 'assets/images/barChartIcon.png';
-import { theme }from "Themes/Theme.style";
+import info from 'assets/images/moreInfo.svg';
+import { theme }from "Theme.style";
 import { TabsContentI } from 'model/common.model';
 
 const CardContainer = styled(Stack)({
@@ -33,11 +34,6 @@ const ContentHead = styled(Stack)({
             marginRight: '10px',
         }
     },
-    '& button': { 
-        '& img': {
-            transform: 'rotate(90deg)',
-        }  
-    }
 });
 
 const ContentBody = styled(Stack)({
@@ -75,8 +71,8 @@ export const Cards = (props:cardsI) => {
     const card = (
           <CardContent> 
               <ContentHead sx={{flexDirection: 'row'}}>
-                    <span><img src={ChildLabour}/>Child Labour</span>
-                    <button><img src="https://img.icons8.com/material/24/000000/more--v2.png"/></button>
+                    <span><img src={ChildLabour} alt="titleImage"/>Child Labour</span>
+                    <button><img src={info} alt="moreInfo"/></button>
               </ContentHead>
               <ContentBody>
                 <h2>{props.propdata.head}</h2>

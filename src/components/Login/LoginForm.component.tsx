@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
 
-import { theme }from "Themes/Theme.style";
+import { theme }from "Theme.style";
 
 const LoginFormContainer = styled(Stack)({
   backgroundColor: theme.palette.secondary.main,

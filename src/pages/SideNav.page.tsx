@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { styled, Stack } from "@mui/material";
-import { theme }from "Themes/Theme.style";
+import { theme }from "Theme.style";
 
 const SideBarContainer = styled(Stack)({
     background: theme.palette.secondary.main,

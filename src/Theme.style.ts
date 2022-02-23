@@ -5,11 +5,15 @@ declare module '@mui/material/styles' {
       yellow: Palette['primary'];
       orange: Palette['primary'];
       greyShade: Palette['primary'];
+      red: Palette['primary'];
+      green: Palette['primary'];
     }
     interface PaletteOptions {
       yellow: PaletteOptions['primary'];
       orange: PaletteOptions['primary'];
       greyShade: PaletteOptions['primary'];
+      red: PaletteOptions['primary'];
+      green: PaletteOptions['primary'];
     }
   
     interface PaletteColor {
@@ -45,6 +49,14 @@ export const theme = createTheme({
     orange: {
       light: "#E78E5F",
       main: "#E27338",
+    },
+    red: {
+      light: "#ED7D75",
+      main: "#E27338"
+    },
+    green: {
+      light: "#1AB068",
+       main: "#1AB068",
     }
   },
 });
