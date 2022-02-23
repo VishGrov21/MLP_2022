@@ -2,10 +2,10 @@ import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import LoginForm from "components/login/LoginForm.component";
 import leavesImg from "assets/images/leaves.png";
-import { theme }from "Theme.style";
+import color from "styles/color";
 
 const LoginPageContainer = styled(Stack)({
-  backgroundColor: theme.palette.secondary.darker,
+  backgroundColor: color.palette.secondary.darker,
   width: "100vw",
   height: "100vh",
 });

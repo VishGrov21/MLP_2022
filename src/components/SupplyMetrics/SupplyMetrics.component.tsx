@@ -1,49 +1,42 @@
 import { TabComponent } from '../Tabs/Tabs.component';
-import { styled, Stack, Box } from "@mui/material";
-import { theme } from "../../Theme.style";
+import { styled, Stack, Box, Typography } from "@mui/material";
 import { TabsI,TabsPropertyI } from 'model/common.model';
 
 interface TabComponentI {
-    tabItems: TabsI[]
+    tabDatas: TabsI[]
 }
 function MetricsCategory(props:TabComponentI) {
     const CategoryHead = styled(Stack)({
         flexDirection: 'row',
         alignItems: 'center',
-        margin: '30px 0',
+        margin: '30px 0 20px',
         '& .titleImage': {
-            padding: '5px 5px',
-            borderRadius: '6px',
             display: 'flex',
             alignItems: 'center',
             marginRight: '10px',
             '& img': {
                padding: 0,
-               width: "20px",
-               height: "20px",
+               width: "30px",
+               height: "30px",
             }
         },
-        '& .title': {
-            fontSize: '24px',
-            fontWeight: 'bold',
-            color: theme.palette.primary.main,
-        }
     })
 
 
     return (
         <>
-            {props.tabItems?.map((data:TabsI) => {
+            {props.tabDatas?.map((data:TabsI) => {
                 let color:TabsPropertyI[] = Object.values(data);
 
                 return (
                     <>
                         <CategoryHead>
-                            <Box className='titleImage' sx={{background: color[0].color.light }}><img src={color[0].image} alt='economic-icon'/></Box>
-                            <span className='title'>{Object.keys(data)}</span>
+                            <Box className='titleImage'><img src={color[0].image} alt='economic-icon'/></Box>
+                            <Typography variant="h2">{Object.keys(data)}</Typography>
                         </CategoryHead>
+
                         {Object.values(data).map((tabData:TabsPropertyI) => {
-                            return <TabComponent tabItems= {tabData} />
+                            return <TabComponent tabItems= {tabData}  metricTitle = {Object.keys(data)}/>
                         })}
                     </>
                 )

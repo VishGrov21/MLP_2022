@@ -8,10 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
 
-import { theme }from "Theme.style";
+import color from "styles/color";
 
 const LoginFormContainer = styled(Stack)({
-  backgroundColor: theme.palette.secondary.main,
+  backgroundColor: color.palette.secondary.main,
   width: "28rem",
   height: "28rem",
   padding: "20px 50px",
@@ -34,10 +34,10 @@ const LoginButtonContainer = styled(Box)({
 
 const LoginButton = styled(Button)({
   width: "100%",
-  backgroundColor: theme.palette.yellow.main,
-  color: theme.palette.primary.dark,
+  backgroundColor: color.palette.yellow.main,
+  color: color.palette.primary.dark,
   "&:hover": {
-    backgroundColor: theme.palette.yellow.light,
+    backgroundColor: color.palette.yellow.light,
   },
 });
 
@@ -49,7 +49,7 @@ const LoginFormInitState: LoginFormI = {
 
 const checkboxStyle = {
   "&.Mui-checked": {
-    color: theme.palette.yellow.main,
+    color: color.palette.yellow.main,
   },
 };
 

@@ -1,10 +1,10 @@
 import Card from '@mui/material/Card';
-import { styled, CardContent, Stack } from "@mui/material";
+import { styled, CardContent, Stack, Typography } from "@mui/material";
 import ChildLabour from 'assets/images/childLabour.png';
-import pieChartIcon from 'assets/images/pieChartIcon.png';
-import barChartIcon from 'assets/images/barChartIcon.png';
+import pieChartIcon from 'assets/images/pieChartIcon.svg';
+import barChartIcon from 'assets/images/barChartIcon.svg';
 import info from 'assets/images/moreInfo.svg';
-import { theme }from "Theme.style";
+import color from "styles/color";
 import { TabsContentI } from 'model/common.model';
 
 const CardContainer = styled(Stack)({
@@ -25,11 +25,15 @@ const CardContainer = styled(Stack)({
 const ContentHead = styled(Stack)({
     // flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    '& button': {
+        position: "absolute",
+        right: "20px",
+    },
     '& span': {
         fontSize: '16px',
         fontWeight: '700',
-        color: theme.palette.greyShade.main,
+        color: color.palette.greyShade.main,
         '& img': {
             marginRight: '10px',
         }
@@ -37,14 +41,12 @@ const ContentHead = styled(Stack)({
 });
 
 const ContentBody = styled(Stack)({
-    color: theme.palette.primary.main,
+    color: color.palette.primary.main,
     '& h2': {
-        margin: '15px 0',
+        margin: "18px 0 5px",
         fontSize: '24px',
     },
     '& p': {
-        fontSize: '16px',
-        margin: 0,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         display: '-webkit-box',
@@ -56,8 +58,7 @@ const ContentBody = styled(Stack)({
     '& button': {
         textAlign: 'right',
         '& img': {
-            background: theme.palette.secondary.dark,
-            padding: '5px',
+            maxWidth: "30px",
             borderRadius: '6px',
         }
     }
@@ -75,8 +76,8 @@ export const Cards = (props:cardsI) => {
                     <button><img src={info} alt="moreInfo"/></button>
               </ContentHead>
               <ContentBody>
-                <h2>{props.propdata.head}</h2>
-                <p>{props.propdata.content}</p>
+                <Typography variant="h2">{props.propdata.cardHead}</Typography>
+                <Typography variant="body2">{props.propdata.cardContent}</Typography>
                 {props.propdata.chartType !== '' &&
                     <button><img src={(props.propdata.chartType === 'pieChart') ? pieChartIcon : barChartIcon} alt="chartIcon" /></button>
                 }

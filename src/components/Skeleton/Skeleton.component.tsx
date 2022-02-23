@@ -1,81 +1,59 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Skeleton from '@mui/material/Skeleton';
-
-const data = [
-  {
-    src: 'https://i.ytimg.com/vi/pLqipJNItIo/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBkklsyaw9FxDmMKapyBYCn9tbPNQ',
-    title: 'Don Diablo @ Tomorrowland Main Stage 2019 | Official…',
-    channel: 'Don Diablo',
-    views: '396 k views',
-    createdAt: 'a week ago',
-  },
-  {
-    src: 'https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA',
-    title: 'Queen - Greatest Hits',
-    channel: 'Queen Official',
-    views: '40 M views',
-    createdAt: '3 years ago',
-  },
-  {
-    src: 'https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw',
-    title: 'Calvin Harris, Sam Smith - Promises (Official Video)',
-    channel: 'Calvin Harris',
-    views: '130 M views',
-    createdAt: '10 months ago',
-  },
-];
+import { Box, Typography, Grid, Skeleton, styled, Stack } from '@mui/material';
+import Loader from 'assets/images/loader.svg';
+import color from "styles/color";
 
 interface MediaProps {
   loading?: boolean;
+  metricsTitle?: string
 }
 
+const LoaderContainer = styled(Stack)({
+  position: "relative",
+  flexDirection: "row",
+  justifyContent: "center",
+  maxWidth: "100vw",
+  '& .content': {
+      display: "flex",
+      alignItems: "center",
+      position: "absolute",
+      top: 0,
+      bottom: 0
+  },
+  '& h3': {
+    color: color.palette.greyShade.dark,
+    marginLeft: "15px"
+  },
+  '& .MuiSkeleton-rectangular': {
+    animation:"none",
+    backgroundImage: `linear-gradient(0deg, ${color.palette.secondary.main}, ${color.palette.secondary.light})`,
+  } 
+})
+
 function Media(props: MediaProps) {
-  const { loading = false } = props;
 
   return (
     <Grid container wrap="nowrap">
-      {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
-        <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
-          {item ? (
-            <img
-              style={{ width: 210, height: 118 }}
-              alt={item.title}
-              src={item.src}
-            />
-          ) : (
-            <Skeleton variant="rectangular" width={210} height={118} />
-          )}
-          {item ? (
-            <Box sx={{ pr: 2 }}>
-              <Typography gutterBottom variant="body2">
-                {item.title}
-              </Typography>
-              <Typography display="block" variant="caption" color="text.secondary">
-                {item.channel}
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                {`${item.views} • ${item.createdAt}`}
-              </Typography>
-            </Box>
-          ) : (
-            <Box sx={{ pt: 0.5 }}>
-              <Skeleton />
-              <Skeleton width="60%" />
-            </Box>
-          )}
-        </Box>
-      ))}
+      <LoaderContainer>
+        {Array.from(new Array(4)).map((item, index) => {
+        return(
+          <Box key={index} sx={{ marginRight: "20px", mt: "20px" }}>
+              <Skeleton variant="rectangular" width={200} height={200} />
+          </Box>
+        )})}
+        <div className="content">
+          <img src={Loader} alt="loader" />
+          <Typography variant="h3"> {props.metricsTitle} metrics coming up soon</Typography>
+        </div>
+      </LoaderContainer>
     </Grid>
   );
 }
 
-export default function YouTube() {
+export default function SkeletonContainer(props:{ metricsTitle: string }) {
+
   return (
     <Box sx={{ overflow: 'hidden' }}>
-      <Media loading />
+      <Media loading {...props}/>
     </Box>
   );
 }

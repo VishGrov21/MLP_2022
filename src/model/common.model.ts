@@ -12,12 +12,12 @@ export interface TabsHeadI {
 
 export interface TabsPropertyI {
   tabdata: TabsHeadI[],
-  color: PaletteColor,
+  tabcolor: PaletteColor,
   image: string
 }
 
 export interface TabsContentI {
-  chartType?: string | boolean
-  content?: string | boolean
-  head?: string | boolean
+  chartType?: string
+  cardContent?: string
+  cardHead?: string
 }

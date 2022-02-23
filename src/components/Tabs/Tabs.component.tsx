@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Box, Typography,Tab, Tabs, styled,ImageList,ImageListItem, Stack } from '@mui/material';
 import { Cards } from "components/cards/Cards.component";
-import { theme }from "Theme.style";
+import color from "styles/color";
 import { TabsPropertyI,TabsContentI,TabsHeadI } from 'model/common.model';
-import Loader from 'assets/images/loader.svg';
+
+import SkeletonComp from "components/Skeleton/Skeleton.component";
 
 interface TabPanelI {
   children: string | object, 
@@ -38,7 +39,8 @@ function getallProps(index:number) {
 }
 
 interface TabComponentI {
-  tabItems: TabsPropertyI
+  tabItems: TabsPropertyI,
+  metricTitle: string[]
 }
 
 export const TabComponent = (props:TabComponentI) => {
@@ -49,25 +51,26 @@ export const TabComponent = (props:TabComponentI) => {
   };
 
   const TabContainer = styled('div')({
+    
+    '& .MuiBox-root': {
+      padding: 0,
+    },
     '& button': {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: '500',
+        fontFamily: 'Roboto Medium',
         fontSize: '20px',
         textTransform: 'capitalize',
-        color: theme.palette.greyShade.dark,
+        color: color.palette.greyShade.dark,
         alignItems: 'baseline',
         minWidth: 'auto',
         padding: 0,
         marginRight: '35px',
        '&.Mui-selected': {
-            color: theme.palette.primary.dark,
-            fontWeight: '700',
+            color: color.palette.primary.dark,
             textAlign: 'left',
         }
     },
     '& .MuiTabs-indicator': {
-        backgroundColor: props.tabItems.color.light,
+        backgroundColor: props.tabItems.tabcolor.light,
         height: '5px',
         borderRadius: '10px',
     }
@@ -75,34 +78,25 @@ export const TabComponent = (props:TabComponentI) => {
 
   const ListContainer = styled('div')({
       '& ul.MuiImageList-root': {
-          margin: '30px 0 10px 0',
+          margin: '10px 0 0',
           gridTemplateColumns: 'repeat(4, 1fr)',
           '& li': {
-              margin: '0 20px 20px 0',
-              background: theme.palette.secondary.main,
+              margin: '20px 20px 0 0',
+              background: color.palette.secondary.main,
               boxShadow: '0px 12px 24px rgba(69, 124, 189, 0.03)',
               borderRadius: '6px',
               '& .MuiCardContent-root': {
                   lineHeight: 'initial',
-                  padding: '10px 10px 10px 20px',
+                  padding: '13px 10px 10px 20px',
+                  position: "relative",
               }
           },
       },
     });
-  const LoaderContainer  = styled(Stack)({
-    flexDirection: "row",
-    alignItems: "center",
-    '& span': {
-      fontWeight: 500,
-      fontSize: "20px",
-      color: theme.palette.greyShade.dark,
-      marginLeft: "15px"
-    } 
-  });
 
   return (
       <TabContainer>
-          <Box sx={{ borderBottom: 1, borderColor: theme.palette.greyShade.light }}>
+          <Box sx={{ borderBottom: 1, borderColor: color.palette.greyShade.light }}>
             <Tabs value={value} onChange={handleChange} aria-label="metrics-tab">
                     {props.tabItems.tabdata.map((data:TabsHeadI,index:number) => {
                         return <Tab label={data.tabhead} {...getallProps(index)} key={index}/>
@@ -113,24 +107,25 @@ export const TabComponent = (props:TabComponentI) => {
           {props.tabItems.tabdata.map((data:TabsHeadI,i:number) => {
             return (
               <TabPanel value={value} index={i} key={i}>
-                  <ListContainer>
-                      <ImageList cols={4}>                      
-                          {(data.tabcontent && data.tabcontent.length !== 0) 
-                              ? 
-                              data.tabcontent.map((n:TabsContentI,index:number) => {
-                                  return (
-                                      <ImageListItem key={index} >
-                                          <Cards propdata = {data.tabcontent.length !== 0 ? n : {}}/>
-                                      </ImageListItem>
-                                  );
-                              }) 
-                              : 
-                              <LoaderContainer>
-                                <img src={Loader} alt="loader" /><span>Metrice coming up soon</span>
-                              </LoaderContainer>
-                          }
-                      </ImageList>
-                  </ListContainer>
+                  {data.tabcontent.length !== 0 ?
+                    <ListContainer>
+                        <ImageList cols={4}>                      
+
+                                {data.tabcontent.map((n:TabsContentI,index:number) => {
+                                    return (
+                                        <ImageListItem key={index} >
+                                            <Cards propdata = {data.tabcontent.length !== 0 ? n : {}}/>
+                                        </ImageListItem>
+                                    );
+                                })} 
+
+                        </ImageList>
+                    </ListContainer>
+                    : 
+                      
+                    <SkeletonComp metricsTitle = {props.metricTitle[0]}/>
+                      
+                  }
               </TabPanel>
               )}
           )}
