@@ -28,19 +28,16 @@ const SubContent = styled(Stack)({
 });
 
 const metricsData: TabsContentI[] = [
-  { cardHead: "500", cardContent: "Number of School Aged Children", chartType: "pieChart" },
-  { cardHead: "476", cardContent: "Percentage of school aged children attending school", chartType: "pieChart" },
-  { cardHead: "Yes", cardContent: "Active CLM, CLMS, CLMRS in place", chartType: "" },
+  { cardHead: "80%", cardContent: "Percentage of school aged children attending school", chartType: "pieChart" },
   {
     cardHead: "560",
-    cardContent: "Number of Farming Households where an inspection has occurred",
+    cardContent: "Number of Farming Households Covered by CLM, CLMS, CLMRS",
     chartType: "pieChart",
   },
-  { cardHead: "557", cardContent: "Number of farmers Covered by a CLMS", chartType: "" },
-  { cardHead: "5", cardContent: "Number of announced inspections", chartType: "barChart" },
   { cardHead: "7", cardContent: "Number of unannounced inspections", chartType: "barChart" },
+  { cardHead: "30%", cardContent: "Percentage of Farming Households where an inspection has occurred", chartType: "" },
   { cardHead: "3", cardContent: "Number of children identified in child labour through inspections", chartType: "" },
-  { cardHead: "3", cardContent: "Number of child labour cases remediated or referred", chartType: "barChart" },
+  { cardHead: "5%", cardContent: "Percentage of child labour cases remediated or referred", chartType: "barChart" },
 ];
 
 const economic: TabsHeadI[] = [
