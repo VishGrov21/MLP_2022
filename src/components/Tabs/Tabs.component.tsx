@@ -4,7 +4,7 @@ import { Cards } from "components/cards/Cards.component";
 import color from "styles/color";
 import { TabsPropertyI, TabsContentI, TabsHeadI } from "model/common.model";
 
-import Skeleton from "components/Skeleton/Skeleton.component";
+import Skeleton from "components/skeleton/Skeleton.component";
 
 interface TabPanelI {
   children: string | object,

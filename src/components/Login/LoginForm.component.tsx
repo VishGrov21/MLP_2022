@@ -16,6 +16,9 @@ const LoginFormContainer = styled(Stack)({
   height: "28rem",
   padding: "20px 50px",
   zIndex: 10,
+  '& .MuiTypography-body1, & .MuiInputBase-formControl': {
+    fontFamily: "Roboto Regular"
+  }
 });
 
 const LogoImg = styled("img")({
