@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Box, Typography, Tab, Tabs, styled, ImageList, ImageListItem } from "@mui/material";
-import { Cards } from "components/cards/Cards.component";
+import { Cards } from "components/common/Cards.component";
 import color from "styles/color";
 import { TabsPropertyI, TabsContentI, TabsHeadI } from "model/common.model";
 
-import Skeleton from "components/skeleton/LoaderSkeleton.component";
+import Skeleton from "components/common/LoaderSkeleton.component";
 
 interface TabPanelI {
   children: string | object;

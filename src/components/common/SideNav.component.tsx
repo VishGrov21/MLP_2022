@@ -1,32 +1,13 @@
-import { NavLink } from "react-router-dom";
-import {
-  styled,
-  Stack,
-  IconButton,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  List,
-  ListItemButton,
-  Divider,
-} from "@mui/material";
+import { styled, IconButton, ListItemIcon, ListItemText, List, ListItemButton, Divider } from "@mui/material";
 import { additionalSideNavArr, sideNavArr } from "constants/sideNav.constants";
 import MuiDrawer from "@mui/material/Drawer";
-import { useTheme, Theme, CSSObject } from "@mui/material/styles";
+import { Theme, CSSObject } from "@mui/material/styles";
 import { useState } from "react";
 import sustainItLogo from "assets/images/sustainItLogo.png";
 import sustainItLogoSmall from "assets/images/sustainItLogoSmall.svg";
 import ExpandLessIcon from "@mui/icons-material/ArrowBackIosNew";
 import ExpandMoreIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/system";
-
-const SideBarContainer = styled(Stack)({
-  background: "grey",
-  flexBasis: "25%",
-  flex: "0 0 200px",
-  height: "100vw",
-  boxShadow: "box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)",
-});
 
 const drawerWidth = 240;
 

@@ -1,4 +1,4 @@
-import { TabComponent } from "components/tabs/Tabs.component";
+import { TabComponent } from "components/common/Tabs.component";
 import { styled, Stack, Box, Typography } from "@mui/material";
 import { TabsI, TabsPropertyI } from "model/common.model";
 
