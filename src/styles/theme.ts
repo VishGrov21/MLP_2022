@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 
 const theme = createTheme({
@@ -7,12 +7,12 @@ const theme = createTheme({
             fontFamily: "Roboto Bold",
             fontSize: "30px",
             letterSpacing: 0,
-            color:"#282828",
+            color: "#282828",
         },
         h2: {
             fontFamily: "Roboto Bold",
             fontSize: "24px",
-            color:"#282828",
+            color: "#282828",
             letterSpacing: 0,
         },
         h3: {

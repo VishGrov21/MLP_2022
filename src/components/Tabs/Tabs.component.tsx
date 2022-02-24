@@ -1,22 +1,22 @@
-import * as React from 'react';
-import { Box, Typography,Tab, Tabs, styled,ImageList,ImageListItem, Stack } from '@mui/material';
+import * as React from "react";
+import { Box, Typography, Tab, Tabs, styled, ImageList, ImageListItem } from "@mui/material";
 import { Cards } from "components/cards/Cards.component";
 import color from "styles/color";
-import { TabsPropertyI,TabsContentI,TabsHeadI } from 'model/common.model';
+import { TabsPropertyI, TabsContentI, TabsHeadI } from "model/common.model";
 
-import SkeletonComp from "components/Skeleton/Skeleton.component";
+import Skeleton from "components/Skeleton/Skeleton.component";
 
 interface TabPanelI {
-  children: string | object, 
+  children: string | object,
   value: number,
   index: number,
-  key?:number
+  key?: number
 }
 
-function TabPanel(props:TabPanelI) {
+function TabPanel(props: TabPanelI) {
 
   const { children, value, index, ...other } = props;
-  
+
   return (
     <div
       role="tabpanel"
@@ -27,15 +27,15 @@ function TabPanel(props:TabPanelI) {
     >
       {value === index && (
         <Box sx={{ pt: 3 }}>
-          <Typography component={'div'}>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
   );
 }
 
-function getallProps(index:number) {
-  return { id: `tabIndex-${index}`, 'aria-controls': `tabpanel-${index}`,key: index};
+function getallProps(index: number) {
+  return { id: `tabIndex-${index}`, "aria-controls": `tabpanel-${index}`, key: index };
 }
 
 interface TabComponentI {
@@ -43,92 +43,93 @@ interface TabComponentI {
   metricTitle: string[]
 }
 
-export const TabComponent = (props:TabComponentI) => {
+export const TabComponent = (props: TabComponentI) => {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event:React.SyntheticEvent, newValue:number) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  const TabContainer = styled('div')({
-    
-    '& .MuiBox-root': {
+  const TabContainer = styled("div")({
+
+    "& .MuiBox-root": {
       padding: 0,
     },
-    '& button': {
-        fontFamily: 'Roboto Medium',
-        fontSize: '20px',
-        textTransform: 'capitalize',
-        color: color.palette.greyShade.dark,
-        alignItems: 'baseline',
-        minWidth: 'auto',
-        padding: 0,
-        marginRight: '35px',
-       '&.Mui-selected': {
-            color: color.palette.primary.dark,
-            textAlign: 'left',
-        }
+    "& button": {
+      fontFamily: "Roboto Medium",
+      fontSize: "20px",
+      textTransform: "capitalize",
+      color: color.palette.greyShade.dark,
+      alignItems: "baseline",
+      minWidth: "auto",
+      padding: 0,
+      marginRight: "35px",
+      "&.Mui-selected": {
+        color: color.palette.primary.dark,
+        textAlign: "left",
+      }
     },
-    '& .MuiTabs-indicator': {
-        backgroundColor: props.tabItems.tabcolor.light,
-        height: '5px',
-        borderRadius: '10px',
+    "& .MuiTabs-indicator": {
+      backgroundColor: props.tabItems.tabcolor.light,
+      height: "5px",
+      borderRadius: "10px",
     }
   });
 
-  const ListContainer = styled('div')({
-      '& ul.MuiImageList-root': {
-          margin: '10px 0 0',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          '& li': {
-              margin: '20px 20px 0 0',
-              background: color.palette.secondary.main,
-              boxShadow: '0px 12px 24px rgba(69, 124, 189, 0.03)',
-              borderRadius: '6px',
-              '& .MuiCardContent-root': {
-                  lineHeight: 'initial',
-                  padding: '13px 10px 10px 20px',
-                  position: "relative",
-              }
-          },
+  const ListContainer = styled("div")({
+    "& ul.MuiImageList-root": {
+      margin: "10px 0 0",
+      gridTemplateColumns: "repeat(4, 1fr)",
+      "& li": {
+        margin: "20px 20px 0 0",
+        background: color.palette.secondary.main,
+        boxShadow: "0px 12px 24px rgba(69, 124, 189, 0.03)",
+        borderRadius: "6px",
+        "& .MuiCardContent-root": {
+          lineHeight: "initial",
+          padding: "13px 10px 10px 20px",
+          position: "relative",
+        }
       },
-    });
+    },
+  });
 
   return (
-      <TabContainer>
-          <Box sx={{ borderBottom: 1, borderColor: color.palette.greyShade.light }}>
-            <Tabs value={value} onChange={handleChange} aria-label="metrics-tab">
-                    {props.tabItems.tabdata.map((data:TabsHeadI,index:number) => {
-                        return <Tab label={data.tabhead} {...getallProps(index)} key={index}/>
-                    })}
-            </Tabs>
-          </Box>
+    <TabContainer>
+      <Box sx={{ borderBottom: 1, borderColor: color.palette.greyShade.light }}>
+        <Tabs value={value} onChange={handleChange} aria-label="metrics-tab">
+          {props.tabItems.tabdata.map((data: TabsHeadI, index: number) => {
+            return <Tab label={data.tabhead} {...getallProps(index)} key={index} />
+          })}
+        </Tabs>
+      </Box>
 
-          {props.tabItems.tabdata.map((data:TabsHeadI,i:number) => {
-            return (
-              <TabPanel value={value} index={i} key={i}>
-                  {data.tabcontent.length !== 0 ?
-                    <ListContainer>
-                        <ImageList cols={4}>                      
+      {props.tabItems.tabdata.map((data: TabsHeadI, i: number) => {
+        return (
+          <TabPanel value={value} index={i} key={i}>
+            {data.tabcontent.length !== 0 ?
+              <ListContainer>
+                <ImageList cols={4}>
 
-                                {data.tabcontent.map((n:TabsContentI,index:number) => {
-                                    return (
-                                        <ImageListItem key={index} >
-                                            <Cards propdata = {data.tabcontent.length !== 0 ? n : {}}/>
-                                        </ImageListItem>
-                                    );
-                                })} 
+                  {data.tabcontent.map((n: TabsContentI, index: number) => {
+                    return (
+                      <ImageListItem key={index} >
+                        <Cards propdata={data.tabcontent.length !== 0 ? n : {}} />
+                      </ImageListItem>
+                    );
+                  })}
 
-                        </ImageList>
-                    </ListContainer>
-                    : 
-                      
-                    <SkeletonComp metricsTitle = {props.metricTitle[0]}/>
-                      
-                  }
-              </TabPanel>
-              )}
-          )}
-      </TabContainer>
+                </ImageList>
+              </ListContainer>
+              :
+
+              <Skeleton metricsTitle={props.metricTitle[0]} />
+
+            }
+          </TabPanel>
+        )
+      }
+      )}
+    </TabContainer>
   );
 }

@@ -1,10 +1,11 @@
 import MetricsCategory from "components/supplyMetrics/SupplyMetrics.component";
-import { Box, Stack,Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import infoIcon from "assets/images/info.svg";
 import color from "styles/color";
 import globeIcon from "assets/images/economicIcon.svg";
 import socialIcon from "assets/images/socialIcon.svg";
+import environmentIcon from "assets/images/environmentIcon.svg";
 
 import { TabsI, TabsHeadI, TabsContentI } from "model/common.model";
 
@@ -27,18 +28,21 @@ const SubContent = styled(Stack)({
 });
 
 const metricsData: TabsContentI[] = [
-  { cardHead: '80 %', cardContent: 'Percentage of school aged children attending school', chartType: 'pieChart' },
-  { cardHead: 'Yes', cardContent: 'Active CLMS in place', chartType: '' },
-  { cardHead: '50', cardContent: 'Number of Farming Households in Farmer Group Covered by CLMS', chartType: '' },
-  { cardHead: '15', cardContent: 'Number of unannounced inspections', chartType: 'barChart' },
-  { cardHead: '10 %', cardContent: 'Percentage of Farming Households where an inspection has occurred', chartType: 'pieChart' },
-  { cardHead: '30', cardContent: 'Number of children identified in child labour through inspections', chartType: '' },
-  { cardHead: '5 %', cardContent: 'Percentage of child labour cases remediated or referred', chartType: 'barChart' }
+  { cardHead: '500', cardContent: 'Number of School Aged Children', chartType: 'pieChart' },
+  { cardHead: '476', cardContent: 'Percentage of school aged children attending school', chartType: 'pieChart' },
+  { cardHead: 'Yes', cardContent: 'Active CLM, CLMS, CLMRS in place', chartType: '' },
+  { cardHead: '560', cardContent: 'Number of Farming Households where an inspection has occurred', chartType: 'pieChart' },
+  { cardHead: '557', cardContent: 'Number of farmers Covered by a CLMS', chartType: '' },
+  { cardHead: '5', cardContent: 'Number of announced inspections', chartType: 'barChart' },
+  { cardHead: '7', cardContent: 'Number of unannounced inspections', chartType: 'barChart' },
+  { cardHead: '3', cardContent: 'Number of children identified in child labour through inspections', chartType: '' },
+  { cardHead: '3', cardContent: 'Number of child labour cases remediated or referred', chartType: 'barChart' }
 ];
 
 const economic: TabsHeadI[] = [{ tabhead: 'Labour', tabcontent: metricsData }, { tabhead: 'Economic Prosperity', tabcontent: [] }];
 const social: TabsHeadI[] = [{ tabhead: 'Diversity and Inclusion ', tabcontent: [] }, { tabhead: 'Community', tabcontent: [] }];
-const tabDatas: TabsI[] = [{ Economic: { tabdata: economic, tabcolor: color.palette.orange, image: globeIcon } }, { Social: { tabdata: social, tabcolor: color.palette.red, image: socialIcon } }];
+const environment: TabsHeadI[] = [{ tabhead: 'Climate ', tabcontent: [] }, { tabhead: 'Water', tabcontent: [] }, { tabhead: 'Land Use', tabcontent: [] }, { tabhead: 'Circularity ', tabcontent: [] }];
+const tabDatas: TabsI[] = [{ Economic: { tabdata: economic, tabcolor: color.palette.orange, image: globeIcon } }, { Social: { tabdata: social, tabcolor: color.palette.red, image: socialIcon } }, { Environmental: { tabdata: environment, tabcolor: color.palette.green, image: environmentIcon } }];
 
 const SupplyMetrics = () => {
   return (
@@ -50,11 +54,11 @@ const SupplyMetrics = () => {
         <SubContent>
           <img src={infoIcon} alt="info-icon" />
           <Typography variant="body2">
-              The metrics shown are aggregated across all of your suppliers and commodities. Use the filters to select specific data sets
+            The metrics shown are aggregated across all of your suppliers and commodities. Use the filters to select specific data sets
           </Typography>
         </SubContent>
 
-        <MetricsCategory tabDatas={tabDatas}/>
+        <MetricsCategory tabDatas={tabDatas} />
       </MetricsContainer>
     </>
   );

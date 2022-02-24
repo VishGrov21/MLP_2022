@@ -3,6 +3,7 @@ import { PaletteColor } from "@mui/material";
 export interface TabsI {
   Economic?: TabsPropertyI,
   Social?: TabsPropertyI,
+  Environmental?: TabsPropertyI
 }
 
 export interface TabsHeadI {

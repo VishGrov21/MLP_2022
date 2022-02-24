@@ -5,9 +5,9 @@ import RootNavigator from "./routes/RootNavigator";
 
 function App() {
   return (
-     <ThemeProvider theme={theme}>
-        <RootNavigator />
-     </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <RootNavigator />
+    </ThemeProvider>
   );
 }
 
