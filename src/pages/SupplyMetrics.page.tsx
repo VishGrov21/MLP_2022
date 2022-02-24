@@ -28,33 +28,53 @@ const SubContent = styled(Stack)({
 });
 
 const metricsData: TabsContentI[] = [
-  { cardHead: '500', cardContent: 'Number of School Aged Children', chartType: 'pieChart' },
-  { cardHead: '476', cardContent: 'Percentage of school aged children attending school', chartType: 'pieChart' },
-  { cardHead: 'Yes', cardContent: 'Active CLM, CLMS, CLMRS in place', chartType: '' },
-  { cardHead: '560', cardContent: 'Number of Farming Households where an inspection has occurred', chartType: 'pieChart' },
-  { cardHead: '557', cardContent: 'Number of farmers Covered by a CLMS', chartType: '' },
-  { cardHead: '5', cardContent: 'Number of announced inspections', chartType: 'barChart' },
-  { cardHead: '7', cardContent: 'Number of unannounced inspections', chartType: 'barChart' },
-  { cardHead: '3', cardContent: 'Number of children identified in child labour through inspections', chartType: '' },
-  { cardHead: '3', cardContent: 'Number of child labour cases remediated or referred', chartType: 'barChart' }
+  { cardHead: "500", cardContent: "Number of School Aged Children", chartType: "pieChart" },
+  { cardHead: "476", cardContent: "Percentage of school aged children attending school", chartType: "pieChart" },
+  { cardHead: "Yes", cardContent: "Active CLM, CLMS, CLMRS in place", chartType: "" },
+  {
+    cardHead: "560",
+    cardContent: "Number of Farming Households where an inspection has occurred",
+    chartType: "pieChart",
+  },
+  { cardHead: "557", cardContent: "Number of farmers Covered by a CLMS", chartType: "" },
+  { cardHead: "5", cardContent: "Number of announced inspections", chartType: "barChart" },
+  { cardHead: "7", cardContent: "Number of unannounced inspections", chartType: "barChart" },
+  { cardHead: "3", cardContent: "Number of children identified in child labour through inspections", chartType: "" },
+  { cardHead: "3", cardContent: "Number of child labour cases remediated or referred", chartType: "barChart" },
 ];
 
-const economic: TabsHeadI[] = [{ tabhead: 'Labour', tabcontent: metricsData }, { tabhead: 'Economic Prosperity', tabcontent: [] }];
-const social: TabsHeadI[] = [{ tabhead: 'Diversity and Inclusion ', tabcontent: [] }, { tabhead: 'Community', tabcontent: [] }];
-const environment: TabsHeadI[] = [{ tabhead: 'Climate ', tabcontent: [] }, { tabhead: 'Water', tabcontent: [] }, { tabhead: 'Land Use', tabcontent: [] }, { tabhead: 'Circularity ', tabcontent: [] }];
-const tabDatas: TabsI[] = [{ Economic: { tabdata: economic, tabcolor: color.palette.orange, image: globeIcon } }, { Social: { tabdata: social, tabcolor: color.palette.red, image: socialIcon } }, { Environmental: { tabdata: environment, tabcolor: color.palette.green, image: environmentIcon } }];
+const economic: TabsHeadI[] = [
+  { tabhead: "Labour", tabcontent: metricsData },
+  { tabhead: "Economic Prosperity", tabcontent: [] },
+];
+const social: TabsHeadI[] = [
+  { tabhead: "Diversity and Inclusion ", tabcontent: [] },
+  { tabhead: "Community", tabcontent: [] },
+];
+const environment: TabsHeadI[] = [
+  { tabhead: "Climate ", tabcontent: [] },
+  { tabhead: "Water", tabcontent: [] },
+  { tabhead: "Land Use", tabcontent: [] },
+  { tabhead: "Circularity ", tabcontent: [] },
+];
+const tabDatas: TabsI[] = [
+  { Economic: { tabdata: economic, tabcolor: color.palette.orange, image: globeIcon } },
+  { Social: { tabdata: social, tabcolor: color.palette.red, image: socialIcon } },
+  { Environmental: { tabdata: environment, tabcolor: color.palette.green, image: environmentIcon } },
+];
 
 const SupplyMetrics = () => {
   return (
     <>
       <MetricsContainer>
         <Heading>
-          <Typography variant="h1">Metrics</Typography>
+          <Typography variant='h1'>Metrics</Typography>
         </Heading>
         <SubContent>
-          <img src={infoIcon} alt="info-icon" />
-          <Typography variant="body2">
-            The metrics shown are aggregated across all of your suppliers and commodities. Use the filters to select specific data sets
+          <img src={infoIcon} alt='info-icon' />
+          <Typography variant='body2'>
+            The metrics shown are aggregated across all of your suppliers and commodities. Use the filters to select
+            specific data sets
           </Typography>
         </SubContent>
 

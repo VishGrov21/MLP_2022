@@ -72,7 +72,7 @@ const MenuStyled = styled(Menu)({
     backgroundColor: color.palette.primary.dark,
     color: color.palette.secondary.main,
     maxWidth: "30%",
-    zIndex:"1",
+    zIndex: "1",
   },
   "& .MuiMenu-list": {
     paddingTop: 0,

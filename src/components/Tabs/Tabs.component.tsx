@@ -4,22 +4,21 @@ import { Cards } from "components/cards/Cards.component";
 import color from "styles/color";
 import { TabsPropertyI, TabsContentI, TabsHeadI } from "model/common.model";
 
-import Skeleton from "components/skeleton/Skeleton.component";
+import Skeleton from "components/skeleton/LoaderSkeleton.component";
 
 interface TabPanelI {
-  children: string | object,
-  value: number,
-  index: number,
-  key?: number
+  children: string | object;
+  value: number;
+  index: number;
+  key?: number;
 }
 
 function TabPanel(props: TabPanelI) {
-
   const { children, value, index, ...other } = props;
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`tabpanel-${index}`}
       aria-labelledby={`tabIndex-${index}`}
@@ -39,8 +38,8 @@ function getallProps(index: number) {
 }
 
 interface TabComponentI {
-  tabItems: TabsPropertyI,
-  metricTitle: string[]
+  tabItems: TabsPropertyI;
+  metricTitle: string[];
 }
 
 export const TabComponent = (props: TabComponentI) => {
@@ -51,7 +50,6 @@ export const TabComponent = (props: TabComponentI) => {
   };
 
   const TabContainer = styled("div")({
-
     "& .MuiBox-root": {
       padding: 0,
     },
@@ -67,13 +65,13 @@ export const TabComponent = (props: TabComponentI) => {
       "&.Mui-selected": {
         color: color.palette.primary.dark,
         textAlign: "left",
-      }
+      },
     },
     "& .MuiTabs-indicator": {
       backgroundColor: props.tabItems.tabcolor.light,
       height: "5px",
       borderRadius: "10px",
-    }
+    },
   });
 
   const ListContainer = styled("div")({
@@ -89,7 +87,7 @@ export const TabComponent = (props: TabComponentI) => {
           lineHeight: "initial",
           padding: "13px 10px 10px 20px",
           position: "relative",
-        }
+        },
       },
     },
   });
@@ -97,9 +95,9 @@ export const TabComponent = (props: TabComponentI) => {
   return (
     <TabContainer>
       <Box sx={{ borderBottom: 1, borderColor: color.palette.greyShade.light }}>
-        <Tabs value={value} onChange={handleChange} aria-label="metrics-tab">
+        <Tabs value={value} onChange={handleChange} aria-label='metrics-tab'>
           {props.tabItems.tabdata.map((data: TabsHeadI, index: number) => {
-            return <Tab label={data.tabhead} {...getallProps(index)} key={index} />
+            return <Tab label={data.tabhead} {...getallProps(index)} key={index} />;
           })}
         </Tabs>
       </Box>
@@ -107,29 +105,24 @@ export const TabComponent = (props: TabComponentI) => {
       {props.tabItems.tabdata.map((data: TabsHeadI, i: number) => {
         return (
           <TabPanel value={value} index={i} key={i}>
-            {data.tabcontent.length !== 0 ?
+            {data.tabcontent.length !== 0 ? (
               <ListContainer>
                 <ImageList cols={4}>
-
                   {data.tabcontent.map((n: TabsContentI, index: number) => {
                     return (
-                      <ImageListItem key={index} >
+                      <ImageListItem key={index}>
                         <Cards propdata={data.tabcontent.length !== 0 ? n : {}} />
                       </ImageListItem>
                     );
                   })}
-
                 </ImageList>
               </ListContainer>
-              :
-
+            ) : (
               <Skeleton metricsTitle={props.metricTitle[0]} />
-
-            }
+            )}
           </TabPanel>
-        )
-      }
-      )}
+        );
+      })}
     </TabContainer>
   );
-}
+};

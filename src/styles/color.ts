@@ -41,7 +41,7 @@ const color = createTheme({
       light: "#CED4DA",
       main: "#6C757D",
       dark: "#9FA9B3",
-      darker: "#6C757D"
+      darker: "#6C757D",
     },
     yellow: {
       light: "#ECD276",
@@ -53,12 +53,12 @@ const color = createTheme({
     },
     red: {
       light: "#ED7D75",
-      main: "#E27338"
+      main: "#E27338",
     },
     green: {
       light: "#1AB068",
       main: "#1AB068",
-    }
+    },
   },
 });
 
