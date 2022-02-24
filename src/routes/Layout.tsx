@@ -1,4 +1,4 @@
-import SideNav from "components/sideNav/SideNav.component";
+import SideNav from "components/common/SideNav.component";
 import Footer from "components/footer/Footer.component";
 import { styled, Stack } from "@mui/material";
 import UserProfileHeader from "components/common/UserProfileHeader.component";
@@ -8,10 +8,6 @@ import SupplyMetrics from "pages/SupplyMetrics.page";
 const LayoutContainer = styled(Stack)({
   flexDirection: "row",
 });
-
-interface layoutTypesI {
-  children: object;
-}
 
 const Layout = () => {
   return (

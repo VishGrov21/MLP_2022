@@ -1,47 +1,49 @@
-import { TabComponent } from 'components/tabs/Tabs.component';
-import { styled, Stack } from "@mui/material";
-import globeIcon from "assets/images/economic.svg";
-import { TabsI } from 'model/common.model';
+import { TabComponent } from "components/common/Tabs.component";
+import { styled, Stack, Box, Typography } from "@mui/material";
+import { TabsI, TabsPropertyI } from "model/common.model";
 
-const economicTabs:Array<TabsI> = [{tabhead: 'Labour'},{tabhead:'Economic Prosperity'}];
-
-const CategoryHead = styled(Stack)({
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: '30px 0',
-    '& .titleImage': {
-        background: '#E27338',
-        padding: '5px 5px',
-        borderRadius: '6px',
-        display: 'flex',
-        alignItems: 'center',
-        marginRight: '10px',
-        '& img': {
-           padding: 0,
-        }
+interface TabComponentI {
+  tabDatas: TabsI[];
+}
+function MetricsCategory(props: TabComponentI) {
+  const CategoryHead = styled(Stack)({
+    flexDirection: "row",
+    alignItems: "center",
+    margin: "30px 0 20px",
+    "& .titleImage": {
+      display: "flex",
+      alignItems: "center",
+      marginRight: "10px",
+      "& img": {
+        padding: 0,
+        width: "30px",
+        height: "30px",
+      },
     },
-    '& .title': {
-        fontSize: '24px',
-        fontWeight: 'bold',
-        color: '#282828',
-    }
-})
+  });
 
-const CategoryContainer = styled(Stack)({
-    //To write styling for other categories
-})
+  return (
+    <>
+      {props.tabDatas?.map((data: TabsI) => {
+        let color: TabsPropertyI[] = Object.values(data);
 
-function MetricsCategory() {
-    return (
-        <CategoryContainer>
+        return (
+          <>
             <CategoryHead>
-                <span className='titleImage'><img src={globeIcon} alt='economic-icon'/></span>
-                <span className='title'>Economic</span>
+              <Box className='titleImage'>
+                <img src={color[0].image} alt='economic-icon' />
+              </Box>
+              <Typography variant='h2'>{Object.keys(data)}</Typography>
             </CategoryHead>
-            <TabComponent tabItems={economicTabs} />
-        </CategoryContainer>
-    );
+
+            {Object.values(data).map((tabData: TabsPropertyI) => {
+              return <TabComponent tabItems={tabData} metricTitle={Object.keys(data)} />;
+            })}
+          </>
+        );
+      })}
+    </>
+  );
 }
 
 export default MetricsCategory;
-

@@ -1,9 +1,14 @@
-import "./assets/fonts/Roboto-Regular.ttf";
+import { ThemeProvider } from "@mui/material/styles";
 import "./App.css";
+import theme from "styles/theme";
 import RootNavigator from "./routes/RootNavigator";
 
 function App() {
-  return <RootNavigator />;
+  return (
+    <ThemeProvider theme={theme}>
+      <RootNavigator />
+    </ThemeProvider>
+  );
 }
 
 export default App;
