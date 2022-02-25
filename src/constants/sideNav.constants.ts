@@ -12,7 +12,7 @@ export const sideNavArr = [
     iconSrc: portfolioIcon,
   },
   {
-    name: "Supply Metrics",
+    name: "Supply Chain Metrics",
     path: "/supply-metrics",
     iconSrc: supplyMetricsIcon,
   },
