@@ -38,7 +38,7 @@ function MetricsCategory(props: TabComponentI) {
             </CategoryHead>
 
             {Object.values(data).map((tabData: TabsPropertyI) => {
-              return <TabComponent tabItems={tabData} metricTitle={Object.keys(data)} />;
+              return <TabComponent tabItems={tabData} />;
             })}
           </Fragment>
         );

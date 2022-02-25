@@ -39,7 +39,6 @@ function getallProps(index: number) {
 
 interface TabComponentI {
   tabItems: TabsPropertyI;
-  metricTitle: string[];
 }
 
 export const TabComponent = (props: TabComponentI) => {
@@ -118,7 +117,7 @@ export const TabComponent = (props: TabComponentI) => {
                 </ImageList>
               </ListContainer>
             ) : (
-              <Skeleton metricsTitle={props.metricTitle[0]} />
+              <Skeleton metricsTitle={data.tabhead} />
             )}
           </TabPanel>
         );
