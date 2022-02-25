@@ -1,6 +1,7 @@
 import { TabComponent } from "components/common/Tabs.component";
 import { styled, Stack, Box, Typography } from "@mui/material";
 import { TabsI, TabsPropertyI } from "model/common.model";
+import { Fragment } from "react";
 
 interface TabComponentI {
   tabDatas: TabsI[];
@@ -24,11 +25,11 @@ function MetricsCategory(props: TabComponentI) {
 
   return (
     <>
-      {props.tabDatas?.map((data: TabsI) => {
+      {props.tabDatas?.map((data: TabsI, index: number) => {
         let color: TabsPropertyI[] = Object.values(data);
 
         return (
-          <>
+          <Fragment key={index}>
             <CategoryHead>
               <Box className='titleImage'>
                 <img src={color[0].image} alt='economic-icon' />
@@ -39,7 +40,7 @@ function MetricsCategory(props: TabComponentI) {
             {Object.values(data).map((tabData: TabsPropertyI) => {
               return <TabComponent tabItems={tabData} metricTitle={Object.keys(data)} />;
             })}
-          </>
+          </Fragment>
         );
       })}
     </>
