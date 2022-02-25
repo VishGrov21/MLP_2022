@@ -31,11 +31,11 @@ const metricsData: TabsContentI[] = [
   { cardHead: "80%", cardContent: "Percentage of school aged children attending school", chartType: "pieChart" },
   {
     cardHead: "560",
-    cardContent: "Number of Farming Households Covered by CLM, CLMS, CLMRS",
+    cardContent: "Number of farming households covered by CLM, CLMS, CLMRS",
     chartType: "pieChart",
   },
   { cardHead: "7", cardContent: "Number of unannounced inspections", chartType: "barChart" },
-  { cardHead: "30%", cardContent: "Percentage of Farming Households where an inspection has occurred", chartType: "" },
+  { cardHead: "30%", cardContent: "Percentage of farming households where an inspection has occurred", chartType: "" },
   { cardHead: "3", cardContent: "Number of children identified in child labour through inspections", chartType: "" },
   { cardHead: "5%", cardContent: "Percentage of child labour cases remediated or referred", chartType: "barChart" },
 ];
