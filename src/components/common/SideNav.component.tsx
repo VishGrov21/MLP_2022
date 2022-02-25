@@ -81,6 +81,12 @@ const ListItemStyled = styled(ListItemButton)({
     // so reducing the borderWidth from left in order to align properly
     paddingLeft: "9px",
   },
+  "& .wide": {
+    marginLeft: "-20px",
+  },
+  " .narrow": {
+    marginLeft: "-8px",
+  },
 });
 
 function expandIconStyles() {
@@ -142,7 +148,7 @@ const SideNavigation = () => {
               selected={index === selectedMenu}
             >
               <ListItemIcon sx={{ paddingLeft: "10px" }}>{<img src={navEle.iconSrc} alt='Icon' />}</ListItemIcon>
-              <ListItemText primary={navEle.name} />
+              <ListItemText className={open ? "wide" : "narrow"} primary={navEle.name} />
             </ListItemStyled>
           ))}
         </List>
@@ -156,7 +162,7 @@ const SideNavigation = () => {
               sx={{ marginTop: "-20px" }}
             >
               <ListItemIcon sx={{ paddingLeft: "10px" }}>{<img src={navEle.iconSrc} alt='Icon' />}</ListItemIcon>
-              <ListItemText primary={navEle.name} />
+              <ListItemText className={open ? "wide" : "narrow"} primary={navEle.name} />
             </ListItemStyled>
           ))}
         </List>
