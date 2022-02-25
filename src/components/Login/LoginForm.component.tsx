@@ -9,6 +9,7 @@ import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
 
 import color from "styles/color";
+import { loginConstants } from "constants/login.constant";
 
 const LoginFormContainer = styled(Stack)({
   backgroundColor: color.palette.secondary.main,
@@ -59,7 +60,12 @@ const checkboxStyle = {
 const getLoginFormvalidations = () =>
   Yup.object().shape({
     email: Yup.string().required("Email is a required field").email("Invalid e-mail"),
-    password: Yup.string().required("Password is a required field"),
+    password: Yup.string()
+      .required("Password is a required field")
+      .matches(
+        loginConstants.passwordRegex,
+        "Password Must Contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 digit and 1 Special Case Character"
+      ),
   });
 
 interface LoginPropsI {

@@ -16,6 +16,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import LogoutIcon from "@mui/icons-material/Logout";
 import color from "styles/color";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   children: React.ReactElement;
@@ -134,6 +135,7 @@ function stringAvatar(name: string): { sx: { bgcolor: string }; children: string
 const UserProfileHeader = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [expandIcon, setExpandIcon] = useState(<DownArrowIcon />);
+  const navigate = useNavigate();
 
   const showUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -143,6 +145,11 @@ const UserProfileHeader = () => {
   const closeUserMenu = () => {
     setAnchorEl(null);
     setExpandIcon(<DownArrowIcon />);
+  };
+
+  const handleLogout = () => {
+    closeUserMenu();
+    navigate("/login", { state: { isLogout: true }, replace: true });
   };
 
   const open = Boolean(anchorEl);
@@ -179,7 +186,7 @@ const UserProfileHeader = () => {
               <Typography>{company}</Typography>
               <Typography>{designation}</Typography>
             </MenuItemStyled>
-            <MenuItemStyled onClick={closeUserMenu} sx={{ flexDirection: "row" }}>
+            <MenuItemStyled onClick={handleLogout} sx={{ flexDirection: "row" }}>
               <ListItemIcon>
                 <LogoutIcon sx={{ color: color.palette.secondary.main }} />
               </ListItemIcon>
