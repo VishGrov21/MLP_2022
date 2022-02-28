@@ -46,6 +46,7 @@ const color = createTheme({
     yellow: {
       light: "#ECD276",
       main: "#DAA900",
+      dark: "#F4DA7D",
     },
     orange: {
       light: "#E78E5F",
