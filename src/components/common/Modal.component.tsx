@@ -55,6 +55,7 @@ const DialogContainer = styled(Dialog)({
   });
 
   interface ButtonData {
+    id: number
     buttonText: string,
     onClickFn: Function
   }
@@ -93,8 +94,8 @@ const ModalContainer = (props:ModalDataI) => {
                     </DialogContent>
 
                     <DialogActions>
-                        {props?.buttonArr.map((buttonData:ButtonData,index:number) => (
-                            <Button key={index} onClick={() => buttonData.onClickFn()} autoFocus>
+                        {props?.buttonArr.map((buttonData:ButtonData) => (
+                            <Button key={buttonData.id} onClick={() => buttonData.onClickFn()} autoFocus>
                                 {buttonData.buttonText}
                             </Button>
                         ))}

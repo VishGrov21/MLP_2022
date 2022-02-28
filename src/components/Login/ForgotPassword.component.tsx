@@ -96,7 +96,7 @@ const ForgotPassword = () => {
       </FormLayout>
       :  <ModalComponent
             modalBody = 'An email has been sent with instructions for your password reset'
-            buttonArr = {[{buttonText:'Ok', onClickFn: handleFormRedirection }]} 
+            buttonArr = {[{id:1,buttonText:'Ok', onClickFn: handleFormRedirection }]} 
             closeIcon = {false}
         />
   );
