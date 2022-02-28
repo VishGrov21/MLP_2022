@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "pages/Login.page";
-import ForgotPassword from "components/forgotPassword/ForgotPassword.component";
+import ForgotPassword from "components/login/ForgotPassword.component";
 import Layout from "routes/Layout";
 import { useState } from "react";
 

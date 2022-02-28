@@ -4,7 +4,7 @@ import { Box, Button, Stack, Typography,styled } from "@mui/material";
 import { TextField } from "formik-mui";
 import { useNavigate } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
-import FormLayout from "components/common/FormBackground.component";
+import FormLayout from "components/login/LoginFormBackground.component";
 import ModalComponent from "components/common/Modal.component";
 
 import color from "styles/color";
@@ -58,6 +58,10 @@ const ForgotPassword = () => {
   const handleFormSubmit = async () => {
     setisForgotPassword(false);
   };
+
+  const handleFormRedirection = () => {
+    navigate('/login');
+  }
  
 
   return (
@@ -92,7 +96,7 @@ const ForgotPassword = () => {
       </FormLayout>
       :  <ModalComponent
             modalBody = 'An email has been sent with instructions for your password reset'
-            buttonProps = {[{buttonName:'Ok', redirection: '/login' }]} 
+            buttonArr = {[{buttonText:'Ok', onClickFn: handleFormRedirection }]} 
             closeIcon = {false}
         />
   );

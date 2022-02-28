@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useNavigate } from "react-router-dom";
 
-import { styled,useTheme,Button,useMediaQuery,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle } from '@mui/material';
+import { styled,Button,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle } from '@mui/material';
 
 import leavesImg from "assets/images/leaves.png";
 import color from "styles/color";
+import useMobileScreen from "hooks/useMobileScreen.hooks";
 
 
 const DialogContainer = styled(Dialog)({
@@ -21,6 +21,8 @@ const DialogContainer = styled(Dialog)({
 
         '& .MuiDialogContent-root': {
             padding: '20px 0 8%',
+            display: 'flex',
+            justifyContent: 'space-between',
             '& .MuiDialogContentText-root': {
                 color: color.palette.primary.main,
                 fontFamily: "Roboto Regular",
@@ -53,33 +55,24 @@ const DialogContainer = styled(Dialog)({
   });
 
   interface ButtonData {
-    buttonName: string,
-    redirection: string
+    buttonText: string,
+    onClickFn: Function
   }
 
   interface ModalDataI {
     modalTitle?: string,
     modalBody: string,
     closeIcon: boolean,
-    buttonProps: ButtonData[],
+    buttonArr: ButtonData[],
     gifImage?: ImageData,
   }
 
 const ModalContainer = (props:ModalDataI) => {
-    const navigate = useNavigate();
     const [open, setOpen] = React.useState(true);
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const fullScreen = useMobileScreen();
   
     const handleClose = () => {
       setOpen(true);
-    };
-  
-    /**
-     * @param value The url to which user needs to navigate
-     */
-    const handleButtonClick = (value:string) => {
-        navigate(value);
     };
 
     return (
@@ -100,9 +93,9 @@ const ModalContainer = (props:ModalDataI) => {
                     </DialogContent>
 
                     <DialogActions>
-                        {props?.buttonProps.map((buttonData:ButtonData,index:number) => (
-                            <Button key={index} onClick={() => handleButtonClick(buttonData.redirection)} autoFocus>
-                                {buttonData.buttonName}
+                        {props?.buttonArr.map((buttonData:ButtonData,index:number) => (
+                            <Button key={index} onClick={() => buttonData.onClickFn()} autoFocus>
+                                {buttonData.buttonText}
                             </Button>
                         ))}
 

@@ -7,7 +7,7 @@ import sustainItLogo from "assets/images/sustainItLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
-import FormLayout from "components/common/FormBackground.component";
+import FormLayout from "components/login/LoginFormBackground.component";
 
 import color from "styles/color";
 import { loginConstants } from "constants/login.constant";
