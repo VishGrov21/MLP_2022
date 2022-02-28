@@ -7,20 +7,10 @@ import sustainItLogo from "assets/images/sustainItLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
+import FormLayout from "components/common/FormBackground.component";
 
 import color from "styles/color";
 import { loginConstants } from "constants/login.constant";
-
-const LoginFormContainer = styled(Stack)({
-  backgroundColor: color.palette.secondary.main,
-  width: "28rem",
-  height: "28rem",
-  padding: "20px 50px",
-  zIndex: 10,
-  "& .MuiTypography-body1, & .MuiInputBase-formControl": {
-    fontFamily: "Roboto Regular",
-  },
-});
 
 const LogoImg = styled("img")({
   width: "50%",
@@ -33,7 +23,7 @@ const FieldContainer = styled(Stack)({
 });
 
 const LoginButtonContainer = styled(Box)({
-  margin: "2rem 0",
+  margin: "40px 0 20px",
 });
 
 const LoginButton = styled(Button)({
@@ -43,6 +33,25 @@ const LoginButton = styled(Button)({
   "&:hover": {
     backgroundColor: color.palette.yellow.light,
   },
+});
+
+const BottomContainer = styled(Stack)({
+  justifyContent: 'space-between', 
+  flexDirection:'row',
+  color : color.palette.greyShade.main,
+  fontSize: '14px',
+  fontFamily: "Roboto Regular",
+  '& label': {
+    '& span': {fontSize: 'inherit'},
+  },
+  '& a': {
+    paddingTop: "10px", 
+    color : color.palette.greyShade.main,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  }
 });
 
 const LoginFormInitState: LoginFormI = {
@@ -81,43 +90,43 @@ const LoginForm = (props: LoginPropsI) => {
   };
 
   return (
-    <LoginFormContainer>
-      <LogoImg src={sustainItLogo} alt='Sustain It Logo' />
-      <Formik
-        initialValues={{ ...LoginFormInitState }}
-        validationSchema={getLoginFormvalidations()}
-        onSubmit={handleLoginFormSubmit}
-      >
-        <Form>
-          <FieldContainer spacing={1}>
-            <label>Username/ Email address</label>
-            <Field component={TextField} placeholder='user@mail.com' id='email' name='email' />
-          </FieldContainer>
-          <FieldContainer spacing={1}>
-            <label>Password</label>
-            <Field component={TextField} type='password' placeholder='**********' id='password' name='password' />
-          </FieldContainer>
-          <LoginButtonContainer>
-            <LoginButton color='primary' type='submit' variant='contained'>
-              Login
-            </LoginButton>
-          </LoginButtonContainer>
-          <Stack justifyContent='space-between' direction='row'>
-            <Field
-              name='rememberMe'
-              id='rememberMe'
-              component={CheckboxWithLabel}
-              type='checkbox'
-              Label={{ label: "Remember Me" }}
-              sx={checkboxStyle}
-            />
-            <Link to='/forgot-password' style={{ paddingTop: "10px", color: "Black" }}>
-              Forgot Password
-            </Link>
-          </Stack>
-        </Form>
-      </Formik>
-    </LoginFormContainer>
+      <FormLayout>
+        <LogoImg src={sustainItLogo} alt='Sustain It Logo' />
+        <Formik
+          initialValues={{ ...LoginFormInitState }}
+          validationSchema={getLoginFormvalidations()}
+          onSubmit={handleLoginFormSubmit}
+        >
+          <Form>
+            <FieldContainer spacing={1}>
+              <label>Username/ Email address</label>
+              <Field component={TextField} placeholder='user@mail.com' id='email' name='email' />
+            </FieldContainer>
+            <FieldContainer spacing={1}>
+              <label>Password</label>
+              <Field component={TextField} type='password' placeholder='**********' id='password' name='password' />
+            </FieldContainer>
+            <LoginButtonContainer>
+              <LoginButton color='primary' type='submit' variant='contained'>
+                Login
+              </LoginButton>
+            </LoginButtonContainer>
+            <BottomContainer>
+              <Field
+                name='rememberMe'
+                id='rememberMe'
+                component={CheckboxWithLabel}
+                type='checkbox'
+                Label={{ label: "Remember Me" }}
+                sx={checkboxStyle}
+              />
+              <Link to='/forgot-password'>
+                Forgot Password?
+              </Link>
+            </BottomContainer>
+          </Form>
+        </Formik>
+      </FormLayout>
   );
 };
 

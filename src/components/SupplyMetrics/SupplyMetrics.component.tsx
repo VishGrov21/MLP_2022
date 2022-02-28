@@ -37,8 +37,8 @@ function MetricsCategory(props: TabComponentI) {
               <Typography variant='h2'>{Object.keys(data)}</Typography>
             </CategoryHead>
 
-            {Object.values(data).map((tabData: TabsPropertyI) => {
-              return <TabComponent tabItems={tabData} />;
+            {Object.values(data).map((tabData: TabsPropertyI,index:number) => {
+              return <TabComponent key={index} tabItems={tabData} />;
             })}
           </Fragment>
         );
