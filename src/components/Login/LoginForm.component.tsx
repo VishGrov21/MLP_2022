@@ -10,7 +10,6 @@ import { Field, Form, Formik } from "formik";
 import FormLayout from "components/login/LoginFormBackground.component";
 
 import color from "styles/color";
-import { loginConstants } from "constants/login.constant";
 
 const LogoImg = styled("img")({
   width: "50%",
@@ -71,10 +70,6 @@ const getLoginFormvalidations = () =>
     email: Yup.string().required("Email is a required field").email("Invalid e-mail"),
     password: Yup.string()
       .required("Password is a required field")
-      .matches(
-        loginConstants.passwordRegex,
-        "Password Must Contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 digit and 1 Special Case Character"
-      ),
   });
 
 interface LoginPropsI {
