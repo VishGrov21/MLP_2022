@@ -10,7 +10,6 @@ import { Field, Form, Formik } from "formik";
 import FormLayout from "components/login/LoginFormBackground.component";
 
 import color from "styles/color";
-import { loginConstants } from "constants/login.constant";
 
 const LogoImg = styled("img")({
   width: "50%",
