@@ -8,8 +8,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
 import FormLayout from "components/login/LoginFormBackground.component";
+import { userDetailsArr } from "constants/userDetails.constants";
 
 import color from "styles/color";
+import { useAppDispatch } from "state/store";
+import { userLoginACtionCreator } from "state/actions/user/user.action";
 
 const LogoImg = styled("img")({
   width: "50%",
@@ -35,22 +38,22 @@ const LoginButton = styled(Button)({
 });
 
 const BottomContainer = styled(Stack)({
-  justifyContent: 'space-between', 
-  flexDirection:'row',
-  color : color.palette.greyShade.main,
-  fontSize: '14px',
+  justifyContent: "space-between",
+  flexDirection: "row",
+  color: color.palette.greyShade.main,
+  fontSize: "14px",
   fontFamily: "Roboto Regular",
-  '& label': {
-    '& span': {fontSize: 'inherit'},
+  "& label": {
+    "& span": { fontSize: "inherit" },
   },
-  '& a': {
-    paddingTop: "10px", 
-    color : color.palette.greyShade.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline'
-    }
-  }
+  "& a": {
+    paddingTop: "10px",
+    color: color.palette.greyShade.main,
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
 });
 
 const LoginFormInitState: LoginFormI = {
@@ -68,8 +71,7 @@ const checkboxStyle = {
 const getLoginFormvalidations = () =>
   Yup.object().shape({
     email: Yup.string().required("Email is a required field").email("Invalid e-mail"),
-    password: Yup.string()
-      .required("Password is a required field")
+    password: Yup.string().required("Password is a required field"),
   });
 
 interface LoginPropsI {
@@ -78,50 +80,53 @@ interface LoginPropsI {
 
 const LoginForm = (props: LoginPropsI) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const handleLoginFormSubmit = async () => {
-    props.setIsLogedIn(true);
-    navigate("/supply-metrics");
+  const handleLoginFormSubmit = (loginFormData: LoginFormI) => {
+    const isValidUser = userDetailsArr.findIndex((user) => user.email === loginFormData.email);
+    if (isValidUser > -1) {
+      dispatch(userLoginACtionCreator(userDetailsArr[isValidUser]));
+      props.setIsLogedIn(true);
+      navigate("/supply-metrics");
+    }
   };
 
   return (
-      <FormLayout>
-        <LogoImg src={sustainItLogo} alt='Sustain It Logo' />
-        <Formik
-          initialValues={{ ...LoginFormInitState }}
-          validationSchema={getLoginFormvalidations()}
-          onSubmit={handleLoginFormSubmit}
-        >
-          <Form>
-            <FieldContainer spacing={1}>
-              <label>Username/ Email address</label>
-              <Field component={TextField} placeholder='user@mail.com' id='email' name='email' />
-            </FieldContainer>
-            <FieldContainer spacing={1}>
-              <label>Password</label>
-              <Field component={TextField} type='password' placeholder='**********' id='password' name='password' />
-            </FieldContainer>
-            <LoginButtonContainer>
-              <LoginButton color='primary' type='submit' variant='contained'>
-                Login
-              </LoginButton>
-            </LoginButtonContainer>
-            <BottomContainer>
-              <Field
-                name='rememberMe'
-                id='rememberMe'
-                component={CheckboxWithLabel}
-                type='checkbox'
-                Label={{ label: "Remember Me" }}
-                sx={checkboxStyle}
-              />
-              <Link to='/forgot-password'>
-                Forgot Password?
-              </Link>
-            </BottomContainer>
-          </Form>
-        </Formik>
-      </FormLayout>
+    <FormLayout>
+      <LogoImg src={sustainItLogo} alt='Sustain It Logo' />
+      <Formik
+        initialValues={{ ...LoginFormInitState }}
+        validationSchema={getLoginFormvalidations()}
+        onSubmit={handleLoginFormSubmit}
+      >
+        <Form>
+          <FieldContainer spacing={1}>
+            <label>Username/ Email address</label>
+            <Field component={TextField} placeholder='user@mail.com' id='email' name='email' />
+          </FieldContainer>
+          <FieldContainer spacing={1}>
+            <label>Password</label>
+            <Field component={TextField} type='password' placeholder='**********' id='password' name='password' />
+          </FieldContainer>
+          <LoginButtonContainer>
+            <LoginButton color='primary' type='submit' variant='contained'>
+              Login
+            </LoginButton>
+          </LoginButtonContainer>
+          <BottomContainer>
+            <Field
+              name='rememberMe'
+              id='rememberMe'
+              component={CheckboxWithLabel}
+              type='checkbox'
+              Label={{ label: "Remember Me" }}
+              sx={checkboxStyle}
+            />
+            <Link to='/forgot-password'>Forgot Password?</Link>
+          </BottomContainer>
+        </Form>
+      </Formik>
+    </FormLayout>
   );
 };
 
