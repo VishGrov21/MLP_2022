@@ -1,4 +1,5 @@
 import { SupplyMetricsTabsI } from "model/supplyMetrics.model";
+import { AnyAction } from "redux";
 import { METRIC_TILES_DATA, SupplyMetricsActionType } from "state/actions/supplyMetrics/supplyMetrics.type";
 
 interface MetricsStateI {
@@ -6,10 +7,10 @@ interface MetricsStateI {
 }
 
 const initialState: MetricsStateI = {
-  tilesData: []
+  tilesData: [],
 };
 
-export const SupplyMetrics = (state = initialState, action: SupplyMetricsActionType) :MetricsStateI => {
+export const SupplyMetrics = (state = initialState, action: AnyAction): MetricsStateI => {
   switch (action.type) {
     case METRIC_TILES_DATA:
       return { ...state, tilesData: action.payload };

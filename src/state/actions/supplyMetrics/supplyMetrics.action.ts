@@ -17,7 +17,7 @@ export const metricsDataSuccessActionCreator = (metricsData: SupplyMetricsTabsI[
 };
 
 export const getMetricsData = (): AppThunk => {
-  return async (dispatch:AppDispatch) => {
+  return async (dispatch: AppDispatch) => {
     const url = "https://jsonplaceholder.typicode.com/users";
     fetch(url)
       .then((resp) => {
@@ -29,47 +29,67 @@ export const getMetricsData = (): AppThunk => {
   };
 };
 
-const tabDatas: SupplyMetricsTabsI[] = [
-  { Economic: { 
+export const tabDatas: SupplyMetricsTabsI[] = [
+  {
+    Economic: {
       tabdata: [
-        { tabhead: "Labour", 
+        {
+          tabhead: "Labour",
           tabcontent: [
-            { cardHead: "80%", cardContent: "Percentage of school aged children attending school", chartType: "pieChart" },
+            {
+              cardHead: "80%",
+              cardContent: "Percentage of school aged children attending school",
+              chartType: "pieChart",
+            },
             {
               cardHead: "560",
               cardContent: "Number of farming households covered by CLM, CLMS, CLMRS",
               chartType: "pieChart",
             },
             { cardHead: "7", cardContent: "Number of unannounced inspections", chartType: "barChart" },
-            { cardHead: "30%", cardContent: "Percentage of farming households where an inspection has occurred", chartType: "" },
-            { cardHead: "3", cardContent: "Number of children identified in child labour through inspections", chartType: "" },
-            { cardHead: "5%", cardContent: "Percentage of child labour cases remediated or referred", chartType: "barChart" },
-          ] 
+            {
+              cardHead: "30%",
+              cardContent: "Percentage of farming households where an inspection has occurred",
+              chartType: "",
+            },
+            {
+              cardHead: "3",
+              cardContent: "Number of children identified in child labour through inspections",
+              chartType: "",
+            },
+            {
+              cardHead: "5%",
+              cardContent: "Percentage of child labour cases remediated or referred",
+              chartType: "barChart",
+            },
+          ],
         },
         { tabhead: "Economic Prosperity", tabcontent: [] },
-      ], 
-      tabcolor: color.palette.orange, 
-      image: globeIcon 
-    } 
+      ],
+      tabcolor: color.palette.orange,
+      image: globeIcon,
+    },
   },
-  { Social: { 
+  {
+    Social: {
       tabdata: [
         { tabhead: "Diversity and Inclusion ", tabcontent: [] },
         { tabhead: "Community", tabcontent: [] },
-      ], 
-      tabcolor: color.palette.red, 
-      image: socialIcon 
-    } 
+      ],
+      tabcolor: color.palette.red,
+      image: socialIcon,
+    },
   },
-  { Environmental: { 
+  {
+    Environmental: {
       tabdata: [
         { tabhead: "Climate ", tabcontent: [] },
         { tabhead: "Water", tabcontent: [] },
         { tabhead: "Land Use", tabcontent: [] },
         { tabhead: "Circularity ", tabcontent: [] },
-      ], 
-      tabcolor: color.palette.green, 
-      image: environmentIcon 
-    } 
+      ],
+      tabcolor: color.palette.green,
+      image: environmentIcon,
+    },
   },
 ];
