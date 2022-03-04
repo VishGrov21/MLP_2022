@@ -5,7 +5,7 @@ import pieChartIcon from "assets/images/pieChartIcon.svg";
 import barChartIcon from "assets/images/barChartIcon.svg";
 import info from "assets/images/moreInfo.svg";
 import color from "styles/color";
-import { TabsContentI } from "model/common.model";
+import { SupplyMetricsTabsContentI } from "model/supplyMetrics.model";
 
 const CardContainer = styled(Stack)({
   "& .MuiPaper-root": {
@@ -63,7 +63,7 @@ const ContentBody = styled(Stack)({
   },
 });
 interface cardsI {
-  propdata: TabsContentI;
+  propdata: SupplyMetricsTabsContentI;
 }
 
 export const Cards = (props: cardsI) => {

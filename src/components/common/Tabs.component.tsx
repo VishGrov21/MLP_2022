@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box, Typography, Tab, Tabs, styled, ImageList, ImageListItem } from "@mui/material";
 import { Cards } from "components/common/Cards.component";
 import color from "styles/color";
-import { TabsPropertyI, TabsContentI, TabsHeadI } from "model/common.model";
+import { SupplyMetricsTabsPropertyI, SupplyMetricsTabsContentI, SupplyMetricsTabsHeadI } from "model/supplyMetrics.model";
 
 import Skeleton from "components/common/LoaderSkeleton.component";
 
@@ -38,7 +38,7 @@ function getallProps(index: number) {
 }
 
 interface TabComponentI {
-  tabItems: TabsPropertyI;
+  tabItems: SupplyMetricsTabsPropertyI;
 }
 
 export const TabComponent = (props: TabComponentI) => {
@@ -95,19 +95,19 @@ export const TabComponent = (props: TabComponentI) => {
     <TabContainer>
       <Box sx={{ borderBottom: 1, borderColor: color.palette.greyShade.light }}>
         <Tabs value={value} onChange={handleChange} aria-label='metrics-tab'>
-          {props.tabItems.tabdata.map((data: TabsHeadI, index: number) => {
+          {props.tabItems.tabdata.map((data: SupplyMetricsTabsHeadI, index: number) => {
             return <Tab label={data.tabhead} {...getallProps(index)} key={index} />;
           })}
         </Tabs>
       </Box>
 
-      {props.tabItems.tabdata.map((data: TabsHeadI, i: number) => {
+      {props.tabItems.tabdata.map((data: SupplyMetricsTabsHeadI, i: number) => {
         return (
           <TabPanel value={value} index={i} key={i}>
             {data.tabcontent.length !== 0 ? (
               <ListContainer>
                 <ImageList cols={4}>
-                  {data.tabcontent.map((n: TabsContentI, index: number) => {
+                  {data.tabcontent.map((n: SupplyMetricsTabsContentI, index: number) => {
                     return (
                       <ImageListItem key={index}>
                         <Cards propdata={data.tabcontent.length !== 0 ? n : {}} />
