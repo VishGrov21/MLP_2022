@@ -1,11 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import MetricsCategory from "components/supplyMetrics/SupplyMetrics.component";
 import { Box, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import infoIcon from "assets/images/info.svg";
 import color from "styles/color";
-import { RootState } from "state/store";
+import { RootState, useAppDispatch } from "state/store";
 import { getMetricsData } from "state/actions/supplyMetrics/supplyMetrics.action";
 
 const MetricsContainer = styled(Box)({
@@ -27,7 +27,7 @@ const SubContent = styled(Stack)({
 });
 
 const SupplyMetrics = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { tilesData } = useSelector((state: RootState) => state.metrics);
 

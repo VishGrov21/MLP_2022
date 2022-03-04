@@ -1,4 +1,4 @@
-import { AppThunk } from "state/store";
+import { AppDispatch, AppThunk } from "state/store";
 import { METRIC_TILES_DATA } from "state/actions/supplyMetrics/supplyMetrics.type";
 import { SupplyMetricsActionType } from "./supplyMetrics.type";
 
@@ -17,7 +17,7 @@ export const metricsDataSuccessActionCreator = (metricsData: SupplyMetricsTabsI[
 };
 
 export const getMetricsData = (): AppThunk => {
-  return async (dispatch) => {
+  return async (dispatch:AppDispatch) => {
     const url = "https://jsonplaceholder.typicode.com/users";
     fetch(url)
       .then((resp) => {
