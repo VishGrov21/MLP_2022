@@ -7,9 +7,9 @@ import globeIcon from "assets/images/economicIcon.svg";
 import socialIcon from "assets/images/socialIcon.svg";
 import environmentIcon from "assets/images/environmentIcon.svg";
 
-import { TabsI } from "model/common.model";
+import { SupplyMetricsTabsI } from "model/supplyMetrics.model";
 
-export const metricsDataSuccess = (metricsData: TabsI[]): SupplyMetricsActionType => {
+export const metricsDataSuccessActionCreator = (metricsData: SupplyMetricsTabsI[]): SupplyMetricsActionType => {
   return {
     type: METRIC_TILES_DATA,
     payload: metricsData,
@@ -21,7 +21,7 @@ export const getMetricsData = (): AppThunk => {
     const url = "https://jsonplaceholder.typicode.com/users";
     fetch(url)
       .then((resp) => {
-        dispatch(metricsDataSuccess(tabDatas));
+        dispatch(metricsDataSuccessActionCreator(tabDatas));
       })
       .catch((error) => {
         console.error("Failure while fetching metrics data", error);
@@ -29,7 +29,7 @@ export const getMetricsData = (): AppThunk => {
   };
 };
 
-const tabDatas: TabsI[] = [
+const tabDatas: SupplyMetricsTabsI[] = [
   { Economic: { 
       tabdata: [
         { tabhead: "Labour", 

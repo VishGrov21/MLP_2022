@@ -1,10 +1,10 @@
 import { TabComponent } from "components/common/Tabs.component";
 import { styled, Stack, Box, Typography } from "@mui/material";
-import { TabsI, TabsPropertyI } from "model/common.model";
+import { SupplyMetricsTabsI, SupplyMetricsTabsPropertyI } from "model/supplyMetrics.model";
 import { Fragment } from "react";
 
 interface TabComponentI {
-  tabDatas: TabsI[];
+  tabDatas: SupplyMetricsTabsI[];
 }
 function MetricsCategory(props: TabComponentI) {
   const CategoryHead = styled(Stack)({
@@ -25,8 +25,8 @@ function MetricsCategory(props: TabComponentI) {
 
   return (
     <>
-      {props.tabDatas?.map((data: TabsI, index: number) => {
-        let color: TabsPropertyI[] = Object.values(data);
+      {props.tabDatas?.map((data: SupplyMetricsTabsI, index: number) => {
+        let color: SupplyMetricsTabsPropertyI[] = Object.values(data);
 
         return (
           <Fragment key={index}>
@@ -37,7 +37,7 @@ function MetricsCategory(props: TabComponentI) {
               <Typography variant='h2'>{Object.keys(data)}</Typography>
             </CategoryHead>
 
-            {Object.values(data).map((tabData: TabsPropertyI,index:number) => {
+            {Object.values(data).map((tabData: SupplyMetricsTabsPropertyI,index:number) => {
               return <TabComponent key={index} tabItems={tabData} />;
             })}
           </Fragment>

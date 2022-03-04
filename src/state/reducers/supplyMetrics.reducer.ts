@@ -1,20 +1,18 @@
-import { METRIC_TILES_DATA } from "state/actions/supplyMetrics/supplyMetrics.type";
+import { SupplyMetricsTabsI } from "model/supplyMetrics.model";
+import { METRIC_TILES_DATA, SupplyMetricsActionType } from "state/actions/supplyMetrics/supplyMetrics.type";
 
-const initialState = {
-  tilesData: [],
-};
-
-interface actionTypeI {
-  type: string;
-  payload?: any;
+interface MetricsStateI {
+  tilesData: SupplyMetricsTabsI[];
 }
 
-export const SupplyMetrics = (state = initialState, action: actionTypeI) => {
-  const { type, payload } = action;
+const initialState: MetricsStateI = {
+  tilesData: []
+};
 
-  switch (type) {
+export const SupplyMetrics = (state = initialState, action: SupplyMetricsActionType) :MetricsStateI => {
+  switch (action.type) {
     case METRIC_TILES_DATA:
-      return { ...state, tilesData: payload };
+      return { ...state, tilesData: action.payload };
 
     default:
       return state;
