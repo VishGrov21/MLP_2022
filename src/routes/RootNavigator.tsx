@@ -11,7 +11,7 @@ const RootNavigator = () => {
       <Routes>
         <Route path='*' element={!isLoggedIn ? <Navigate replace to='/login' /> : <Layout />} />
         <Route path='/login' element={<Login setIsLogedIn={setIsLoggedIn} />} />
-        <Route path='/forgot-password' element= {<ForgotPassword />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
       </Routes>
     </BrowserRouter>
   );
