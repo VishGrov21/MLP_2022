@@ -17,16 +17,12 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import LogoutIcon from "@mui/icons-material/Logout";
 import color from "styles/color";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 interface Props {
   children: React.ReactElement;
 }
-
-const name = "Léa Yue Xu";
-const emailId = "leayue.xu@ldc.com";
-
-const company = "Cargill";
-const designation = "Product Owner";
 
 function ElevationScroll(props: Props) {
   const { children } = props;
@@ -137,6 +133,8 @@ const UserProfileHeader = () => {
   const [expandIcon, setExpandIcon] = useState(<DownArrowIcon />);
   const navigate = useNavigate();
 
+  const userDetailsObj = useSelector((state: RootState) => state.user.user);
+
   const showUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setExpandIcon(<UpArrowIcon />);
@@ -160,8 +158,8 @@ const UserProfileHeader = () => {
         <Toolbar disableGutters sx={{ height: "5rem" }}>
           <ProfileButton onClick={showUserMenu} endIcon={expandIcon}>
             <NameContainer direction='row' spacing={1} justifyContent='flex-end' alignItems='center'>
-              <Avatar {...stringAvatar(name)} />
-              <Typography sx={{ color: color.palette.secondary.main }}>{name}</Typography>
+              <Avatar {...stringAvatar(userDetailsObj.name)} />
+              <Typography sx={{ color: color.palette.secondary.main }}>{userDetailsObj.name}</Typography>
             </NameContainer>
           </ProfileButton>
           <MenuStyled
@@ -179,12 +177,12 @@ const UserProfileHeader = () => {
             sx={{ top: "15px", left: "0.8%" }}
           >
             <MenuItemStyled onClick={closeUserMenu} divider>
-              <Typography>{name}</Typography>
-              <Typography>{emailId}</Typography>
+              <Typography>{userDetailsObj.name}</Typography>
+              <Typography>{userDetailsObj.email}</Typography>
             </MenuItemStyled>
             <MenuItemStyled onClick={closeUserMenu} divider>
-              <Typography>{company}</Typography>
-              <Typography>{designation}</Typography>
+              <Typography>{userDetailsObj.company}</Typography>
+              <Typography>{userDetailsObj.jobTitle}</Typography>
             </MenuItemStyled>
             <MenuItemStyled onClick={handleLogout} sx={{ flexDirection: "row" }}>
               <ListItemIcon>
