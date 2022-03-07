@@ -8,6 +8,9 @@ import sustainItLogoSmall from "assets/images/sustainItLogoSmall.svg";
 import ExpandLessIcon from "@mui/icons-material/ArrowBackIosNew";
 import ExpandMoreIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/system";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
+import { SETTINGS_AUTHORIZED_ROLE_ARR } from "constants/settings.constants";
 
 const drawerWidth = 240;
 
@@ -106,6 +109,8 @@ const SideNavigation = () => {
   const [selectedMenu, setSelectedMenu] = useState<number | null>(0);
   const [additionalSelectedMenu, setAdditionalSelectedMenu] = useState<number | null>(null);
 
+  const userRoleArr = useSelector((state: RootState) => state.user.user.role);
+
   const handleDrawerOpen = () => {
     setOpen(true);
     setLogoSrc(sustainItLogo);
@@ -133,6 +138,13 @@ const SideNavigation = () => {
     }
   };
 
+  const showSettingsOption = () => {
+    for (let settingsRole of SETTINGS_AUTHORIZED_ROLE_ARR) {
+      for (let userRole of userRoleArr) if (userRole === settingsRole) return true;
+    }
+    return false;
+  };
+
   return (
     <Box>
       <Drawer variant='permanent' open={open}>
@@ -154,17 +166,19 @@ const SideNavigation = () => {
         </List>
         <Divider sx={{ marginTop: "50%", marginBottom: "30px" }} />
         <List>
-          {additionalSideNavArr.map((navEle, index) => (
-            <ListItemStyled
-              key={navEle.path}
-              onClick={() => handleMenu(index, true)}
-              selected={index === additionalSelectedMenu}
-              sx={{ marginTop: "-20px" }}
-            >
-              <ListItemIcon sx={{ paddingLeft: "10px" }}>{<img src={navEle.iconSrc} alt='Icon' />}</ListItemIcon>
-              <ListItemText className={open ? "wide" : "narrow"} primary={navEle.name} />
-            </ListItemStyled>
-          ))}
+          {additionalSideNavArr.map((navEle, index) =>
+            navEle.name === "Settings" && !showSettingsOption() ? null : (
+              <ListItemStyled
+                key={navEle.path}
+                onClick={() => handleMenu(index, true)}
+                selected={index === additionalSelectedMenu}
+                sx={{ marginTop: "-20px" }}
+              >
+                <ListItemIcon sx={{ paddingLeft: "10px" }}>{<img src={navEle.iconSrc} alt='Icon' />}</ListItemIcon>
+                <ListItemText className={open ? "wide" : "narrow"} primary={navEle.name} />
+              </ListItemStyled>
+            )
+          )}
         </List>
       </Drawer>
     </Box>
