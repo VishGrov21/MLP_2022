@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, AnyAction, Action } from "redux";
+import { createStore, applyMiddleware, AnyAction, Action, Store } from "redux";
 import ReduxThunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 import persistReducer from "state/reducers/rootReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -11,7 +11,7 @@ export const useAppDispatch = () => useDispatch<ThunkDispatch<RootState, {}, Act
 
 export type AppThunk<ReturnType = Promise<unknown>> = ThunkAction<ReturnType, RootState, unknown, AnyAction>;
 
-const store = createStore(persistReducer, composeWithDevTools(applyMiddleware(ReduxThunk)));
+const store: Store = createStore(persistReducer, composeWithDevTools(applyMiddleware(ReduxThunk)));
 
 export const persistor = persistStore(store);
 

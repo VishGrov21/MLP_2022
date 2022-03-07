@@ -1,5 +1,4 @@
 import { SupplyMetricsTabsI } from "model/supplyMetrics.model";
-import { Action } from "redux";
 
 export const METRIC_TILES_DATA = "metric_tiles_data";
 
