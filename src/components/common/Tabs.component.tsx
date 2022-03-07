@@ -2,7 +2,11 @@ import * as React from "react";
 import { Box, Typography, Tab, Tabs, styled, ImageList, ImageListItem } from "@mui/material";
 import { Cards } from "components/common/Cards.component";
 import color from "styles/color";
-import { SupplyMetricsTabsPropertyI, SupplyMetricsTabsContentI, SupplyMetricsTabsHeadI } from "model/supplyMetrics.model";
+import {
+  SupplyMetricsTabsPropertyI,
+  SupplyMetricsTabsContentI,
+  SupplyMetricsTabsHeadI,
+} from "model/supplyMetrics.model";
 
 import Skeleton from "components/common/LoaderSkeleton.component";
 
@@ -56,18 +60,18 @@ export const TabComponent = (props: TabComponentI) => {
       fontFamily: "Roboto Medium",
       fontSize: "20px",
       textTransform: "capitalize",
-      color: color.palette.greyShade.dark,
+      color: color.palette.greyShade.main,
       alignItems: "baseline",
       minWidth: "auto",
       padding: 0,
       marginRight: "35px",
       "&.Mui-selected": {
-        color: color.palette.primary.dark,
+        color: color.palette.black.contrastText,
         textAlign: "left",
       },
     },
     "& .MuiTabs-indicator": {
-      backgroundColor: props.tabItems.tabcolor.light,
+      backgroundColor: props.tabItems.tabcolor,
       height: "5px",
       borderRadius: "10px",
     },
@@ -79,7 +83,7 @@ export const TabComponent = (props: TabComponentI) => {
       gridTemplateColumns: "repeat(4, 1fr)",
       "& li": {
         margin: "20px 20px 0 0",
-        background: color.palette.secondary.main,
+        background: color.palette.secondary.contrastText,
         boxShadow: "0px 12px 24px rgba(69, 124, 189, 0.03)",
         borderRadius: "6px",
         "& .MuiCardContent-root": {

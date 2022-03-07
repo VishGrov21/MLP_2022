@@ -1,4 +1,6 @@
+import color from "styles/color";
+
 export const commonConstants = {
-  SUCCESS_SIDE_BAND_COLOR: "#1AB068",
-  ERROR_SIDE_BAND_COLOR: "#E00001",
+  SUCCESS_SIDE_BAND_COLOR: color.palette.green.main,
+  ERROR_SIDE_BAND_COLOR: color.palette.red.dark,
 };

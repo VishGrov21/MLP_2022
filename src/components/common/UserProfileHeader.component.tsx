@@ -19,6 +19,7 @@ import color from "styles/color";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
+import editIcon from "assets/images/editIcon.svg";
 
 interface Props {
   children: React.ReactElement;
@@ -37,7 +38,7 @@ function ElevationScroll(props: Props) {
 }
 
 const StyledAppBar = styled(AppBar)({
-  backgroundColor: color.palette.primary.dark,
+  backgroundColor: color.palette.black.main,
   width: "100%",
   height: "5rem",
 });
@@ -45,12 +46,20 @@ const StyledAppBar = styled(AppBar)({
 const NameContainer = styled(Stack)({
   height: "100%",
   width: "100%",
+  "& .MuiAvatar-root": {
+    width: "50px",
+    height: "50px",
+  },
+  "& .MuiTypography-root": {
+    textTransform: "capitalize",
+    color: color.palette.secondary.contrastText,
+  },
 });
 
 function expandIconStyles() {
   return {
     fontSize: "28px",
-    color: color.palette.secondary.main,
+    color: color.palette.secondary.contrastText,
   };
 }
 
@@ -61,31 +70,45 @@ const ProfileButton = styled(Button)({
   marginLeft: "auto",
   marginRight: "20px",
   width: "30%",
+  "&.MuiButton-root:hover": {
+    backgroundColor: "transparent",
+  },
 });
 
 const MenuStyled = styled(Menu)({
   "& .MuiMenu-paper": {
-    minWidth: "150px",
-    backgroundColor: color.palette.primary.dark,
-    color: color.palette.secondary.main,
+    backgroundColor: color.palette.black.main,
+    color: color.palette.secondary.contrastText,
     maxWidth: "30%",
     zIndex: "1",
+    borderRadius: "0 0 8px 8px",
   },
   "& .MuiMenu-list": {
-    paddingTop: 0,
-    paddingBottom: 0,
+    padding: "10px 10px 20px",
   },
 });
 
 const MenuItemStyled = styled(MenuItem)({
   "&.MuiMenuItem-divider": {
-    borderBottomColor: color.palette.secondary.main,
+    borderBottomColor: color.palette.secondary.contrastText,
     flexDirection: "column",
     alignItems: "flex-start",
   },
   "&.MuiMenuItem-root": {
-    paddingTop: "8px",
-    paddingBottom: "8px",
+    padding: "12px 10px",
+    "& h3": {
+      lineHeight: "23px",
+    },
+    "&:last-child": {
+      paddingBottom: 0,
+    },
+  },
+  "& div": {
+    flexDirection: "row",
+    alignItems: "center",
+    "& span": {
+      marginLeft: "18px",
+    },
   },
 });
 
@@ -159,7 +182,7 @@ const UserProfileHeader = () => {
           <ProfileButton onClick={showUserMenu} endIcon={expandIcon}>
             <NameContainer direction='row' spacing={1} justifyContent='flex-end' alignItems='center'>
               <Avatar {...stringAvatar(userDetailsObj.name)} />
-              <Typography sx={{ color: color.palette.secondary.main }}>{userDetailsObj.name}</Typography>
+              <Typography variant='body1'>{userDetailsObj.name}</Typography>
             </NameContainer>
           </ProfileButton>
           <MenuStyled
@@ -177,18 +200,23 @@ const UserProfileHeader = () => {
             sx={{ top: "15px", left: "0.8%" }}
           >
             <MenuItemStyled onClick={closeUserMenu} divider>
-              <Typography>{userDetailsObj.name}</Typography>
-              <Typography>{userDetailsObj.email}</Typography>
+              <Stack>
+                <Typography variant='h3'>{userDetailsObj.name}</Typography>
+                <span>
+                  <img src={editIcon} alt='edit-profile' />
+                </span>
+              </Stack>
+              <Typography variant='subtitle1'>{userDetailsObj.email}</Typography>
             </MenuItemStyled>
             <MenuItemStyled onClick={closeUserMenu} divider>
-              <Typography>{userDetailsObj.company}</Typography>
-              <Typography>{userDetailsObj.jobTitle}</Typography>
+              <Typography variant='body2'>{userDetailsObj.company}</Typography>
+              <Typography variant='subtitle1'>{userDetailsObj.jobTitle}</Typography>
             </MenuItemStyled>
             <MenuItemStyled onClick={handleLogout} sx={{ flexDirection: "row" }}>
               <ListItemIcon>
-                <LogoutIcon sx={{ color: color.palette.secondary.main }} />
+                <LogoutIcon sx={{ color: color.palette.secondary.contrastText }} />
               </ListItemIcon>
-              <Typography variant='inherit'>Log-out</Typography>
+              <Typography variant='body2'>Logout</Typography>
             </MenuItemStyled>
           </MenuStyled>
         </Toolbar>

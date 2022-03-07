@@ -20,7 +20,7 @@ const Heading = styled("div")({
 const SubContent = styled(Stack)({
   flexDirection: "row",
   fontSize: "16px",
-  color: color.palette.greyShade.main,
+  color: color.palette.greyShade.dark,
   "& img": {
     paddingRight: "5px",
   },
