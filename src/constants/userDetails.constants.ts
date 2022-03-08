@@ -6,6 +6,7 @@ export const DATA_INPUTTER = "data-inputter";
 export const DATA_APPROVER = "data-approver";
 export const SUPPLIER = "supplier";
 export const CUSTOMER = "customer";
+export const AUTHOR = "author";
 
 export const userDetailsArr: UserDetailArrT = [
   {
@@ -61,6 +62,17 @@ export const userDetailsArr: UserDetailArrT = [
     jobTitle: "Customer",
     mobile: 5431267890,
     role: [CUSTOMER],
+    isFirstTimeConfig: false,
+  },
+  {
+    id: 6,
+    email: "author@gmail.com",
+    password: "SustainIt@2022",
+    name: "Vishal Grover",
+    company: "Cargill",
+    jobTitle: "Author",
+    mobile: 5431267890,
+    role: [AUTHOR],
     isFirstTimeConfig: false,
   },
 ];

@@ -1,4 +1,12 @@
-import { ADMIN, CONFIG_LEAD, CUSTOMER, DATA_INPUTTER, SUPPLIER } from "constants/userDetails.constants";
+import {
+  ADMIN,
+  AUTHOR,
+  CONFIG_LEAD,
+  CUSTOMER,
+  DATA_APPROVER,
+  DATA_INPUTTER,
+  SUPPLIER,
+} from "constants/userDetails.constants";
 
 export interface UserDetailsI {
   id: number;
@@ -8,7 +16,15 @@ export interface UserDetailsI {
   company: string;
   jobTitle: string;
   mobile: number;
-  role: [typeof ADMIN | typeof CONFIG_LEAD | typeof DATA_INPUTTER | typeof SUPPLIER | typeof CUSTOMER];
+  role: [
+    | typeof ADMIN
+    | typeof CONFIG_LEAD
+    | typeof DATA_INPUTTER
+    | typeof SUPPLIER
+    | typeof CUSTOMER
+    | typeof AUTHOR
+    | typeof DATA_APPROVER
+  ];
   isFirstTimeConfig: boolean;
 }
 
