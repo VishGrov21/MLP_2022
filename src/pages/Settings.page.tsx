@@ -15,11 +15,11 @@ const ButtonContainer = styled(Stack)(({ theme }) => ({
   "& .settings-button": {
     backgroundColor: theme.palette.common.white,
     width: "100%",
-    maxWidth: "37%",
+    maxWidth: "55%",
     margin: "1% 0",
     border: "none",
     borderRadius: "16px",
-    padding: "16px 30px",
+    padding: "15px 30px",
     boxShadow: `0px 12px 32px rgba(69, 124, 189, 0.06)`,
     "& h2": {
       width: "100%",
@@ -31,6 +31,9 @@ const ButtonContainer = styled(Stack)(({ theme }) => ({
     "& .icon": {
       fontSize: "50px",
       color: theme.palette.grey[500],
+    },
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: "40%",
     },
   },
 }));
