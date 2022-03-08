@@ -2,7 +2,11 @@ import * as React from "react";
 import { Box, Typography, Tab, Tabs, styled, ImageList, ImageListItem } from "@mui/material";
 import { Cards } from "components/common/Cards.component";
 import color from "styles/color";
-import { SupplyMetricsTabsPropertyI, SupplyMetricsTabsContentI, SupplyMetricsTabsHeadI } from "model/supplyMetrics.model";
+import {
+  SupplyMetricsTabsPropertyI,
+  SupplyMetricsTabsContentI,
+  SupplyMetricsTabsHeadI,
+} from "model/supplyMetrics.model";
 
 import Skeleton from "components/common/LoaderSkeleton.component";
 
@@ -56,18 +60,18 @@ export const TabComponent = (props: TabComponentI) => {
       fontFamily: "Roboto Medium",
       fontSize: "20px",
       textTransform: "capitalize",
-      color: color.palette.greyShade.dark,
+      color: color.palette.grey[600],
       alignItems: "baseline",
       minWidth: "auto",
       padding: 0,
       marginRight: "35px",
       "&.Mui-selected": {
-        color: color.palette.primary.dark,
+        color: color.palette.common.black,
         textAlign: "left",
       },
     },
     "& .MuiTabs-indicator": {
-      backgroundColor: props.tabItems.tabcolor.light,
+      backgroundColor: props.tabItems.tabcolor,
       height: "5px",
       borderRadius: "10px",
     },
@@ -79,7 +83,7 @@ export const TabComponent = (props: TabComponentI) => {
       gridTemplateColumns: "repeat(4, 1fr)",
       "& li": {
         margin: "20px 20px 0 0",
-        background: color.palette.secondary.main,
+        background: color.palette.common.white,
         boxShadow: "0px 12px 24px rgba(69, 124, 189, 0.03)",
         borderRadius: "6px",
         "& .MuiCardContent-root": {
@@ -93,7 +97,7 @@ export const TabComponent = (props: TabComponentI) => {
 
   return (
     <TabContainer>
-      <Box sx={{ borderBottom: 1, borderColor: color.palette.greyShade.light }}>
+      <Box sx={{ borderBottom: 1, borderColor: color.palette.grey[500] }}>
         <Tabs value={value} onChange={handleChange} aria-label='metrics-tab'>
           {props.tabItems.tabdata.map((data: SupplyMetricsTabsHeadI, index: number) => {
             return <Tab label={data.tabhead} {...getallProps(index)} key={index} />;

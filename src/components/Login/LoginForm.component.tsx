@@ -30,17 +30,17 @@ const LoginButtonContainer = styled(Box)({
 
 const LoginButton = styled(Button)({
   width: "100%",
-  backgroundColor: color.palette.yellow.main,
-  color: color.palette.primary.dark,
+  backgroundColor: color.palette.primary.main,
+  color: color.palette.common.black,
   "&:hover": {
-    backgroundColor: color.palette.yellow.light,
+    backgroundColor: color.palette.primary.light,
   },
 });
 
 const BottomContainer = styled(Stack)({
   justifyContent: "space-between",
   flexDirection: "row",
-  color: color.palette.greyShade.main,
+  color: color.palette.grey[700],
   fontSize: "14px",
   fontFamily: "Roboto Regular",
   "& label": {
@@ -48,7 +48,7 @@ const BottomContainer = styled(Stack)({
   },
   "& a": {
     paddingTop: "10px",
-    color: color.palette.greyShade.main,
+    color: color.palette.grey[700],
     textDecoration: "none",
     "&:hover": {
       textDecoration: "underline",
@@ -64,7 +64,7 @@ const LoginFormInitState: LoginFormI = {
 
 const checkboxStyle = {
   "&.Mui-checked": {
-    color: color.palette.yellow.main,
+    color: color.palette.primary.main,
   },
 };
 

@@ -32,7 +32,7 @@ const ContentHead = styled(Stack)({
   "& span": {
     fontSize: "16px",
     fontWeight: "700",
-    color: color.palette.greyShade.main,
+    color: color.palette.grey[700],
     "& img": {
       marginRight: "10px",
     },
@@ -40,7 +40,7 @@ const ContentHead = styled(Stack)({
 });
 
 const ContentBody = styled(Stack)({
-  color: color.palette.primary.main,
+  color: color.palette.grey[900],
   "& h2": {
     margin: "18px 0 5px",
     fontSize: "24px",
@@ -49,8 +49,8 @@ const ContentBody = styled(Stack)({
     overflow: "hidden",
     textOverflow: "ellipsis",
     display: "-webkit-box",
-    "WebkitLineClamp": "2",
-    "WebkitBoxOrient": "vertical",
+    WebkitLineClamp: "2",
+    WebkitBoxOrient: "vertical",
     marginBottom: "33px",
     minHeight: "38px",
   },

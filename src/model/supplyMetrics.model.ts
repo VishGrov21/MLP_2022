@@ -1,5 +1,3 @@
-import { PaletteColor } from "@mui/material";
-
 export interface SupplyMetricsTabsI {
   Economic?: SupplyMetricsTabsPropertyI;
   Social?: SupplyMetricsTabsPropertyI;
@@ -13,7 +11,7 @@ export interface SupplyMetricsTabsHeadI {
 
 export interface SupplyMetricsTabsPropertyI {
   tabdata: SupplyMetricsTabsHeadI[];
-  tabcolor: PaletteColor;
+  tabcolor: String;
   image: string;
 }
 
