@@ -11,6 +11,7 @@ import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import { SETTINGS_AUTHORIZED_ROLE_ARR } from "constants/settings.constants";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -110,6 +111,7 @@ const SideNavigation = () => {
   const [additionalSelectedMenu, setAdditionalSelectedMenu] = useState<number | null>(null);
 
   const userRoleArr = useSelector((state: RootState) => state.user.user.role);
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -128,7 +130,7 @@ const SideNavigation = () => {
     else handleDrawerOpen();
   };
 
-  const handleMenu = (menuIndex: number, isAdditionalMenu: boolean) => {
+  const handleMenu = (menuIndex: number, pathName: string, isAdditionalMenu: boolean) => {
     if (isAdditionalMenu) {
       setAdditionalSelectedMenu(menuIndex);
       setSelectedMenu(null);
@@ -136,6 +138,7 @@ const SideNavigation = () => {
       setSelectedMenu(menuIndex);
       setAdditionalSelectedMenu(null);
     }
+    navigate(pathName);
   };
 
   const showSettingsOption = () => {
@@ -156,7 +159,7 @@ const SideNavigation = () => {
           {sideNavArr.map((navEle, index) => (
             <ListItemStyled
               key={navEle.path}
-              onClick={() => handleMenu(index, false)}
+              onClick={() => handleMenu(index, navEle.path, false)}
               selected={index === selectedMenu}
             >
               <ListItemIcon sx={{ paddingLeft: "10px" }}>{<img src={navEle.iconSrc} alt='Icon' />}</ListItemIcon>
@@ -170,7 +173,7 @@ const SideNavigation = () => {
             navEle.name === "Settings" && !showSettingsOption() ? null : (
               <ListItemStyled
                 key={navEle.path}
-                onClick={() => handleMenu(index, true)}
+                onClick={() => handleMenu(index, navEle.path, true)}
                 selected={index === additionalSelectedMenu}
                 sx={{ marginTop: "-20px" }}
               >
