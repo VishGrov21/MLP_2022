@@ -10,7 +10,6 @@ import { getMetricsData } from "state/actions/supplyMetrics/supplyMetrics.action
 
 const MetricsContainer = styled(Box)({
   padding: "30px 28px",
-  marginTop: "80px",
 });
 
 const Heading = styled("div")({

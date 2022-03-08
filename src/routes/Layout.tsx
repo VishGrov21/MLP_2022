@@ -8,6 +8,7 @@ import Settings from "pages/Settings.page";
 
 const LayoutContainer = styled(Stack)({
   flexDirection: "row",
+  marginTop: "5rem",
 });
 
 const Layout = () => {
@@ -20,7 +21,7 @@ const Layout = () => {
         <Route path='/supply-metrics' element={<SupplyMetrics />} />
         <Route path='/settings' element={<Settings />}></Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </LayoutContainer>
   );
 };
