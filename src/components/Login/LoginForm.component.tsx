@@ -31,7 +31,7 @@ const LoginButtonContainer = styled(Box)({
 const LoginButton = styled(Button)({
   width: "100%",
   backgroundColor: color.palette.primary.main,
-  color: color.palette.black.contrastText,
+  color: color.palette.common.black,
   "&:hover": {
     backgroundColor: color.palette.primary.light,
   },
@@ -40,7 +40,7 @@ const LoginButton = styled(Button)({
 const BottomContainer = styled(Stack)({
   justifyContent: "space-between",
   flexDirection: "row",
-  color: color.palette.greyShade.dark,
+  color: color.palette.grey[700],
   fontSize: "14px",
   fontFamily: "Roboto Regular",
   "& label": {
@@ -48,7 +48,7 @@ const BottomContainer = styled(Stack)({
   },
   "& a": {
     paddingTop: "10px",
-    color: color.palette.greyShade.dark,
+    color: color.palette.grey[700],
     textDecoration: "none",
     "&:hover": {
       textDecoration: "underline",

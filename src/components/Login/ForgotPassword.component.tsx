@@ -24,7 +24,7 @@ const ButtonContainer = styled(Box)({
 const FormButton = styled(Button)({
   width: "100%",
   backgroundColor: color.palette.primary.main,
-  color: color.palette.black.contrastText,
+  color: color.palette.common.black,
   "&:hover": {
     backgroundColor: color.palette.primary.light,
   },
@@ -32,12 +32,12 @@ const FormButton = styled(Button)({
 
 const FormContainer = styled("div")({
   "& h1": {
-    color: color.palette.greyShade.dark,
+    color: color.palette.grey[700],
     lineHeight: "35.16px",
     paddingBottom: "10%",
   },
   "& p": {
-    color: color.palette.greyShade.dark,
+    color: color.palette.grey[700],
   },
 });
 

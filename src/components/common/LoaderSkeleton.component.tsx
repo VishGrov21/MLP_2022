@@ -20,12 +20,12 @@ const LoaderContainer = styled(Stack)({
     bottom: 0,
   },
   "& h3": {
-    color: color.palette.greyShade.main,
+    color: color.palette.grey[600],
     marginLeft: "15px",
   },
   "& .MuiSkeleton-rectangular": {
     animation: "none",
-    backgroundImage: `linear-gradient(0deg, ${color.palette.secondary.contrastText}, ${color.palette.secondary.light})`,
+    backgroundImage: `linear-gradient(0deg, ${color.palette.common.white}, ${color.palette.grey[100]})`,
   },
 });
 

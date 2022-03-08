@@ -70,7 +70,7 @@ const LogoImg = styled("img")({
 
 const IconButtonStyled = styled(IconButton)({
   width: "30px",
-  backgroundColor: color.palette.secondary.dark,
+  backgroundColor: color.palette.grey[300],
   borderRadius: "4px",
   marginLeft: "auto",
   marginTop: "10px",
@@ -79,7 +79,7 @@ const IconButtonStyled = styled(IconButton)({
 const ListItemStyled = styled(ListItemButton)({
   margin: "30px auto",
   "&.Mui-selected": {
-    backgroundColor: color.palette.secondary.main,
+    backgroundColor: color.palette.grey[200],
     borderLeft: `7px solid ${color.palette.primary.main}`,
     // Padding of list Item without select is 16px,
     // so reducing the borderWidth from left in order to align properly

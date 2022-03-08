@@ -5,7 +5,7 @@ import leavesImg from "assets/images/leaves.png";
 import color from "styles/color";
 
 const FormContainer = styled(Stack)({
-  backgroundColor: color.palette.secondary.contrastText,
+  backgroundColor: color.palette.common.white,
   width: "28rem",
   padding: "40px 60px",
   zIndex: 10,
@@ -14,7 +14,8 @@ const FormContainer = styled(Stack)({
 const PageContainer = styled(Stack)({
   width: "100vw",
   height: "100vh",
-  backgroundColor: color.palette.secondary.darker,
+  boxShadow: "0px 12px 24px rgba(69, 124, 189, 0.03)",
+  backgroundColor: "inherit",
   "& .MuiTypography-body1, & .MuiInputBase-formControl, label": {
     fontFamily: "Roboto Regular",
   },

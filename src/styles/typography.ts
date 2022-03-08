@@ -5,12 +5,12 @@ const typography = {
     fontFamily: "Roboto Bold",
     fontSize: "30px",
     letterSpacing: 0,
-    color: color.palette.black.main,
+    color: color.palette.grey[900],
   },
   h2: {
     fontFamily: "Roboto Bold",
     fontSize: "24px",
-    color: color.palette.black.main,
+    color: color.palette.grey[900],
     letterSpacing: 0,
   },
   h3: {

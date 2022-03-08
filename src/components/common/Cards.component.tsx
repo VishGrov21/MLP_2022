@@ -32,7 +32,7 @@ const ContentHead = styled(Stack)({
   "& span": {
     fontSize: "16px",
     fontWeight: "700",
-    color: color.palette.greyShade.dark,
+    color: color.palette.grey[700],
     "& img": {
       marginRight: "10px",
     },
@@ -40,7 +40,7 @@ const ContentHead = styled(Stack)({
 });
 
 const ContentBody = styled(Stack)({
-  color: color.palette.black.main,
+  color: color.palette.grey[900],
   "& h2": {
     margin: "18px 0 5px",
     fontSize: "24px",

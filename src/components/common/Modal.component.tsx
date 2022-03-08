@@ -23,7 +23,7 @@ const DialogContainer = styled(Dialog)({
       display: "flex",
       justifyContent: "space-between",
       "& .MuiDialogContentText-root": {
-        color: color.palette.black.main,
+        color: color.palette.grey[900],
         fontFamily: "Roboto Regular",
       },
     },
@@ -34,7 +34,7 @@ const DialogContainer = styled(Dialog)({
       border: 0,
       "& button": {
         background: color.palette.primary.main,
-        color: color.palette.black.main,
+        color: color.palette.grey[900],
         textTransform: "capitalize",
         padding: "5px 78px",
         "& .MuiTouchRipple-root": {

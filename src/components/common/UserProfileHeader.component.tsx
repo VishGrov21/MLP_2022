@@ -38,7 +38,7 @@ function ElevationScroll(props: Props) {
 }
 
 const StyledAppBar = styled(AppBar)({
-  backgroundColor: color.palette.black.main,
+  backgroundColor: color.palette.grey[900],
   width: "100%",
   height: "5rem",
 });
@@ -52,14 +52,14 @@ const NameContainer = styled(Stack)({
   },
   "& .MuiTypography-root": {
     textTransform: "capitalize",
-    color: color.palette.secondary.contrastText,
+    color: color.palette.common.white,
   },
 });
 
 function expandIconStyles() {
   return {
     fontSize: "28px",
-    color: color.palette.secondary.contrastText,
+    color: color.palette.common.white,
   };
 }
 
@@ -77,10 +77,11 @@ const ProfileButton = styled(Button)({
 
 const MenuStyled = styled(Menu)({
   "& .MuiMenu-paper": {
-    backgroundColor: color.palette.black.main,
-    color: color.palette.secondary.contrastText,
+    backgroundColor: color.palette.grey[900],
+    color: color.palette.common.white,
     maxWidth: "30%",
     zIndex: "1",
+    right: 0,
     borderRadius: "0 0 8px 8px",
   },
   "& .MuiMenu-list": {
@@ -90,7 +91,7 @@ const MenuStyled = styled(Menu)({
 
 const MenuItemStyled = styled(MenuItem)({
   "&.MuiMenuItem-divider": {
-    borderBottomColor: color.palette.secondary.contrastText,
+    borderBottomColor: color.palette.common.white,
     flexDirection: "column",
     alignItems: "flex-start",
   },
@@ -143,11 +144,12 @@ function stringToColor(string: string): string {
  * @returns
  */
 function stringAvatar(name: string): { sx: { bgcolor: string }; children: string } {
+  let nameArr = name.split(" ");
   return {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+    children: `${nameArr[0][0]}${nameArr[nameArr.length - 1][0]}`,
   };
 }
 
@@ -214,7 +216,7 @@ const UserProfileHeader = () => {
             </MenuItemStyled>
             <MenuItemStyled onClick={handleLogout} sx={{ flexDirection: "row" }}>
               <ListItemIcon>
-                <LogoutIcon sx={{ color: color.palette.secondary.contrastText }} />
+                <LogoutIcon sx={{ color: color.palette.common.white }} />
               </ListItemIcon>
               <Typography variant='body2'>Logout</Typography>
             </MenuItemStyled>

@@ -3,17 +3,15 @@ import { createTheme } from "@mui/material/styles";
 declare module "@mui/material/styles" {
   interface Palette {
     orange: Palette["primary"];
-    greyShade: Palette["primary"];
     red: Palette["primary"];
     green: Palette["primary"];
-    black: Palette["primary"];
+
   }
   interface PaletteOptions {
     orange: PaletteOptions["primary"];
-    greyShade: PaletteOptions["primary"];
     red: PaletteOptions["primary"];
     green: PaletteOptions["primary"];
-    black: PaletteOptions["primary"];
+
   }
 
   interface PaletteColor {
@@ -32,22 +30,16 @@ const color = createTheme({
       light: "#F4DA7D",
       main: "#DAA900",
     },
-    secondary: {
-      light: "#F9F9F9",
-      main: "#F0F0F0",
-      dark: "#F4F4F4",
-      contrastText: "#ffffff",
-    },
-    black: {
-      light: "#393939",
-      main: "#282828",
-      contrastText: "#000000",
-    },
-    greyShade: {
-      lighter: "#F3F6F8",
-      light: "#CED4DA",
-      main: "#9FA9B2",
-      dark: "#6C757D",
+    grey: {
+      100: '#F9F9F9',
+      200: '#F0F0F0',
+      300: '#F4F4F4',
+      400: '#F3F6F8',
+      500: '#CED4DA',
+      600: '#9FA9B2',
+      700: '#6C757D',
+      800: '#393939',
+      900: '#282828'
     },
     orange: {
       lighter: "#F3B388",
