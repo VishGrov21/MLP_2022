@@ -1,5 +1,4 @@
-import { Button, Stack, styled } from "@mui/material";
-import { textAlign } from "@mui/system";
+import { Button, Stack, styled, Typography } from "@mui/material";
 import TitleBar from "components/common/TitleBar.component";
 import { settingsViewArr } from "constants/settings.constants";
 import { ADMIN } from "constants/userDetails.constants";
@@ -11,29 +10,27 @@ import { useNavigate } from "react-router-dom";
 
 const ButtonContainer = styled(Stack)(({ theme }) => ({
   width: "100%",
-  height: "100%",
   marginTop: "10rem",
+  alignItems: "center",
   "& .settings-button": {
-    backgroundColor: "white",
-    width: "45%",
-    margin: "1% auto",
-    height: "4rem",
+    backgroundColor: theme.palette.common.white,
+    width: "100%",
+    maxWidth: "37%",
+    margin: "1% 0",
     border: "none",
-    borderRadius: "10px",
-    boxShadow: `2px 2px ${theme.palette.grey[200]}`,
-    "& .name": {
+    borderRadius: "16px",
+    padding: "16px 30px",
+    boxShadow: `0px 12px 32px rgba(69, 124, 189, 0.06)`,
+    "& h2": {
       width: "100%",
       textAlign: "left",
       paddingLeft: "12%",
-      color: theme.palette.common.black,
-      ...theme.typography.body1,
+      color: theme.palette.grey[800],
+      textTransform: "capitalize",
     },
     "& .icon": {
       fontSize: "50px",
       color: theme.palette.grey[500],
-    },
-    [theme.breakpoints.up("lg")]: {
-      width: "35%",
     },
   },
 }));
@@ -65,7 +62,7 @@ const Settings = () => {
                 endIcon={<ArrowRightIcon className='icon' />}
                 onClick={() => navigateToView(view.path)}
               >
-                <span className='name'>{view.name}</span>
+                <Typography variant='h2'>{view.name}</Typography>
               </Button>
             )
         )}
