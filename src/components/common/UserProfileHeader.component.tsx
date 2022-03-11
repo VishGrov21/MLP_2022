@@ -130,7 +130,7 @@ function stringToColor(string: string): string {
 
   for (i = 0; i < 3; i += 1) {
     const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.substring(-2);
+    color += `${value.toString(16)}`.substring(-2);
   }
 
   return color;

@@ -4,7 +4,16 @@ import color from "styles/color";
 
 const theme = createTheme({
   typography: typography,
-  palette: color.palette
+  palette: color.palette,
+  components: {
+    MuiAutocomplete: {
+      styleOverrides: {
+        option: {
+          ...typography.body2,
+        },
+      },
+    },
+  },
 });
 
 export default theme;
