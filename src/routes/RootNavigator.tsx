@@ -5,7 +5,8 @@ import Layout from "routes/Layout";
 import { useState } from "react";
 
 const RootNavigator = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // This is true because the screen jumps to login on any error during development
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <BrowserRouter>
       <Routes>

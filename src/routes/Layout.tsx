@@ -5,6 +5,7 @@ import UserProfileHeader from "components/common/UserProfileHeader.component";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SupplyMetrics from "pages/SupplyMetrics.page";
 import Settings from "pages/Settings.page";
+import { settingsViewArr } from "constants/settings.constants";
 
 const LayoutContainer = styled(Stack)({
   flexDirection: "row",
@@ -19,7 +20,12 @@ const Layout = () => {
       <Routes>
         <Route path='/' element={<Navigate replace to='/supply-metrics' />} />
         <Route path='/supply-metrics' element={<SupplyMetrics />} />
-        <Route path='/settings' element={<Settings />}></Route>
+        <Route path='/settings'>
+          <Route index={true} element={<Settings />} />
+          {settingsViewArr.map((view, index) => (
+            <Route key={index + view.name} path={view.path} element={view.component} />
+          ))}
+        </Route>
       </Routes>
       {/* <Footer /> */}
     </LayoutContainer>

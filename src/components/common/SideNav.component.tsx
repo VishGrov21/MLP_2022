@@ -14,7 +14,7 @@ import { SETTINGS_AUTHORIZED_ROLE_ARR } from "constants/settings.constants";
 import color from "styles/color";
 import { useNavigate } from "react-router-dom";
 
-const drawerWidth = 240;
+const drawerWidth = 255;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
