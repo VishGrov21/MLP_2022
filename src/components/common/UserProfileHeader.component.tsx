@@ -130,7 +130,7 @@ function stringToColor(string: string): string {
 
   for (i = 0; i < 3; i += 1) {
     const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.substring(-2);
+    color += `${value.toString(16)}`.substring(-2);
   }
 
   return color;
@@ -201,10 +201,12 @@ const UserProfileHeader = () => {
             }}
             sx={{ top: "15px", left: "0.8%" }}
           >
-            <MenuItemStyled onClick={closeUserMenu} divider>
+            <MenuItemStyled divider>
               <Stack>
                 <Typography variant='h3'>{userDetailsObj.name}</Typography>
-                <span>
+                <span
+                  onClick={() => navigate("/user-profile", { state: { bgcolor: stringAvatar(userDetailsObj.name) } })}
+                >
                   <img src={editIcon} alt='edit-profile' />
                 </span>
               </Stack>
