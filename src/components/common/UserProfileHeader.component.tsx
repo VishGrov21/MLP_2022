@@ -20,9 +20,14 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 import editIcon from "assets/images/editIcon.svg";
+import Logo from "assets/images/sustainItLogo_white.png";
 
 interface Props {
   children: React.ReactElement;
+}
+
+interface HeaderPropsI {
+  headerLogo?: boolean;
 }
 
 function ElevationScroll(props: Props) {
@@ -39,13 +44,14 @@ function ElevationScroll(props: Props) {
 
 const StyledAppBar = styled(AppBar)({
   backgroundColor: color.palette.grey[900],
+  padding: "10px 20px",
   width: "100%",
-  height: "5rem",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
 });
 
 const NameContainer = styled(Stack)({
-  height: "100%",
-  width: "100%",
   "& .MuiAvatar-root": {
     width: "50px",
     height: "50px",
@@ -67,9 +73,8 @@ const DownArrowIcon = styled(ExpandMoreIcon)(expandIconStyles());
 const UpArrowIcon = styled(ExpandLessIcon)(expandIconStyles());
 
 const ProfileButton = styled(Button)({
-  marginLeft: "auto",
-  marginRight: "20px",
-  width: "30%",
+  width: "100%",
+  padding: 0,
   "&.MuiButton-root:hover": {
     backgroundColor: "transparent",
   },
@@ -79,7 +84,6 @@ const MenuStyled = styled(Menu)({
   "& .MuiMenu-paper": {
     backgroundColor: color.palette.grey[900],
     color: color.palette.common.white,
-    maxWidth: "30%",
     zIndex: "1",
     right: 0,
     borderRadius: "0 0 8px 8px",
@@ -87,6 +91,9 @@ const MenuStyled = styled(Menu)({
   "& .MuiMenu-list": {
     padding: "10px 10px 20px",
   },
+});
+const LogoImg = styled("img")({
+  height: "55px",
 });
 
 const MenuItemStyled = styled(MenuItem)({
@@ -153,7 +160,7 @@ function stringAvatar(name: string): { sx: { bgcolor: string }; children: string
   };
 }
 
-const UserProfileHeader = () => {
+const UserProfileHeader = (props: HeaderPropsI) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [expandIcon, setExpandIcon] = useState(<DownArrowIcon />);
   const navigate = useNavigate();
@@ -175,12 +182,17 @@ const UserProfileHeader = () => {
     navigate("/login", { state: { isLogout: true }, replace: true });
   };
 
+  const handleProfileRedirection = () => {
+    navigate("/user-profile", { state: { bgcolor: stringAvatar(userDetailsObj.name) } });
+    closeUserMenu();
+  };
   const open = Boolean(anchorEl);
 
   return (
     <ElevationScroll>
-      <StyledAppBar>
-        <Toolbar disableGutters sx={{ height: "5rem" }}>
+      <StyledAppBar sx={{ justifyContent: `${props.headerLogo ? "space-between" : "flex-end"}` }}>
+        {props.headerLogo && <LogoImg src={Logo} alt='Sustain Logo' />}
+        <Toolbar disableGutters>
           <ProfileButton onClick={showUserMenu} endIcon={expandIcon}>
             <NameContainer direction='row' spacing={1} justifyContent='flex-end' alignItems='center'>
               <Avatar {...stringAvatar(userDetailsObj.name)} />
@@ -204,9 +216,7 @@ const UserProfileHeader = () => {
             <MenuItemStyled divider>
               <Stack>
                 <Typography variant='h3'>{userDetailsObj.name}</Typography>
-                <span
-                  onClick={() => navigate("/user-profile", { state: { bgcolor: stringAvatar(userDetailsObj.name) } })}
-                >
+                <span onClick={handleProfileRedirection}>
                   <img src={editIcon} alt='edit-profile' />
                 </span>
               </Stack>

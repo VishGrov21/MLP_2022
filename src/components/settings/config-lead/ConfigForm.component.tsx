@@ -110,7 +110,7 @@ const autoCompleteTextField = (
 );
 
 const ConfigForm = () => {
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = (e: typeof ConfigFormInitState) => {
     console.log(e);
   };
 
