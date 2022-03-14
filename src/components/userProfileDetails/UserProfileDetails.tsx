@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import editIcon from "assets/images/editIcon_white.svg";
 import { EditFormComponent } from "./EditUserDetails";
 
-const UserProfileContainer = styled(Stack)(({theme}) => ({
+const UserProfileContainer = styled(Stack)(({ theme }) => ({
   padding: "50px",
   width: "100%",
   "& .MuiInput-underline": {
@@ -209,7 +209,12 @@ const UserProfileDetails = () => {
           <Box>
             <Typography variant='h2'>Contact Information</Typography>
             <Stack>
-              <Typography variant='body1' sx={{width: `${(userData.email.length < 35) ? 'inherit' : 'auto!important'}`}}>Email</Typography>
+              <Typography
+                variant='body1'
+                sx={{ width: `${userData.email.length < 35 ? "inherit" : "auto!important"}` }}
+              >
+                Email
+              </Typography>
               <Typography variant='body2'>{userData.email}</Typography>
             </Stack>
             <Stack>

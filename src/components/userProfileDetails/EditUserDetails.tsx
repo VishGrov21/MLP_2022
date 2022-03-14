@@ -19,6 +19,11 @@ const EditFormContainer = styled("div")(({ theme }) => ({
   width: "100%",
   "& button": {
     marginLeft: "20px",
+    boxShadow: "none",
+    "&:not(:last-child)": {
+      background: "transparent",
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
   },
   "& form": {
     margin: "0!important",
@@ -89,12 +94,12 @@ export const EditFormComponent = (props: ProfileProps) => {
               <Box>
                 <Typography variant='h2'>Contact Information</Typography>
                 <Stack>
-                  <Typography variant='body1' sx={{width: `${(props.userData.email.length < 35) ? 'inherit' : 'auto!important'}`}}>
+                  <Typography
+                    variant='body1'
+                    sx={{ width: `${props.userData.email.length < 35 ? "inherit" : "auto!important"}` }}
+                  >
                     Email
                   </Typography>
-                  {/* <Typography variant='body2'>
-                    <Field component={TextField} name='email' type='text' size='small' disabled />
-                  </Typography> */}
                   <Typography variant='body2'>{props.userData.email}</Typography>
                 </Stack>
                 <Stack>
