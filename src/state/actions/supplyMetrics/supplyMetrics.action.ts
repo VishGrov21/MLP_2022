@@ -42,8 +42,18 @@ export const tabDatas: SupplyMetricsTabsI[] = [
               chartType: "pieChart",
             },
             {
+              cardHead: "0",
+              cardContent: "Number of farming households covered by CLM",
+              chartType: "pieChart",
+            },
+            {
+              cardHead: "0",
+              cardContent: "Number of farming households covered by CLMS",
+              chartType: "pieChart",
+            },
+            {
               cardHead: "560",
-              cardContent: "Number of farming households covered by CLM, CLMS, CLMRS",
+              cardContent: "Number of farming households covered by CLMRS",
               chartType: "pieChart",
             },
             { cardHead: "7", cardContent: "Number of unannounced inspections", chartType: "barChart" },
