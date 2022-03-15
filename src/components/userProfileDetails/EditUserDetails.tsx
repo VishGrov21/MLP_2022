@@ -51,9 +51,9 @@ const FieldContainer = styled(Stack)(({ theme }) => ({
 }));
 const getProfileFormValidation = () => {
   return Yup.object().shape({
-    name: Yup.string()
+    mobile: Yup.string()
       .required("required_field")
-      .matches(/^[^*|":<>.[\]{}`\\()';#%@!,?_+*=/\-&*$0-9]+$/, "noSplChar"),
+      .matches(/^[0-9]+$/, "number_must"),
     jobTitle: Yup.string()
       .required("required_field")
       .matches(/^[^*|":<>.[\]{}`\\()';#%@!,?_+*=/\-&*$0-9]+$/, "noSplChar"),
