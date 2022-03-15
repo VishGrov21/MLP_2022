@@ -20,10 +20,7 @@ const EditFormContainer = styled("div")(({ theme }) => ({
   "& button": {
     marginLeft: "20px",
     boxShadow: "none",
-    "&:not(:last-child)": {
-      background: "transparent",
-      border: `1px solid ${theme.palette.primary.main}`,
-    },
+    color: theme.palette.common.black,
   },
   "& form": {
     margin: "0!important",
@@ -80,7 +77,7 @@ export const EditFormComponent = (props: ProfileProps) => {
                 <Typography variant='h2'>Basic Information</Typography>
                 <Stack>
                   <Typography variant='body1'>Name</Typography>
-                  <Field component={TextField} name='name' type='text' size='small' disabled/>
+                  <Field component={TextField} name='name' type='text' size='small' disabled />
                 </Stack>
                 <Stack>
                   <Typography variant='body1'>Company</Typography>
@@ -109,7 +106,7 @@ export const EditFormComponent = (props: ProfileProps) => {
               </Box>
             </FieldContainer>
             <Stack direction='row' justifyContent={"flex-end"}>
-              <Button size={"large"} variant='contained' color='primary' onClick={() => props.closeProfileDialogFn()}>
+              <Button size={"large"} variant='outlined' color='primary' onClick={() => props.closeProfileDialogFn()}>
                 {"cancel"}
               </Button>
 
