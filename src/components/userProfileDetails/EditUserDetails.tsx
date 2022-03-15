@@ -80,7 +80,7 @@ export const EditFormComponent = (props: ProfileProps) => {
                 <Typography variant='h2'>Basic Information</Typography>
                 <Stack>
                   <Typography variant='body1'>Name</Typography>
-                  <Field component={TextField} name='name' type='text' size='small' />
+                  <Field component={TextField} name='name' type='text' size='small' disabled/>
                 </Stack>
                 <Stack>
                   <Typography variant='body1'>Company</Typography>
@@ -104,7 +104,7 @@ export const EditFormComponent = (props: ProfileProps) => {
                 </Stack>
                 <Stack>
                   <Typography variant='body1'>Phone Number</Typography>
-                  <Field component={TextField} name='mobile' type='text' size='small' disabled />
+                  <Field component={TextField} name='mobile' type='text' size='small' />
                 </Stack>
               </Box>
             </FieldContainer>
