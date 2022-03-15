@@ -77,7 +77,7 @@ export const EditFormComponent = (props: ProfileProps) => {
                 <Typography variant='h2'>Basic Information</Typography>
                 <Stack>
                   <Typography variant='body1'>Name</Typography>
-                  <Field component={TextField} name='name' type='text' size='small' disabled />
+                  <Field component={TextField} name='name' type='text' size='small' disabled sx={{ flex: 1 }} />
                 </Stack>
                 <Stack>
                   <Typography variant='body1'>Company</Typography>
