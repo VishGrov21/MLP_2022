@@ -164,7 +164,7 @@ const UserProfileDetails = () => {
           className='backBtn'
           startIcon={<ArrowBackIcon />}
           onClick={() => {
-            navigate("/supply-metrics");
+            navigate(-1);
           }}
         >
           {" "}
