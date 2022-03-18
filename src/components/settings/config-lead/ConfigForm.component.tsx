@@ -19,6 +19,13 @@ import { Field, Form, Formik, FormikErrors, FormikTouched } from "formik";
 import { Autocomplete, CheckboxWithLabel } from "formik-mui";
 import MuiTextField from "@mui/material/TextField";
 import { ConfigFormI } from "model/settings.model";
+import { configMetricsActionCreator } from "state/actions/metricsConfig/metricsConfig.action";
+
+import { useDispatch } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
+import { RootState } from "state/store";
+import { useNavigate } from "react-router-dom";
 
 const getConfigFormValidations = () =>
   Yup.object().shape({
@@ -110,8 +117,12 @@ const autoCompleteTextField = (
 );
 
 const ConfigForm = () => {
+  const dispatch = useDispatch<ThunkDispatch<RootState, {}, Action<string>>>();
+  const navigate = useNavigate();
+
   const handleFormSubmit = (e: typeof ConfigFormInitState) => {
-    console.log(e);
+    dispatch(configMetricsActionCreator(e));
+    navigate("/metrics-config");
   };
 
   const showCheckBoxHelperText = (

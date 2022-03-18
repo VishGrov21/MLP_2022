@@ -8,6 +8,7 @@ import SupplyMetrics from "pages/SupplyMetrics.page";
 import Settings from "pages/Settings.page";
 import { settingsViewArr } from "constants/settings.constants";
 import UserProfileDetails from "components/userProfileDetails/UserProfileDetails";
+import MetricsConfiguration from "pages/MetricsConfig.page";
 import { additionalSideNavArr, sideNavArr } from "constants/sideNav.constants";
 
 const LayoutContainer = styled(Stack)({
@@ -43,6 +44,7 @@ const Layout = () => {
             <Route key={index + view.name} path={view.path} element={view.component} />
           ))}
         </Route>
+        <Route path='/metrics-config' element={<MetricsConfiguration />}></Route>
       </Routes>
       {/* <Footer /> */}
     </LayoutContainer>
