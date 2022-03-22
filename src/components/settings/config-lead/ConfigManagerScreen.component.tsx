@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import blackGlobeGreyOutlineIcon from "assets/images/blackGlobeGreyOutlineIcon.svg";
 import globeRecycleIcon from "assets/images/globeRecycleIcon.svg";
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
 import TitleBar from "components/common/TitleBar.component";
 import ConfigRecords from "./ConfigRecords.component";
+import ConfigFormDialog from "./ConfigFormDialog.component";
 
 const BaseContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -28,6 +29,12 @@ const BaseContainer = styled(Box)(({ theme }) => ({
 }));
 
 const ConfigManagerScreen = () => {
+  const [showConfigFormModal, setShowConfigFormModal] = useState(false);
+
+  const handleConfigFormModalCancel = () => {
+    setShowConfigFormModal(false);
+  };
+
   return (
     <BaseContainer>
       <TitleBar title={"Metrics Configuration Manager"} />
@@ -54,13 +61,19 @@ const ConfigManagerScreen = () => {
             </Grid>
           </Grid>
           <Grid item style={{ marginLeft: "auto" }}>
-            <Button className='new-config-btn' variant='outlined' color='primary'>
+            <Button
+              className='new-config-btn'
+              variant='outlined'
+              color='primary'
+              onClick={() => setShowConfigFormModal(true)}
+            >
               New Configuration Record
             </Button>
           </Grid>
         </Grid>
       </Grid>
       <ConfigRecords />
+      <ConfigFormDialog showModal={showConfigFormModal} closeModalCB={handleConfigFormModalCancel} />
     </BaseContainer>
   );
 };
