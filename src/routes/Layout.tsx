@@ -9,7 +9,6 @@ import Settings from "pages/Settings.page";
 import { settingsViewArr } from "constants/settings.constants";
 import UserProfileDetails from "components/userProfileDetails/UserProfileDetails";
 import MetricsConfiguration from "pages/MetricsConfig.page";
-import { additionalSideNavArr, sideNavArr } from "constants/sideNav.constants";
 
 const LayoutContainer = styled(Stack)({
   flexDirection: "row",
@@ -21,10 +20,7 @@ const Layout = () => {
   const location: any = useLocation();
 
   useEffect(() => {
-    if (
-      sideNavArr.filter((e) => e.path === location.pathname).length === 0 &&
-      additionalSideNavArr.filter((e) => e.path === location.pathname).length === 0
-    ) {
+    if (location.pathname === "/user-profile") {
       setHeaderlogo(true);
     } else {
       setHeaderlogo(false);

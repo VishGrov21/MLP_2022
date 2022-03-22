@@ -52,49 +52,56 @@ const getFormvalidations = () =>
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const [isForgotPassword, setisForgotPassword] = useState(true);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const handleFormSubmit = async () => {
-    setisForgotPassword(false);
+    setShowForgotPassword(true);
   };
 
   const handleFormRedirection = () => {
     navigate("/login");
   };
 
-  return isForgotPassword ? (
-    <FormLayout>
-      <Formik initialValues={{ ...FormInitState }} validationSchema={getFormvalidations()} onSubmit={handleFormSubmit}>
-        <FormContainer>
-          <Typography variant='h1'>Forgot Password</Typography>
-          <Typography variant='body2'>
-            Please enter your email and instructions to reset your password will be sent.
-          </Typography>
-          <Form>
-            <FieldContainer spacing={2}>
-              <label>Email address</label>
-              <Field component={TextField} placeholder='user@mail.com' id='email' name='email' />
-            </FieldContainer>
-            <ButtonContainer>
-              <Stack justifyContent='space-between' direction='row'>
-                <FormButton className='cancelBtn' variant='contained' onClick={() => navigate("/login")}>
-                  Cancel
-                </FormButton>
-                <FormButton className='sendBtn' color='primary' type='submit' variant='contained'>
-                  Send
-                </FormButton>
-              </Stack>
-            </ButtonContainer>
-          </Form>
-        </FormContainer>
-      </Formik>
-    </FormLayout>
-  ) : (
-    <ModalComponent
-      modalBody='An email has been sent with instructions for your password reset'
-      buttonArr={[{ id: 1, buttonText: "Ok", onClickFn: handleFormRedirection }]}
-      closeIcon={false}
-    />
+  return (
+    <>
+      <FormLayout>
+        <Formik
+          initialValues={{ ...FormInitState }}
+          validationSchema={getFormvalidations()}
+          onSubmit={handleFormSubmit}
+        >
+          <FormContainer>
+            <Typography variant='h1'>Forgot Password</Typography>
+            <Typography variant='body2'>
+              Please enter your email and instructions to reset your password will be sent.
+            </Typography>
+            <Form>
+              <FieldContainer spacing={2}>
+                <label>Email address</label>
+                <Field component={TextField} placeholder='user@mail.com' id='email' name='email' />
+              </FieldContainer>
+              <ButtonContainer>
+                <Stack justifyContent='space-between' direction='row'>
+                  <FormButton className='cancelBtn' variant='contained' onClick={() => navigate("/login")}>
+                    Cancel
+                  </FormButton>
+                  <FormButton className='sendBtn' color='primary' type='submit' variant='contained'>
+                    Send
+                  </FormButton>
+                </Stack>
+              </ButtonContainer>
+            </Form>
+          </FormContainer>
+        </Formik>
+      </FormLayout>
+
+      <ModalComponent
+        body='An email has been sent with instructions for your password reset'
+        buttonArr={[{ id: 1, buttonText: "Ok", onClickFn: handleFormRedirection }]}
+        showCloseIcon={false}
+        showModal={showForgotPassword}
+      />
+    </>
   );
 };
 

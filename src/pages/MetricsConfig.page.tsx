@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "state/store";
 
 const MetricsConfiguration = () => {
-  const metricsArr = useSelector((state: RootState) => state.metricsConfig.configuredData);
+  const metricsArr = useSelector((state: RootState) => state.configLead.configuredData);
 
   return <SupplyMetricsConfig configuredData={metricsArr} />;
 };

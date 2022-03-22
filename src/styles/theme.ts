@@ -13,6 +13,17 @@ const theme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          ...typography.body2,
+          textTransform: "none",
+        },
+        outlined: {
+          color: color.palette.common.black,
+        },
+      },
+    },
   },
 });
 

@@ -1,22 +1,17 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 
-import { styled, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { styled, Button, Dialog, DialogActions, DialogContent, DialogTitle, ButtonProps } from "@mui/material";
 
 import leavesImg from "assets/images/leaves.png";
 import color from "styles/color";
 import useMobileScreen from "hooks/useMobileScreen.hooks";
 
-const DialogContainer = styled(Dialog)({
+const DialogContainer = styled(Dialog)(({ theme }) => ({
   backgroundImage: `url(${leavesImg})`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "85% center",
   "& .MuiDialog-paper": {
     padding: "20px 35px 30px 50px",
-    "& .dialogContents": {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "self-end",
-    },
 
     "& .MuiDialogContent-root": {
       padding: "20px 0 8%",
@@ -33,16 +28,8 @@ const DialogContainer = styled(Dialog)({
       boxShadow: "none",
       border: 0,
       "& button": {
-        background: color.palette.primary.main,
-        color: color.palette.grey[900],
         textTransform: "capitalize",
-        padding: "5px 78px",
-        "& .MuiTouchRipple-root": {
-          display: "none",
-        },
-        "&:hover": {
-          background: color.palette.primary.light,
-        },
+        width: "10rem",
       },
     },
     "& .close": {
@@ -51,28 +38,37 @@ const DialogContainer = styled(Dialog)({
       cursor: "pointer",
     },
   },
-});
+}));
 
-interface ButtonData {
+export interface ButtonData {
   id: number;
   buttonText: string;
   onClickFn: Function;
+  variant?: ButtonProps["variant"];
 }
 
 interface ModalDataI {
-  modalTitle?: string;
-  modalBody: string;
-  closeIcon: boolean;
+  title?: React.ReactNode;
+  body: React.ReactNode;
+  showCloseIcon?: boolean;
   buttonArr: ButtonData[];
   gifImage?: ImageData;
+  showModal: boolean;
+  closeModalCB?: Function;
 }
 
 const ModalContainer = (props: ModalDataI) => {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const fullScreen = useMobileScreen();
+  const { showModal, closeModalCB, body, title, showCloseIcon, buttonArr } = props;
+
+  useEffect(() => {
+    setOpen(showModal);
+  }, [showModal]);
 
   const handleClose = () => {
-    setOpen(true);
+    if (closeModalCB) closeModalCB();
+    setOpen(false);
   };
 
   return (
@@ -82,20 +78,23 @@ const ModalContainer = (props: ModalDataI) => {
       onClose={handleClose}
       aria-labelledby='responsive-dialog-title'
     >
-      {props.closeIcon && (
+      {showCloseIcon && (
         <span className='close' onClick={handleClose}>
           x
         </span>
       )}
-      <div className='dialogContents'>
-        {props?.modalTitle && <DialogTitle id='responsive-dialog-title'> {props?.modalTitle}</DialogTitle>}
-        <DialogContent>
-          <DialogContentText> {props.modalBody} </DialogContentText>
-        </DialogContent>
+      <div>
+        {title && <div> {title}</div>}
+        {body && <DialogContent>{body}</DialogContent>}
 
         <DialogActions>
-          {props?.buttonArr.map((buttonData: ButtonData) => (
-            <Button key={buttonData.id} onClick={() => buttonData.onClickFn()} autoFocus>
+          {buttonArr.map((buttonData: ButtonData) => (
+            <Button
+              key={buttonData.id}
+              onClick={() => buttonData.onClickFn()}
+              autoFocus
+              variant={buttonData?.variant ? buttonData.variant : "contained"}
+            >
               {buttonData.buttonText}
             </Button>
           ))}

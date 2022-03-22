@@ -24,3 +24,32 @@ export interface ConfigFormI {
     sustainability: boolean;
   };
 }
+
+export type IN_PROGRESS = "In Progress";
+export type NOT_STARTED = "Not Started";
+export type CONFIGURED = "Configured";
+
+export type MetricsConfigStatusT = IN_PROGRESS | NOT_STARTED | CONFIGURED;
+
+export interface MetricsConfigManagerI {
+  id: number;
+  product: string;
+  origin: string;
+  traceabilityStatus: React.ReactNode | string;
+  sustainabilityStatus: React.ReactNode | string;
+  lastUpdated: string;
+}
+
+export interface UpdateConfigMetricsI {
+  id: number;
+  updateConfigMetricsGroup: {
+    traceability: boolean;
+    sustainability: boolean;
+  };
+}
+
+export interface ConfigLeadStateI {
+  configManager: MetricsConfigManagerI[];
+  configuredData: ConfigFormI;
+  updateConfigMetrics: UpdateConfigMetricsI;
+}

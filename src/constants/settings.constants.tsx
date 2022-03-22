@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import { SettingsViewI, Settings_Authorized_RolesT } from "model/settings.model";
+import { MetricsConfigManagerI, SettingsViewI, Settings_Authorized_RolesT } from "model/settings.model";
 import ConfigLead from "pages/ConfigLead.page";
+import { formatDate } from "utils/common";
 import { ADMIN, AUTHOR, CONFIG_LEAD, DATA_APPROVER, DATA_INPUTTER } from "./userDetails.constants";
 
 export const SETTINGS_AUTHORIZED_ROLE_ARR: Settings_Authorized_RolesT[] = [
@@ -59,7 +60,30 @@ export const ORIGIN_CONFIG_LEAD_ARR = [
   "Vietnam",
 ];
 
-export const METRCIS_CONFIG_LEAD_ARR = [
+export const METRICS_CONFIG_LEAD_ARR = [
   { name: "traceability", value: "Traceability Metrics" },
   { name: "sustainability", value: "Sustainability Metrics" },
+];
+
+export const IN_PROGRESS_C = "In Progress";
+export const NOT_STARTED_C = "Not Started";
+export const CONFIGURED_C = "Configured";
+
+export const CONFIG_METRICS_MOCK_DATA: MetricsConfigManagerI[] = [
+  {
+    id: 55,
+    product: "Coffee",
+    origin: "Colombia",
+    traceabilityStatus: IN_PROGRESS_C,
+    sustainabilityStatus: NOT_STARTED_C,
+    lastUpdated: formatDate("03/17/2022"),
+  },
+  {
+    id: 105 ,
+    product: "Palm",
+    origin: "Brazil",
+    traceabilityStatus: IN_PROGRESS_C,
+    sustainabilityStatus: CONFIGURED_C,
+    lastUpdated: formatDate("03/12/2022"),
+  },
 ];
