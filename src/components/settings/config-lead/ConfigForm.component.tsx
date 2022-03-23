@@ -9,9 +9,10 @@ import {
   Typography,
   Button,
   FormHelperText,
+  Grid,
 } from "@mui/material";
 import {
-  METRCIS_CONFIG_LEAD_ARR,
+  METRICS_CONFIG_LEAD_ARR,
   ORIGIN_CONFIG_LEAD_ARR,
   PRODUCTS_CONFIG_LEAD_ARR,
 } from "constants/settings.constants";
@@ -19,6 +20,14 @@ import { Field, Form, Formik, FormikErrors, FormikTouched } from "formik";
 import { Autocomplete, CheckboxWithLabel } from "formik-mui";
 import MuiTextField from "@mui/material/TextField";
 import { ConfigFormI } from "model/settings.model";
+import { configMetricsFormActionCreator } from "state/actions/settings/config-lead/configLead.action";
+
+import { useDispatch, useSelector } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { Action } from "redux";
+import { RootState } from "state/store";
+import { useNavigate } from "react-router-dom";
+import globeRecycleIcon from "assets/images/globeRecycleIcon.svg";
 
 const getConfigFormValidations = () =>
   Yup.object().shape({
@@ -54,6 +63,9 @@ const ConfigFormInitState = {
 };
 
 const FormContainer = styled(Box)(({ theme }) => ({
+  "& .black-globe-icon": {
+    width: "65px",
+  },
   "& .label": {
     ...theme.typography.body2,
   },
@@ -86,6 +98,18 @@ const FormContainer = styled(Box)(({ theme }) => ({
   "& .MuiOutlinedInput-input": {
     ...theme.typography.body2,
   },
+  "& .heading": {
+    marginBottom: "2rem",
+  },
+  "& .description": {
+    marginBottom: "2rem",
+  },
+  "& .form-button": {
+    width: "10rem",
+    "&.MuiButton-outlined": {
+      marginRight: "2rem",
+    },
+  },
   [theme.breakpoints.up("lg")]: {
     "& .MuiFormControlLabel-label": {
       fontSize: "16px",
@@ -108,10 +132,20 @@ const autoCompleteTextField = (
     className='value'
   />
 );
+interface ConfigFormProps {
+  cancelCB?: Function;
+}
 
-const ConfigForm = () => {
+const ConfigForm = (props: ConfigFormProps) => {
+  const dispatch = useDispatch<ThunkDispatch<RootState, {}, Action<string>>>();
+  const navigate = useNavigate();
+  const isRecordsManagePage = !useSelector((state: RootState) => state.user.user.isFirstTimeConfig);
+
+  const { cancelCB } = props;
+
   const handleFormSubmit = (e: typeof ConfigFormInitState) => {
-    console.log(e);
+    dispatch(configMetricsFormActionCreator(e));
+    navigate("/metrics-config");
   };
 
   const showCheckBoxHelperText = (
@@ -140,6 +174,23 @@ const ConfigForm = () => {
 
   return (
     <FormContainer>
+      {isRecordsManagePage && (
+        <Grid container direction='column'>
+          <Grid item container justifyContent='flex-start' alignItems='center' spacing={5} className='heading'>
+            <Grid item>
+              <img src={globeRecycleIcon} alt='Globe Icon' className='black-globe-icon' />
+            </Grid>
+            <Grid item>
+              <Typography variant='h3'>New Configuration Record</Typography>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Typography variant='body2' className='description'>
+              Please select the product and origin for which you want to create a new supply chain{" "}
+            </Typography>
+          </Grid>
+        </Grid>
+      )}
       <Formik
         initialValues={{ ...ConfigFormInitState }}
         validationSchema={getConfigFormValidations()}
@@ -183,7 +234,7 @@ const ConfigForm = () => {
                 You can select both or choose to configure one later.
               </InputLabel>
               <Stack direction='row' className='checkbox' spacing={{ md: 4, lg: 10 }}>
-                {METRCIS_CONFIG_LEAD_ARR.map((metricsType, index) => (
+                {METRICS_CONFIG_LEAD_ARR.map((metricsType, index) => (
                   <Field
                     component={CheckboxWithLabel}
                     name={`metricsGroup.${metricsType.name}`}
@@ -199,9 +250,26 @@ const ConfigForm = () => {
               {showCheckBoxHelperText(touched, submitCount, errors) && (
                 <FormHelperText error={true}>{errors.metricsGroup?.traceability}</FormHelperText>
               )}
-              <Button color='primary' variant='contained' fullWidth type='submit'>
-                Next
-              </Button>
+              <Stack
+                direction='row'
+                justifyContent={isRecordsManagePage ? "flex-end" : undefined}
+                alignItems={isRecordsManagePage ? "center" : undefined}
+              >
+                {isRecordsManagePage && cancelCB && (
+                  <Button color='primary' variant='outlined' className='form-button' onClick={() => cancelCB()}>
+                    Cancel
+                  </Button>
+                )}
+                <Button
+                  color='primary'
+                  variant='contained'
+                  fullWidth={!isRecordsManagePage}
+                  type='submit'
+                  className={isRecordsManagePage ? "form-button" : undefined}
+                >
+                  Next
+                </Button>
+              </Stack>
             </Form>
           );
         }}

@@ -15,7 +15,7 @@ const initialState: MetricsStateI = {
   filterData: {},
 };
 
-export const SupplyMetrics = (state = initialState, action: SupplyMetricsActionType): MetricsStateI => {
+export const SupplyMetrics = (state: MetricsStateI = initialState, action: SupplyMetricsActionType): MetricsStateI => {
   switch (action.type) {
     case METRIC_TILES_DATA:
       return { ...state, tilesData: action.payload };

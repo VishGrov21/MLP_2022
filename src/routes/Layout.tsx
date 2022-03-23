@@ -8,7 +8,7 @@ import SupplyMetrics from "pages/SupplyMetrics.page";
 import Settings from "pages/Settings.page";
 import { settingsViewArr } from "constants/settings.constants";
 import UserProfileDetails from "components/userProfileDetails/UserProfileDetails";
-import { additionalSideNavArr, sideNavArr } from "constants/sideNav.constants";
+import MetricsConfiguration from "pages/MetricsConfig.page";
 
 const LayoutContainer = styled(Stack)({
   flexDirection: "row",
@@ -20,10 +20,7 @@ const Layout = () => {
   const location: any = useLocation();
 
   useEffect(() => {
-    if (
-      sideNavArr.filter((e) => e.path === location.pathname).length === 0 &&
-      additionalSideNavArr.filter((e) => e.path === location.pathname).length === 0
-    ) {
+    if (location.pathname === "/user-profile") {
       setHeaderlogo(true);
     } else {
       setHeaderlogo(false);
@@ -43,6 +40,7 @@ const Layout = () => {
             <Route key={index + view.name} path={view.path} element={view.component} />
           ))}
         </Route>
+        <Route path='/metrics-config' element={<MetricsConfiguration />}></Route>
       </Routes>
       {/* <Footer /> */}
     </LayoutContainer>

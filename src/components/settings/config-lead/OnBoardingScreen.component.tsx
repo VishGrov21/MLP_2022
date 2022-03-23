@@ -19,7 +19,7 @@ const OnBoardingContainer = styled(Box)(({ theme }) => ({
     boxShadow: "0px 12px 24px rgba(69, 124, 189, 0.03)",
     borderRadius: "8px",
 
-    "& img": {
+    "& .globe-icon": {
       width: "180px",
       margin: "18% auto",
     },
@@ -45,7 +45,7 @@ const OnBoardingContainer = styled(Box)(({ theme }) => ({
       "h2.message": {
         fontSize: "24px",
       },
-      "& img": {
+      "& .globe-icon": {
         width: "240px",
       },
       "& .internal-container": {
@@ -74,7 +74,7 @@ const OnBoardingScreen = () => {
               <Typography className='message' variant='body1'>
                 Start creating your first configuration right away
               </Typography>
-              <img src={globeRecycleIcon} alt='Globe Icon' />
+              <img src={globeRecycleIcon} alt='Globe Icon' className="globe-icon" />
             </Stack>
           </Grid>
           {/* Divider */}
