@@ -63,3 +63,5 @@ export const METRCIS_CONFIG_LEAD_ARR = [
   { name: "traceability", value: "Traceability Metrics" },
   { name: "sustainability", value: "Sustainability Metrics" },
 ];
+
+export const STARTING_POINT_ARR = ["FG1", "FG2", "FG3"];

@@ -1,5 +1,5 @@
 import { AppDispatch, AppThunk } from "state/store";
-import { METRIC_TILES_DATA } from "state/actions/supplyMetrics/supplyMetrics.type";
+import { METRIC_TILES_DATA, FOOTPRINT_FILTER } from "state/actions/supplyMetrics/supplyMetrics.type";
 import { SupplyMetricsActionType } from "./supplyMetrics.type";
 
 import color from "styles/color";
@@ -7,12 +7,19 @@ import globeIcon from "assets/images/economicIcon.svg";
 import socialIcon from "assets/images/socialIcon.svg";
 import environmentIcon from "assets/images/environmentIcon.svg";
 
-import { SupplyMetricsTabsI } from "model/supplyMetrics.model";
+import { SupplyMetricsTabsI, FootPrintFilterI } from "model/supplyMetrics.model";
 
 export const metricsDataSuccessActionCreator = (metricsData: SupplyMetricsTabsI[]): SupplyMetricsActionType => {
   return {
     type: METRIC_TILES_DATA,
     payload: metricsData,
+  };
+};
+
+export const footPrintFilterActionCreator = (filterData: FootPrintFilterI): SupplyMetricsActionType => {
+  return {
+    type: FOOTPRINT_FILTER,
+    payload: filterData,
   };
 };
 
