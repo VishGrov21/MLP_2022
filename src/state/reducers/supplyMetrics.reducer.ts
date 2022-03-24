@@ -1,4 +1,5 @@
 import { SupplyMetricsTabsI } from "model/supplyMetrics.model";
+import { AnyAction } from "redux";
 import {
   FOOTPRINT_FILTER,
   METRIC_TILES_DATA,
@@ -15,7 +16,7 @@ const initialState: MetricsStateI = {
   filterData: {},
 };
 
-export const SupplyMetrics = (state: MetricsStateI = initialState, action: SupplyMetricsActionType): MetricsStateI => {
+export const SupplyMetrics = (state: MetricsStateI = initialState, action: AnyAction): MetricsStateI => {
   switch (action.type) {
     case METRIC_TILES_DATA:
       return { ...state, tilesData: action.payload };
