@@ -20,3 +20,10 @@ export interface SupplyMetricsTabsContentI {
   cardContent?: string;
   cardHead?: string;
 }
+
+export interface FootPrintFilterI {
+  product: string;
+  destination: string;
+  startingPoint: string;
+  volume: string;
+}

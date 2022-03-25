@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, AnyAction, Action, Store } from "redux";
+import { createStore, applyMiddleware, AnyAction, Action } from "redux";
 import ReduxThunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 import persistReducer from "state/reducers/rootReducer";
 import { composeWithDevTools } from "redux-devtools-extension";

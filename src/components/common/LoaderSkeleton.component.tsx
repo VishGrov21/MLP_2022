@@ -12,6 +12,7 @@ const LoaderContainer = styled(Stack)({
   flexDirection: "row",
   justifyContent: "center",
   maxWidth: "100vw",
+  width: "100%",
   "& .content": {
     display: "flex",
     alignItems: "center",
@@ -23,6 +24,11 @@ const LoaderContainer = styled(Stack)({
     color: color.palette.grey[600],
     marginLeft: "15px",
   },
+
+  "& .MuiBox-root": {
+    flex: 1,
+  },
+
   "& .MuiSkeleton-rectangular": {
     animation: "none",
     backgroundImage: `linear-gradient(0deg, ${color.palette.common.white}, ${color.palette.grey[100]})`,
@@ -36,7 +42,7 @@ function Media(props: MediaProps) {
         {Array.from(new Array(4)).map((item, index) => {
           return (
             <Box key={index} sx={{ marginRight: "20px", mt: "20px" }}>
-              <Skeleton variant='rectangular' width={200} height={200} />
+              <Skeleton variant='rectangular' width='100%' height={200} />
             </Box>
           );
         })}

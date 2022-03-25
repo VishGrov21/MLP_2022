@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import MetricsCategory from "components/supplyMetrics/SupplyMetrics.component";
+import FootprintCalculator from "components/common/FootprintCalculator.component";
 import { Box, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import infoIcon from "assets/images/info.svg";
@@ -36,20 +37,23 @@ const SupplyMetrics = () => {
   }, [dispatch]);
 
   return (
-    <MetricsContainer>
-      <Heading>
-        <Typography variant='h1'>Metrics</Typography>
-      </Heading>
-      <SubContent>
-        <img src={infoIcon} alt='info-icon' />
-        <Typography variant='body2'>
-          The metrics shown are aggregated across all of your suppliers and commodities. Use the filters to select
-          specific data sets
-        </Typography>
-      </SubContent>
+    <Box sx={{ width: "100%" }}>
+      <MetricsContainer>
+        <Heading>
+          <Typography variant='h1'>Metrics</Typography>
+        </Heading>
+        <SubContent>
+          <img src={infoIcon} alt='info-icon' />
+          <Typography variant='body2'>
+            The metrics shown are aggregated across all of your suppliers and commodities. Use the filters to select
+            specific data sets
+          </Typography>
+        </SubContent>
 
-      <MetricsCategory tabDatas={tilesData} />
-    </MetricsContainer>
+        <MetricsCategory tabDatas={tilesData} />
+      </MetricsContainer>
+      <FootprintCalculator />
+    </Box>
   );
 };
 

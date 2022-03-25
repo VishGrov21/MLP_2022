@@ -79,7 +79,7 @@ export const CONFIG_METRICS_MOCK_DATA: MetricsConfigManagerI[] = [
     lastUpdated: formatDate("03/17/2022"),
   },
   {
-    id: 105 ,
+    id: 105,
     product: "Palm",
     origin: "Brazil",
     traceabilityStatus: IN_PROGRESS_C,
@@ -87,3 +87,5 @@ export const CONFIG_METRICS_MOCK_DATA: MetricsConfigManagerI[] = [
     lastUpdated: formatDate("03/12/2022"),
   },
 ];
+
+export const STARTING_POINT_ARR = ["FG1", "FG2", "FG3"];
