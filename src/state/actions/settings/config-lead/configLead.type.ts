@@ -1,8 +1,11 @@
-import { MetricsConfigManagerI, ConfigFormI, UpdateConfigMetricsI } from "model/settings.model";
+import { MetricsConfigManagerI, ConfigFormI, UpdateConfigMetricsI, ChildLabourMetricsI } from "model/settings.model";
 
 export const METRICS_CONFIG_MANAGER = "metrics_config_manager";
 export const METRIC_CONFIG_DATA = "metric_config_data";
 export const UPDATE_CONIG_METRICS = "update_config_metrics";
+
+export const CHILD_LABOUR_METRICS = "child_labour_metrics";
+export const UPDATE_CHILD_LABOUR_METRICS = "update_child_labour_metrics";
 
 interface MetricsConfigType {
   type: typeof METRIC_CONFIG_DATA;
@@ -19,4 +22,13 @@ interface UpdateConfigMetricsActionType {
   payload: UpdateConfigMetricsI;
 }
 
-export type ConfigLeadActionType = MetricsConfigActionType | MetricsConfigType | UpdateConfigMetricsActionType;
+interface ChildLabourMetricsActionType {
+  type: typeof CHILD_LABOUR_METRICS;
+  payload: ChildLabourMetricsI[];
+}
+
+export type ConfigLeadActionType =
+  | MetricsConfigActionType
+  | MetricsConfigType
+  | UpdateConfigMetricsActionType
+  | ChildLabourMetricsActionType;
