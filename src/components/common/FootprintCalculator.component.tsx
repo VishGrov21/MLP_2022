@@ -77,25 +77,37 @@ const FilterContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
+/* Initial state */
+const FilterInitState = {
+  product: "",
+  destination: "",
+  startingPoint: "",
+  volume: "",
+};
+
+/* Form validation */
+const footPrintValidation = () =>
+  Yup.object().shape({
+    product: Yup.string().required("Product is a required field"),
+    destination: Yup.string().required("destination is a required field"),
+    startingPoint: Yup.string().required("startingPoint is a required field"),
+    volume: Yup.number().typeError("volume must be a number").required("volume is a required field"),
+  });
+/**
+ * Auto Complete Field
+ * @param fieldName The name of the input field
+ * @param fieldProps The properties available in the field
+ * @returns The text input field
+ */
+const autoCompleteField = (
+  fieldName: "product" | "destination" | "volume" | "startingPoint",
+  fieldProps: AutocompleteRenderInputParams
+) => {
+  return <TextField {...fieldProps} name={fieldName} variant='outlined' className='value' placeholder='select' />;
+};
+
 const FootprintCalculator = () => {
   const dispatch = useDispatch<ThunkDispatch<RootState, {}, Action<string>>>();
-
-  /* Initial state */
-  const FilterInitState = {
-    product: "",
-    destination: "",
-    startingPoint: "",
-    volume: "",
-  };
-
-  /* Form validation */
-  const footPrintValidation = () =>
-    Yup.object().shape({
-      product: Yup.string().required("Product is a required field"),
-      destination: Yup.string().required("destination is a required field"),
-      startingPoint: Yup.string().required("startingPoint is a required field"),
-      volume: Yup.number().typeError("volume must be a number").required("volume is a required field"),
-    });
 
   const getErrorMessage = (submitCount: number, error: FormikErrors<typeof FilterInitState>) => {
     if (submitCount > 0 && (error.product || error.destination || error.startingPoint)) {
@@ -106,24 +118,10 @@ const FootprintCalculator = () => {
   };
 
   /**
-   * Auto Complete Field
-   * @param fieldName The name of the input field
-   * @param fieldProps The properties available in the field
-   * @returns The text input field
-   */
-  const autoCompleteField = (
-    fieldName: "product" | "destination" | "volume" | "startingPoint",
-    fieldProps: AutocompleteRenderInputParams
-  ) => {
-    return <TextField {...fieldProps} name={fieldName} variant='outlined' className='value' placeholder='select' />;
-  };
-
-  /**
    * Handles Form submission
    * @param e The form values entered
    */
   const handleFormSubmit = (e: typeof FilterInitState) => {
-    console.log(e);
     dispatch(footPrintFilterActionCreator(e));
   };
 
