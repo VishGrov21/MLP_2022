@@ -89,7 +89,7 @@ export const CONFIG_METRICS_MOCK_DATA: MetricsConfigManagerI[] = [
     origin: "Brazil",
     traceabilityStatus: IN_PROGRESS_C,
     sustainabilityStatus: CONFIGURED_C,
-    lastUpdated: formatDate("03/12/2022"),
+    lastUpdated: formatDate("03/11/2022"),
   },
 ];
 
