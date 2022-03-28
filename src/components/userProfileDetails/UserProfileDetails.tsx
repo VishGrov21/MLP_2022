@@ -233,7 +233,7 @@ const UserProfileDetails = () => {
         <Typography variant='body2'>Last updated on January 1, 2022</Typography>
         <Stack direction='row' className='passwordContainer'>
           <Input type={showPassword ? "text" : "password"} defaultValue={userData.password} disabled />
-          <Button variant='outlined'>Change Password</Button>
+          <Button variant='outlined' onClick={() => navigate('/password-reset')}>Change Password</Button>
         </Stack>
         <FormGroup>
           <FormControlLabel
