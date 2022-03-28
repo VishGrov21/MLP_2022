@@ -239,7 +239,7 @@ const LabourMetrics = () => {
     <AccordionContainer sx={{ width: "100%" }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{ width: "100%" }}>
-          <Typography variant='body2'>Labour / Child Labour</Typography>
+          <Typography variant='body1'>Labour / Child Labour</Typography>
           <Typography className='metricsSize' variant='body2'>
             8 Metrics
           </Typography>
