@@ -1,5 +1,10 @@
 import { Box } from "@mui/material";
-import { MetricsConfigManagerI, SettingsViewI, Settings_Authorized_RolesT } from "model/settings.model";
+import {
+  ChildLabourMetricsI,
+  MetricsConfigManagerI,
+  SettingsViewI,
+  Settings_Authorized_RolesT,
+} from "model/settings.model";
 import ConfigLead from "pages/ConfigLead.page";
 import { formatDate } from "utils/common";
 import { ADMIN, AUTHOR, CONFIG_LEAD, DATA_APPROVER, DATA_INPUTTER } from "./userDetails.constants";
@@ -84,8 +89,90 @@ export const CONFIG_METRICS_MOCK_DATA: MetricsConfigManagerI[] = [
     origin: "Brazil",
     traceabilityStatus: IN_PROGRESS_C,
     sustainabilityStatus: CONFIGURED_C,
-    lastUpdated: formatDate("03/12/2022"),
+    lastUpdated: formatDate("03/11/2022"),
   },
 ];
 
 export const STARTING_POINT_ARR = ["FG1", "FG2", "FG3"];
+export const CHILD_LABOUR_METRICS_ARR: ChildLabourMetricsI[] = [
+  {
+    id: 0,
+    metricName: "Number of school aged children",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 1,
+    metricName: "Number of school aged children attending school",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 2,
+    metricName: "Number of farming households where an inspection has occured",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 3,
+    metricName: "Number of farming households covered by CLM",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 4,
+    metricName: "Number of farming households covered by CLMS",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 5,
+    metricName: "Number of farming households covered by CLMRS",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 6,
+    metricName: "Number of announced inspections",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 7,
+    metricName: "Number of unannounced inspections",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 8,
+    metricName: "Number of children identified in child labour through inspections",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+  {
+    id: 9,
+    metricName: "Number of child labour cases remediated or referred",
+    unit: "#",
+    rangeLow: "0",
+    rangeHigh: "100",
+    dataCollectionMethod: "screen",
+  },
+];
