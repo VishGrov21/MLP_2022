@@ -1,7 +1,9 @@
 import {
   Accordion,
+  AccordionActions,
   AccordionDetails,
   AccordionSummary,
+  Button,
   MenuItem,
   Select,
   Stack,
@@ -130,11 +132,15 @@ const AccordionContainer = styled(Accordion)(({ theme }) => ({
     borderRadius: "16px",
     marginRight: "16px",
   },
+  "& .save": {
+    margin: "10px 40px 20px",
+    width: "8rem",
+  },
 }));
 
-const MenuItemContainer = styled(MenuItem)(({theme})=>({
+const MenuItemContainer = styled(MenuItem)(({ theme }) => ({
   ...theme.typography.body2,
-}))
+}));
 
 const LabourMetrics = () => {
   const childLabourData = useSelector((state: RootState) => state.configLead.childLabourMetrics);
@@ -271,6 +277,11 @@ const LabourMetrics = () => {
           onCellEditCommit={handleCellEdit}
         />
       </AccordionDetails>
+      <AccordionActions>
+        <Button variant='contained' color='primary' className='save'>
+          Save
+        </Button>
+      </AccordionActions>
     </AccordionContainer>
   );
 };
