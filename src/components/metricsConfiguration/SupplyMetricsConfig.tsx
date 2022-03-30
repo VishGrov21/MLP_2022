@@ -2,7 +2,6 @@ import { Typography, styled, Box } from "@mui/material";
 import LabourMetrics from "components/settings/config-lead/LabourMetrics.component";
 
 const ConfigContainer = styled(Box)(({ theme }) => ({
-  padding: "25px",
   width: "100%",
   "& h2": {
     padding: "25px 0",
