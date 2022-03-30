@@ -1,11 +1,18 @@
-import { styled, Box, Typography, Stack, InputLabel, Button, FormHelperText, InputAdornment } from "@mui/material";
+import { styled, Box, Typography, Stack, InputLabel, Button, FormHelperText } from "@mui/material";
 import { Form, Formik } from "formik";
 import MuiTextField from "@mui/material/TextField";
 import FormLayout from "components/login/LoginFormBackground.component";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import { useState } from "react";
+import { userDetailsArr } from "constants/userDetails.constants";
+import { userLoginACtionCreator } from "state/actions/user/user.action";
+import { useAppDispatch } from "state/store";
+import ModalComponent from "components/common/Modal.component";
+import passwordResetImage from "assets/images/password_reset.gif";
+
 const PasswordContainer = styled(Box)(({ theme }) => ({
   "& h1": {
     color: theme.palette.grey[700],
@@ -19,7 +26,6 @@ const PasswordContainer = styled(Box)(({ theme }) => ({
       margin: "8px 0",
     },
     "& input": {
-      
       padding: "6px 10px",
       fontSize: "16px",
       letterSpacing: "3px",
@@ -31,19 +37,17 @@ const PasswordContainer = styled(Box)(({ theme }) => ({
     "& > div": {
       "&:last-child": { marginTop: "30px" },
     },
-    '& button': {
-      width: '100%',
-      marginRight: '10px',
-      '&:last-child': {
-        marginLeft: '10px',
-        marginRight: '0',
-      }
+    "& button": {
+      width: "100%",
+      marginRight: "10px",
+      "&:last-child": {
+        marginLeft: "10px",
+        marginRight: "0",
+      },
     },
-    '& .MuiFormHelperText-root': {
-
-        marginBottom: '7px',
-      
-    }
+    "& .MuiFormHelperText-root": {
+      marginBottom: "7px",
+    },
   },
 }));
 
@@ -69,140 +73,150 @@ const PasswordRules = styled(Stack)(({ theme }) => ({
 
 const PasswordReset = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { state }: { state: any } = useLocation();
   const [charNumberValid, setCharNumberValid] = useState(false);
   const [specialCharValid, setSpecialCharValid] = useState(false);
   const [uppercaseValid, setUppercaseValid] = useState(false);
   const [numberValid, setNumberValid] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const initialFormState = {
     password: "",
     changepassword: "",
   };
   const handleFormSubmit = (e: any) => {
-    console.log(e);
+    const isValidUser = userDetailsArr.findIndex((user) => user.email === state.userEmail);
+    userDetailsArr[isValidUser].password = e.password;
+    userDetailsArr[isValidUser].passwordUpdateDate = new Date().toLocaleString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    userDetailsArr[isValidUser].isFirstTimeLogin = false;
+    dispatch(userLoginACtionCreator(userDetailsArr[isValidUser]));
+    setShowForgotPassword(true);
+  };
+  const handleFormRedirection = () => {
+    navigate("/login");
   };
 
-  const valid = Yup.object({
-    password: Yup.string().required("Password is required"),
-    changepassword: Yup.string().required("Password confirmation is required").oneOf([Yup.ref('password'), null], `Password doesn't match`)
-  });
-
   const handlePasswordChange = (e: any) => {
-    const pattern = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g;
+    const specialCharPattern = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g;
+    const numberPattern = /[0-9]/;
+
     if (e.target.value.length >= 8) {
       setCharNumberValid(true);
     } else {
       setCharNumberValid(false);
     }
-    if (pattern.test(e.target.value)) {
+    if (specialCharPattern.test(e.target.value)) {
       setSpecialCharValid(true);
     } else {
       setSpecialCharValid(false);
     }
-    const pattern1 = /[A-Z]/;
-    if (pattern1.test(e.target.value) && /[a-z]/.test(e.target.value)) {
+    if (/[A-Z]/.test(e.target.value) && /[a-z]/.test(e.target.value)) {
       setUppercaseValid(true);
     } else {
       setUppercaseValid(false);
     }
-    const pattern2 = /[0-9]/;
-    if (pattern2.test(e.target.value)) {
+    if (numberPattern.test(e.target.value)) {
       setNumberValid(true);
     } else {
       setNumberValid(false);
     }
   };
+  const passwordValidation = Yup.object({
+    password: Yup.string()
+      .required("Password is required")
+      .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, " "),
+    changepassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], `Password doesn't match`)
+      .required("Password confirmation is required"),
+  });
 
   return (
-    <div>
-      {/* <LogoImg src={sustainItLogo} alt='Sustain It Logo' /> */}
-      <FormLayout>
+    <>
+      <FormLayout showLogo={true} prevPath={state.prevPath}>
         <PasswordContainer>
           <Typography variant='h1'>Password Reset</Typography>
           <Typography variant='body2'>Please enter your new password</Typography>
-          <Formik
-            initialValues={initialFormState}
-            validationSchema={valid}
-            onSubmit={handleFormSubmit}
-          >
+          <Formik initialValues={initialFormState} validationSchema={passwordValidation} onSubmit={handleFormSubmit}>
             {({ values, submitForm, isSubmitting, touched, errors, handleChange, submitCount }) => {
-              console.log(errors);
               return (
-                <>
-                  <Form>
+                <Form>
+                  <Stack>
+                    <InputLabel className='label' id='password'>
+                      New Password
+                    </InputLabel>
+                    <MuiTextField
+                      type='password'
+                      name='password'
+                      error={touched["password"] && !!errors["password"]}
+                      onChange={(e: any) => {
+                        handleChange(e);
+                        handlePasswordChange(e);
+                      }}
+                      value={values?.password}
+                    />
+                    {errors["password"] !== " " && <FormHelperText error={true}>{errors["password"]}</FormHelperText>}
+                  </Stack>
+                  <PasswordRules>
+                    <Typography variant='body2'>Password must :</Typography>
                     <Stack>
-                      <InputLabel className='label' id='password'>
-                        New Password
-                      </InputLabel>
-                      <MuiTextField
-                        type='password'
-                        name='password'
-                        error={touched['password'] && !!errors['password']}
-                        onChange={(e: any) => {
-                          handleChange(e);
-                          handlePasswordChange(e);
-                        }}
-                        value={values?.password}
-                        // InputProps = {{endAdornment: (
-                        //   <InputAdornment position="end">
-                        //       <CheckCircleIcon color={charNumberValid ? "success" : "success"} />
-                        //   </InputAdornment>
-                        // )}}
-                      />
-                      <FormHelperText error={true}>{errors["password"]}</FormHelperText>
+                      <CheckCircleIcon color={charNumberValid ? "success" : "disabled"} />
+                      <Typography variant='body2'>Be at least 8 characters long</Typography>
                     </Stack>
-                    <PasswordRules>
-                      <Typography variant='body2'>Password must :</Typography>
-                      <Stack>
-                        <CheckCircleIcon color={charNumberValid ? "success" : "disabled"} />
-                        <Typography variant='body2'>Be at least 8 characters long</Typography>
-                      </Stack>
-                      <Stack>
-                        <CheckCircleIcon color={uppercaseValid ? "success" : "disabled"} />
-                        <Typography variant='body2'>
-                          Include at least one upper case and one lower case letter
-                        </Typography>
-                      </Stack>
-                      <Stack>
-                        <CheckCircleIcon color={numberValid ? "success" : "disabled"} />
-                        <Typography variant='body2'>Include at least one digit number</Typography>
-                      </Stack>
-                      <Stack>
-                        <CheckCircleIcon color={specialCharValid ? "success" : "disabled"} />
-                        <Typography variant='body2'>Include at least one special character</Typography>
-                      </Stack>
-                    </PasswordRules>
                     <Stack>
-                      <InputLabel className='label' id='password'>
-                        Confirm Password
-                      </InputLabel>
-
-                      <MuiTextField
-                        type='password'
-                        name='changepassword'
-                        error={touched['changepassword'] && !!errors['changepassword']}
-                        onChange={handleChange}
-                        value={values?.changepassword}
-                      />
+                      <CheckCircleIcon color={uppercaseValid ? "success" : "disabled"} />
+                      <Typography variant='body2'>Include at least one upper case and one lower case letter</Typography>
                     </Stack>
-                    <FormHelperText error={true}>{errors["changepassword"]}</FormHelperText>
-
-                    <Stack justifyContent='space-between' direction='row'>
-                      <Button className='cancelBtn' color='primary' variant='outlined' onClick={() => navigate(-1)}>
-                        Cancel
-                      </Button>
-                      <Button className='sendBtn' color='primary' type='submit' variant='contained'>
-                        Send
-                      </Button>
+                    <Stack>
+                      <CheckCircleIcon color={numberValid ? "success" : "disabled"} />
+                      <Typography variant='body2'>Include at least one digit number</Typography>
                     </Stack>
-                  </Form>
-                </>
+                    <Stack>
+                      <CheckCircleIcon color={specialCharValid ? "success" : "disabled"} />
+                      <Typography variant='body2'>Include at least one special character</Typography>
+                    </Stack>
+                  </PasswordRules>
+                  <Stack>
+                    <InputLabel className='label' id='password'>
+                      Confirm Password
+                    </InputLabel>
+
+                    <MuiTextField
+                      type='password'
+                      name='changepassword'
+                      error={touched["changepassword"] && !!errors["changepassword"]}
+                      onChange={handleChange}
+                      value={values?.changepassword}
+                    />
+                  </Stack>
+                  <FormHelperText error={true}>{errors["changepassword"]}</FormHelperText>
+
+                  <Stack justifyContent='space-between' direction='row'>
+                    <Button className='cancelBtn' color='primary' variant='outlined' onClick={() => navigate(-1)}>
+                      Cancel
+                    </Button>
+                    <Button className='sendBtn' color='primary' type='submit' variant='contained'>
+                      Send
+                    </Button>
+                  </Stack>
+                </Form>
               );
             }}
           </Formik>
         </PasswordContainer>
       </FormLayout>
-    </div>
+      <ModalComponent
+        body='Your password has been reset!'
+        buttonArr={[{ id: 1, buttonText: "Back to login", onClickFn: handleFormRedirection }]}
+        showCloseIcon={false}
+        showModal={showForgotPassword}
+        gifImage={passwordResetImage}
+      />
+    </>
   );
 };
 

@@ -148,7 +148,7 @@ const UserDetails = styled(Stack)(({ theme }) => ({
 const UserProfileDetails = () => {
   const userData = useSelector((state: RootState) => state.user.user);
   const navigate = useNavigate();
-  const { state }: any = useLocation();
+  const { state, pathname }: any = useLocation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
@@ -230,10 +230,15 @@ const UserProfileDetails = () => {
       )}
       <UserDetails>
         <Typography variant='h2'>Password</Typography>
-        <Typography variant='body2'>Last updated on January 1, 2022</Typography>
+        <Typography variant='body2'>Last updated on {userData.passwordUpdateDate}</Typography>
         <Stack direction='row' className='passwordContainer'>
           <Input type={showPassword ? "text" : "password"} defaultValue={userData.password} disabled />
-          <Button variant='outlined' onClick={() => navigate('/password-reset')}>Change Password</Button>
+          <Button
+            variant='outlined'
+            onClick={() => navigate("/password-reset", { state: { prevPath: pathname, userEmail: userData.email } })}
+          >
+            Change Password
+          </Button>
         </Stack>
         <FormGroup>
           <FormControlLabel

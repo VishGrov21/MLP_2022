@@ -13,6 +13,8 @@ export interface UserDetailsI {
   name: string;
   email: string;
   password: string;
+  passwordUpdateDate: string,
+  isFirstTimeLogin: boolean,
   company: string;
   jobTitle: string;
   mobile: number;
