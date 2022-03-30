@@ -1,5 +1,6 @@
 import { ConfigFormI, ConfigLeadStateI, UpdateConfigMetricsI } from "model/settings.model";
 import {
+  CHILD_LABOUR_METRICS,
   ConfigLeadActionType,
   METRICS_CONFIG_MANAGER,
   METRIC_CONFIG_DATA,
@@ -10,6 +11,7 @@ const configLeadInitState: ConfigLeadStateI = {
   configManager: [],
   configuredData: {} as ConfigFormI,
   updateConfigMetrics: {} as UpdateConfigMetricsI,
+  childLabourMetrics: [],
 };
 
 export const configLeadReducer = (
@@ -30,6 +32,12 @@ export const configLeadReducer = (
       return {
         ...state,
         updateConfigMetrics: action.payload,
+      };
+    }
+    case CHILD_LABOUR_METRICS: {
+      return {
+        ...state,
+        childLabourMetrics: action.payload,
       };
     }
     default:

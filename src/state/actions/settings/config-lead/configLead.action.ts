@@ -1,8 +1,10 @@
-import { ConfigFormI, MetricsConfigManagerI, UpdateConfigMetricsI } from "model/settings.model";
+import { ChildLabourMetricsI, ConfigFormI, MetricsConfigManagerI, UpdateConfigMetricsI } from "model/settings.model";
 import {
+  CHILD_LABOUR_METRICS,
   ConfigLeadActionType,
   METRICS_CONFIG_MANAGER,
   METRIC_CONFIG_DATA,
+  UPDATE_CHILD_LABOUR_METRICS,
   UPDATE_CONIG_METRICS,
 } from "./configLead.type";
 
@@ -20,9 +22,16 @@ export const metricsConfigActionCreator = (configData: MetricsConfigManagerI[]):
   };
 };
 
-export const UpdateConfigMetricsActionCreator = (updateMetricsData: UpdateConfigMetricsI): ConfigLeadActionType => {
+export const updateConfigMetricsActionCreator = (updateMetricsData: UpdateConfigMetricsI): ConfigLeadActionType => {
   return {
     type: UPDATE_CONIG_METRICS,
     payload: updateMetricsData,
+  };
+};
+
+export const childLabourMetricsActionCreator = (metrics: ChildLabourMetricsI[]): ConfigLeadActionType => {
+  return {
+    type: CHILD_LABOUR_METRICS,
+    payload: metrics,
   };
 };

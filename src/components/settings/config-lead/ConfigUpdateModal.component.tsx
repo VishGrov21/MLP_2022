@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import configSettingsIcon from "assets/images/configSettingsIcon.svg";
 import { Field, Form, Formik, FormikErrors, FormikTouched } from "formik";
-import { UpdateConfigMetricsActionCreator } from "state/actions/settings/config-lead/configLead.action";
+import { updateConfigMetricsActionCreator } from "state/actions/settings/config-lead/configLead.action";
 import { UpdateConfigMetricsI } from "model/settings.model";
 import { useAppDispatch } from "state/store";
 import { METRICS_CONFIG_LEAD_ARR } from "constants/settings.constants";
@@ -114,7 +114,7 @@ const ConfigUpdateModal = (props: ConfigUpdateModalDataI) => {
   };
 
   const handleFormSubmit = (e: typeof ConfigUpdateFormInitState) => {
-    dispatch(UpdateConfigMetricsActionCreator(e));
+    dispatch(updateConfigMetricsActionCreator(e));
     handleUpdateModalCancel();
   };
 

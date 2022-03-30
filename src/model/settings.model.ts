@@ -52,4 +52,17 @@ export interface ConfigLeadStateI {
   configManager: MetricsConfigManagerI[];
   configuredData: ConfigFormI;
   updateConfigMetrics: UpdateConfigMetricsI;
+  childLabourMetrics: ChildLabourMetricsI[];
+}
+
+export type SCREEN = "screen";
+export type SOURCE = "source";
+
+export interface ChildLabourMetricsI {
+  id: number;
+  metricName: string;
+  unit: string;
+  rangeLow: string;
+  rangeHigh: string;
+  dataCollectionMethod: SCREEN | SOURCE;
 }
