@@ -1,7 +1,9 @@
 import {
   Accordion,
+  AccordionActions,
   AccordionDetails,
   AccordionSummary,
+  Button,
   MenuItem,
   Select,
   Stack,
@@ -93,6 +95,9 @@ const DataGridContainer = styled(DataGrid)(({ theme }) => ({
     height: "80%",
     margin: "auto auto",
   },
+  "& .MuiSelect-select": {
+    ...theme.typography.body2,
+  },
 
   [theme.breakpoints.up("xl")]: {
     "& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell": {
@@ -127,6 +132,14 @@ const AccordionContainer = styled(Accordion)(({ theme }) => ({
     borderRadius: "16px",
     marginRight: "16px",
   },
+  "& .save": {
+    margin: "10px 40px 20px",
+    width: "8rem",
+  },
+}));
+
+const MenuItemContainer = styled(MenuItem)(({ theme }) => ({
+  ...theme.typography.body2,
 }));
 
 const LabourMetrics = () => {
@@ -153,11 +166,19 @@ const LabourMetrics = () => {
   };
 
   const RangeLow = (params: GridRenderCellParams) => {
-    return <Typography className='range'>{params.row.rangeLow}</Typography>;
+    return (
+      <Typography className='range' variant='body2'>
+        {params.row.rangeLow}
+      </Typography>
+    );
   };
 
   const RangeHigh = (params: GridRenderCellParams) => {
-    return <Typography className='range'>{params.row.rangeHigh}</Typography>;
+    return (
+      <Typography className='range' variant='body2'>
+        {params.row.rangeHigh}
+      </Typography>
+    );
   };
 
   function updateFieldData(
@@ -193,8 +214,8 @@ const LabourMetrics = () => {
     const name = `${params.row.id}`;
     return (
       <Select variant='outlined' value={value} onChange={handleChange} name={name}>
-        <MenuItem value={"screen"}>On-screen Input</MenuItem>
-        <MenuItem value={"source"}>Pull from source system</MenuItem>
+        <MenuItemContainer value={"screen"}>On-screen Input</MenuItemContainer>
+        <MenuItemContainer value={"source"}>Pull from source system</MenuItemContainer>
       </Select>
     );
   };
@@ -256,6 +277,11 @@ const LabourMetrics = () => {
           onCellEditCommit={handleCellEdit}
         />
       </AccordionDetails>
+      <AccordionActions>
+        <Button variant='contained' color='primary' className='save'>
+          Save
+        </Button>
+      </AccordionActions>
     </AccordionContainer>
   );
 };

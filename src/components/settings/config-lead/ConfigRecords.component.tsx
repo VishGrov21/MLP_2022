@@ -130,20 +130,21 @@ const columns: GridColDef[] = [
 ];
 
 interface HeaderProps {
-  isDisabled: boolean;
+  isUpdateDisabled: boolean;
+  isDeleteDisabled: boolean;
   handleUpdateCB: Function;
   handleDeleteCB: Function;
 }
 
 function Header(props: HeaderProps) {
-  const { isDisabled, handleUpdateCB, handleDeleteCB } = props;
+  const { isUpdateDisabled, isDeleteDisabled, handleUpdateCB, handleDeleteCB } = props;
   return (
     <Stack direction='row' justifyContent='space-between' alignItems='center' className='header'>
       <Typography variant='h3'>Configuration Records</Typography>
       <Box>
         <IconButton
           aria-label='delete'
-          disabled={isDisabled}
+          disabled={isDeleteDisabled}
           onClick={() => handleDeleteCB()}
           className='delete-button'
         >
@@ -153,7 +154,7 @@ function Header(props: HeaderProps) {
           variant='contained'
           color='primary'
           className='update-btn'
-          disabled={isDisabled}
+          disabled={isUpdateDisabled}
           onClick={() => handleUpdateCB()}
         >
           Update
@@ -201,6 +202,7 @@ const DeleteModalBody = () => {
 
 const ConfigRecords = () => {
   const [isUpdateBtnDisabled, setIsUpdateBtnDisabled] = useState(true);
+  const [isDeleteBtnDisabled, setIsDeleteBtnDisabled] = useState(true);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState<GridSelectionModel>([]);
@@ -212,7 +214,8 @@ const ConfigRecords = () => {
   // };
 
   const handleCheckboxSelect = (selectionModel: GridSelectionModel, details: GridCallbackDetails) => {
-    selectionModel.length > 0 ? setIsUpdateBtnDisabled(false) : setIsUpdateBtnDisabled(true);
+    selectionModel.length > 0 ? setIsDeleteBtnDisabled(false) : setIsDeleteBtnDisabled(true);
+    selectionModel.length === 1 ? setIsUpdateBtnDisabled(false) : setIsUpdateBtnDisabled(true);
     setSelectedRow(selectionModel);
   };
 
@@ -229,7 +232,8 @@ const ConfigRecords = () => {
   ];
 
   const headerProps = {
-    isDisabled: isUpdateBtnDisabled,
+    isUpdateDisabled: isUpdateBtnDisabled,
+    isDeleteDisabled: isDeleteBtnDisabled,
     handleUpdateCB: () => setShowUpdateModal(true),
     handleDeleteCB: () => setShowDeleteModal(true),
   };
