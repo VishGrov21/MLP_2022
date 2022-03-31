@@ -13,6 +13,9 @@ import { useAppDispatch } from "state/store";
 import ModalComponent from "components/common/Modal.component";
 import passwordResetImage from "assets/images/password_reset.gif";
 
+interface EventI {
+  value: string;
+}
 const PasswordContainer = styled(Box)(({ theme }) => ({
   "& h1": {
     color: theme.palette.grey[700],
@@ -71,37 +74,44 @@ const PasswordRules = styled(Stack)(({ theme }) => ({
   },
 }));
 
+const initialFormState = {
+  password: "",
+  changepassword: "",
+};
+
 const PasswordReset = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { state }: { state: any } = useLocation();
+  const { state }: any = useLocation();
+
   const [charNumberValid, setCharNumberValid] = useState(false);
   const [specialCharValid, setSpecialCharValid] = useState(false);
   const [uppercaseValid, setUppercaseValid] = useState(false);
   const [numberValid, setNumberValid] = useState(false);
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false);
 
-  const initialFormState = {
-    password: "",
-    changepassword: "",
-  };
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = (e: typeof initialFormState) => {
     const isValidUser = userDetailsArr.findIndex((user) => user.email === state.userEmail);
-    userDetailsArr[isValidUser].password = e.password;
-    userDetailsArr[isValidUser].passwordUpdateDate = new Date().toLocaleString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-    userDetailsArr[isValidUser].isFirstTimeLogin = false;
-    dispatch(userLoginACtionCreator(userDetailsArr[isValidUser]));
-    setShowForgotPassword(true);
+    const updatedValues = {
+      password: e.password,
+      passwordUpdateDate: new Date().toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      isFirstTimeLogin: false,
+    };
+    const updatedUserData = { ...userDetailsArr[isValidUser], ...updatedValues };
+
+    dispatch(userLoginACtionCreator(updatedUserData));
+    setShowResetModal(true);
   };
+
   const handleFormRedirection = () => {
     navigate("/login");
   };
 
-  const handlePasswordChange = (e: any) => {
+  const handlePasswordChange = (e: { target: EventI }) => {
     const specialCharPattern = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g;
     const numberPattern = /[0-9]/;
 
@@ -153,7 +163,7 @@ const PasswordReset = () => {
                       type='password'
                       name='password'
                       error={touched["password"] && !!errors["password"]}
-                      onChange={(e: any) => {
+                      onChange={(e: { target: EventI }) => {
                         handleChange(e);
                         handlePasswordChange(e);
                       }}
@@ -213,7 +223,7 @@ const PasswordReset = () => {
         body='Your password has been reset!'
         buttonArr={[{ id: 1, buttonText: "Back to login", onClickFn: handleFormRedirection }]}
         showCloseIcon={false}
-        showModal={showForgotPassword}
+        showModal={showResetModal}
         gifImage={passwordResetImage}
       />
     </>
