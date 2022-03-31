@@ -20,6 +20,7 @@ import { Action } from "redux";
 import { footPrintFilterActionCreator } from "state/actions/supplyMetrics/supplyMetrics.action";
 
 const FootPrintContainer = styled(Box)(({ theme }) => ({
+  width: "100%",
   padding: "40px 40px 90px",
   background: theme.palette.grey[800],
   display: "flex",

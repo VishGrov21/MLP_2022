@@ -9,6 +9,7 @@ import Settings from "pages/Settings.page";
 import { settingsViewArr } from "constants/settings.constants";
 import UserProfileDetails from "components/userProfileDetails/UserProfileDetails";
 import MetricsConfiguration from "pages/MetricsConfig.page";
+import FootprintCalculator from "components/common/FootprintCalculator.component";
 
 const LayoutContainer = styled(Stack)({
   flexDirection: "row",
@@ -33,6 +34,7 @@ const Layout = () => {
       <Routes>
         <Route path='/' element={<Navigate replace to='/supply-metrics' />} />
         <Route path='/supply-metrics' element={<SupplyMetrics />} />
+        <Route path='/footprint-calculator' element={<FootprintCalculator />} />
         <Route path='/user-profile' element={<UserProfileDetails />}></Route>
         <Route path='/settings'>
           <Route index={true} element={<Settings />} />

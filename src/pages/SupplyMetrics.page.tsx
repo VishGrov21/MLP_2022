@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import MetricsCategory from "components/supplyMetrics/SupplyMetrics.component";
-import FootprintCalculator from "components/common/FootprintCalculator.component";
 import { Box, Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import infoIcon from "assets/images/info.svg";
@@ -52,7 +51,6 @@ const SupplyMetrics = () => {
 
         <MetricsCategory tabDatas={tilesData} />
       </MetricsContainer>
-      <FootprintCalculator />
     </Box>
   );
 };
