@@ -10,7 +10,7 @@ import Badge from "@mui/material/Badge";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import editIcon from "assets/images/editIcon_white.svg";
-import { EditFormComponent } from "./EditUserDetails";
+import { EditFormComponent } from "./EditUserDetails.component";
 
 const UserProfileContainer = styled(Stack)(({ theme }) => ({
   padding: "50px",
