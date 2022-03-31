@@ -4,7 +4,7 @@ import { Box, Button, Stack } from "@mui/material";
 import { CheckboxWithLabel, TextField } from "formik-mui";
 import { styled } from "@mui/material/styles";
 import sustainItLogo from "assets/images/sustainItLogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { LoginFormI } from "model/login.model";
 import { Field, Form, Formik } from "formik";
 import FormLayout from "components/login/LoginFormBackground.component";
@@ -81,13 +81,18 @@ interface LoginPropsI {
 const LoginForm = (props: LoginPropsI) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { pathname }: { pathname: string } = useLocation();
 
   const handleLoginFormSubmit = (loginFormData: LoginFormI) => {
     const isValidUser = userDetailsArr.findIndex((user) => user.email === loginFormData.email);
     if (isValidUser > -1) {
       dispatch(userLoginACtionCreator(userDetailsArr[isValidUser]));
       props.setIsLogedIn(true);
-      navigate("/supply-metrics");
+      if (userDetailsArr[isValidUser].isFirstTimeLogin) {
+        navigate("/password-reset", { state: { prevPath: pathname, userEmail: loginFormData.email } });
+      } else {
+        navigate("/supply-metrics");
+      }
     }
   };
 

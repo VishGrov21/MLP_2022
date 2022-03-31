@@ -10,7 +10,7 @@ import Badge from "@mui/material/Badge";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import editIcon from "assets/images/editIcon_white.svg";
-import { EditFormComponent } from "./EditUserDetails";
+import { EditFormComponent } from "./EditUserDetails.component";
 
 const UserProfileContainer = styled(Stack)(({ theme }) => ({
   padding: "50px",
@@ -148,7 +148,7 @@ const UserDetails = styled(Stack)(({ theme }) => ({
 const UserProfileDetails = () => {
   const userData = useSelector((state: RootState) => state.user.user);
   const navigate = useNavigate();
-  const { state }: any = useLocation();
+  const { state, pathname }: any = useLocation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
@@ -230,10 +230,15 @@ const UserProfileDetails = () => {
       )}
       <UserDetails>
         <Typography variant='h2'>Password</Typography>
-        <Typography variant='body2'>Last updated on January 1, 2022</Typography>
+        <Typography variant='body2'>Last updated on {userData.passwordUpdateDate}</Typography>
         <Stack direction='row' className='passwordContainer'>
           <Input type={showPassword ? "text" : "password"} defaultValue={userData.password} disabled />
-          <Button variant='outlined'>Change Password</Button>
+          <Button
+            variant='outlined'
+            onClick={() => navigate("/password-reset", { state: { prevPath: pathname, userEmail: userData.email } })}
+          >
+            Change Password
+          </Button>
         </Stack>
         <FormGroup>
           <FormControlLabel

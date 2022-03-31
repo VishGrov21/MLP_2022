@@ -7,7 +7,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import SupplyMetrics from "pages/SupplyMetrics.page";
 import Settings from "pages/Settings.page";
 import { settingsViewArr } from "constants/settings.constants";
-import UserProfileDetails from "components/userProfileDetails/UserProfileDetails";
+import UserProfileDetails from "components/userProfileDetails/UserProfileDetails.component";
 import MetricsConfiguration from "pages/MetricsConfig.page";
 
 const LayoutContainer = styled(Stack)({

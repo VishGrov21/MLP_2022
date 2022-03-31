@@ -1,5 +1,5 @@
 import { Box, styled, Tab, Tabs, Typography } from "@mui/material";
-import SupplyMetricsConfig from "components/metricsConfiguration/SupplyMetricsConfig";
+import SupplyMetricsConfig from "components/metricsConfiguration/SupplyMetricsConfig.component";
 import { SyntheticEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "state/store";
