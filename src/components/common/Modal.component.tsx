@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 
-import { styled, Button, Dialog, DialogActions, DialogContent, DialogTitle, ButtonProps } from "@mui/material";
+import { styled, Button, Dialog, DialogActions, DialogContent, ButtonProps } from "@mui/material";
 
-import leavesImg from "assets/images/leaves.png";
 import color from "styles/color";
 import useMobileScreen from "hooks/useMobileScreen.hooks";
 
 const DialogContainer = styled(Dialog)(({ theme }) => ({
-  backgroundImage: `url(${leavesImg})`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "85% center",
   "& .MuiDialog-paper": {
@@ -17,9 +15,13 @@ const DialogContainer = styled(Dialog)(({ theme }) => ({
       padding: "20px 0 8%",
       display: "flex",
       justifyContent: "space-between",
+      alignItems: "center",
       "& .MuiDialogContentText-root": {
         color: color.palette.grey[900],
         fontFamily: "Roboto Regular",
+      },
+      "& img": {
+        width: "210px",
       },
     },
     "& .MuiDialogActions-root": {
@@ -52,7 +54,7 @@ interface ModalDataI {
   body: React.ReactNode;
   showCloseIcon?: boolean;
   buttonArr: ButtonData[];
-  gifImage?: ImageData;
+  gifImage?: string;
   showModal: boolean;
   closeModalCB?: Function;
 }
@@ -60,7 +62,7 @@ interface ModalDataI {
 const ModalContainer = (props: ModalDataI) => {
   const [open, setOpen] = useState(true);
   const fullScreen = useMobileScreen();
-  const { showModal, closeModalCB, body, title, showCloseIcon, buttonArr } = props;
+  const { showModal, closeModalCB, body, title, showCloseIcon, buttonArr, gifImage } = props;
 
   useEffect(() => {
     setOpen(showModal);
@@ -85,7 +87,12 @@ const ModalContainer = (props: ModalDataI) => {
       )}
       <div>
         {title && <div> {title}</div>}
-        {body && <DialogContent>{body}</DialogContent>}
+        {body && (
+          <DialogContent>
+            {gifImage && <img src={gifImage} alt='password_reset' />}
+            {body}
+          </DialogContent>
+        )}
 
         <DialogActions>
           {buttonArr.map((buttonData: ButtonData) => (
