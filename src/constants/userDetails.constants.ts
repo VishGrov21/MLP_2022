@@ -20,7 +20,7 @@ export const userDetailsArr: UserDetailArrT = [
     mobile: 9876543210,
     role: [ADMIN],
     isFirstTimeConfig: false,
-    isFirstTimeLogin: true,
+    isFirstTimeLogin: false,
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ export const userDetailsArr: UserDetailArrT = [
   },
   {
     id: 3,
-    email: "data-inputter@gmail.com",
+    email: "data-input@gmail.com",
     password: "SustainIt@2022",
     passwordUpdateDate: "January 1, 2022",
     name: "Ragu Muthuramalingam",
@@ -45,8 +45,8 @@ export const userDetailsArr: UserDetailArrT = [
     jobTitle: "Data Input",
     mobile: 7654321098,
     role: [DATA_INPUTTER],
-    isFirstTimeConfig: false,
-    isFirstTimeLogin: true,
+    isFirstTimeConfig: true,
+    isFirstTimeLogin: false,
   },
   {
     id: 4,

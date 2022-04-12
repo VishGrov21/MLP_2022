@@ -35,9 +35,18 @@ const Layout = () => {
         <Route path='/supply-metrics' element={<SupplyMetrics />} />
         <Route path='/user-profile' element={<UserProfileDetails />}></Route>
         <Route path='/settings'>
+          {/* Index routes can be thought of as "default child routes". 
+          When a parent route has multiple children, but the URL is just at the parent's path, 
+          you probably want to render something into the outlet. */}
           <Route index={true} element={<Settings />} />
-          {settingsViewArr.map((view, index) => (
-            <Route key={index + view.name} path={view.path} element={view.component} />
+          {settingsViewArr.map((view, viewIndex) => (
+            <Route key={viewIndex + view.name} path={view.path}>
+              <Route index={true} element={view.component} />
+              {view.subView &&
+                view.subView.map((subView, subViewIndex) => (
+                  <Route key={subViewIndex + subView.name} path={subView.path} element={subView.component} />
+                ))}
+            </Route>
           ))}
         </Route>
         <Route path='/metrics-config' element={<MetricsConfiguration />}></Route>
