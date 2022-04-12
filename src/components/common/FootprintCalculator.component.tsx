@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { Field, Form, Formik, FormikErrors } from "formik";
 import { Autocomplete } from "formik-mui";
-import { ORIGIN_CONFIG_LEAD_ARR, PRODUCTS_CONFIG_LEAD_ARR, STARTING_POINT_ARR } from "constants/settings.constants";
+import { ORIGIN_ARR, PRODUCTS_ARR, STARTING_POINT_ARR } from "constants/settings.constants";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
@@ -148,7 +148,7 @@ const FootprintCalculator = () => {
                     <Field
                       name='product'
                       component={Autocomplete}
-                      options={PRODUCTS_CONFIG_LEAD_ARR}
+                      options={PRODUCTS_ARR}
                       getOptionLabel={(option: string) => option}
                       isOptionEqualToValue={(option: string, value: string) =>
                         value ? value === option : value === ""
@@ -164,7 +164,7 @@ const FootprintCalculator = () => {
                     <Field
                       name='destination'
                       component={Autocomplete}
-                      options={ORIGIN_CONFIG_LEAD_ARR}
+                      options={ORIGIN_ARR}
                       getOptionLabel={(option: string) => option}
                       isOptionEqualToValue={(option: string, value: string) =>
                         value ? value === option : value === ""

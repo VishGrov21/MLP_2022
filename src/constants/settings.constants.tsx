@@ -2,10 +2,14 @@ import { Box } from "@mui/material";
 import {
   ChildLabourMetricsI,
   MetricsConfigManagerI,
+  SelectOptionsI,
   SettingsViewI,
   Settings_Authorized_RolesT,
+  TypeT,
 } from "model/settings.model";
 import ConfigLead from "pages/ConfigLead.page";
+import DataInput from "pages/DataInput.page";
+import SupplyChain from "pages/SupplyChain.page";
 import { formatDate } from "utils/common";
 import { ADMIN, AUTHOR, CONFIG_LEAD, DATA_APPROVER, DATA_INPUTTER } from "./userDetails.constants";
 
@@ -13,7 +17,7 @@ export const SETTINGS_AUTHORIZED_ROLE_ARR: Settings_Authorized_RolesT[] = [
   ADMIN,
   CONFIG_LEAD,
   DATA_APPROVER,
-  DATA_APPROVER,
+  DATA_INPUTTER,
   AUTHOR,
 ];
 
@@ -28,28 +32,37 @@ export const settingsViewArr: SettingsViewI[] = [
   {
     id: 2,
     name: "Data Inputter View",
-    path: "data-input-view",
+    path: "data-input",
     role: DATA_INPUTTER,
-    component: <Box />,
+    component: <DataInput />,
+    subView: [
+      {
+        id: 21,
+        name: "Supply Chain",
+        path: "supply-chain",
+        role: DATA_INPUTTER,
+        component: <SupplyChain />,
+      },
+    ],
   },
   {
     id: 3,
     name: "Data Approver View",
-    path: "data-approver-view",
+    path: "data-approver",
     role: DATA_APPROVER,
     component: <Box />,
   },
   {
     id: 4,
     name: "Authoring View",
-    path: "author-view",
+    path: "author",
     role: AUTHOR,
     component: <Box />,
   },
 ];
 
-export const PRODUCTS_CONFIG_LEAD_ARR = ["Coffee", "Palm"];
-export const ORIGIN_CONFIG_LEAD_ARR = [
+export const PRODUCTS_ARR = ["Coffee", "Palm"];
+export const ORIGIN_ARR = [
   "Brazil",
   "Colombia",
   "Congo (DRC)",
@@ -65,9 +78,19 @@ export const ORIGIN_CONFIG_LEAD_ARR = [
   "Vietnam",
 ];
 
-export const METRICS_CONFIG_LEAD_ARR = [
+export const TYPE_ARR: TypeT = ["traceability", "sustainability"];
+// export const CATEGORY_ARR: CategoryT = ["economic", "social", "environment"];
+
+export const METRICS_CONFIG_LEAD_ARR: SelectOptionsI[] = [
   { name: "traceability", value: "Traceability Metrics" },
   { name: "sustainability", value: "Sustainability Metrics" },
+];
+
+export const SUPPLY_CHAIN_TYPE_ARR = ["Traceability Data", "Sustainability Data"];
+export const SUSTAINABILITY_CAT_ARR = [
+  "Economic Metrics Template",
+  "Social Metrics Template",
+  "Environmental Metrics Template",
 ];
 
 export const IN_PROGRESS_C = "In Progress";
