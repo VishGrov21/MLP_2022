@@ -16,10 +16,10 @@ export const metricsDataSuccessActionCreator = (metricsData: SupplyMetricsTabsI[
   };
 };
 
-export const footPrintFilterActionCreator = (filterData: FootPrintFilterI): SupplyMetricsActionType => {
+export const footPrintFilterActionCreator = (filteredData: FootPrintFilterI): SupplyMetricsActionType => {
   return {
     type: FOOTPRINT_FILTER,
-    payload: filterData,
+    payload: filteredData,
   };
 };
 

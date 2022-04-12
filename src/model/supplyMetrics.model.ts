@@ -26,4 +26,7 @@ export interface FootPrintFilterI {
   destination: string;
   startingPoint: string;
   volume: string;
+  originCountry: string;
+  customer?: string;
+  supplier?: string;
 }
