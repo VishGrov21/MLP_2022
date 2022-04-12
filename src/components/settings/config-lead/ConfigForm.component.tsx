@@ -11,21 +11,15 @@ import {
   FormHelperText,
   Grid,
 } from "@mui/material";
-import {
-  METRICS_CONFIG_LEAD_ARR,
-  ORIGIN_CONFIG_LEAD_ARR,
-  PRODUCTS_CONFIG_LEAD_ARR,
-} from "constants/settings.constants";
+import { METRICS_CONFIG_LEAD_ARR, ORIGIN_ARR, PRODUCTS_ARR } from "constants/settings.constants";
 import { Field, Form, Formik, FormikErrors, FormikTouched } from "formik";
 import { Autocomplete, CheckboxWithLabel } from "formik-mui";
 import MuiTextField from "@mui/material/TextField";
 import { ConfigFormI } from "model/settings.model";
 import { configMetricsFormActionCreator } from "state/actions/settings/config-lead/configLead.action";
 
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
-import { Action } from "redux";
-import { RootState } from "state/store";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "state/store";
 import { useNavigate } from "react-router-dom";
 import globeRecycleIcon from "assets/images/globeRecycleIcon.svg";
 
@@ -137,7 +131,7 @@ interface ConfigFormProps {
 }
 
 const ConfigForm = (props: ConfigFormProps) => {
-  const dispatch = useDispatch<ThunkDispatch<RootState, {}, Action<string>>>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isRecordsManagePage = !useSelector((state: RootState) => state.user.user.isFirstTimeConfig);
 
@@ -186,7 +180,7 @@ const ConfigForm = (props: ConfigFormProps) => {
           </Grid>
           <Grid item>
             <Typography variant='body2' className='description'>
-              Please select the product and origin for which you want to create a new supply chain{" "}
+              Please select the product and origin for which you want to create a new supply chain
             </Typography>
           </Grid>
         </Grid>
@@ -205,7 +199,7 @@ const ConfigForm = (props: ConfigFormProps) => {
               <Field
                 name='product'
                 component={Autocomplete}
-                options={PRODUCTS_CONFIG_LEAD_ARR}
+                options={PRODUCTS_ARR}
                 getOptionLabel={(option: string) => option}
                 className='select'
                 isOptionEqualToValue={checkOptionsAndValue}
@@ -219,7 +213,7 @@ const ConfigForm = (props: ConfigFormProps) => {
               <Field
                 name='origin'
                 component={Autocomplete}
-                options={ORIGIN_CONFIG_LEAD_ARR}
+                options={ORIGIN_ARR}
                 getOptionLabel={(option: string) => (option ? option : "")}
                 className='select'
                 isOptionEqualToValue={checkOptionsAndValue}

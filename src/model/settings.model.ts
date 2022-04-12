@@ -8,12 +8,16 @@ export type Settings_Authorized_RolesT =
   | typeof AUTHOR
   | typeof DATA_INPUTTER;
 
-export interface SettingsViewI {
+export interface ViewI {
   id: number;
   name: string;
   path: string;
   role: Settings_Authorized_RolesT;
   component: React.ReactNode;
+}
+
+export interface SettingsViewI extends ViewI {
+  subView?: ViewI[];
 }
 
 export interface ConfigFormI {
@@ -55,8 +59,8 @@ export interface ConfigLeadStateI {
   childLabourMetrics: ChildLabourMetricsI[];
 }
 
-export type SCREEN = "screen";
-export type SOURCE = "source";
+export type ScreenT = "screen";
+export type SourceT = "source";
 
 export interface ChildLabourMetricsI {
   id: number;
@@ -64,5 +68,27 @@ export interface ChildLabourMetricsI {
   unit: string;
   rangeLow: string;
   rangeHigh: string;
-  dataCollectionMethod: SCREEN | SOURCE;
+  dataCollectionMethod: ScreenT | SourceT;
+}
+
+export type TraceabilityT = "traceability";
+export type SustainabilityT = "sustainability";
+
+export type EconimicT = "economic";
+export type SocialT = "social";
+export type EnvironmentT = "environment";
+
+export type TypeT = [TraceabilityT, SustainabilityT];
+export type CategoryT = [EconimicT, SocialT, EnvironmentT];
+export interface SCFormI {
+  product: string;
+  origin: string;
+  type: string;
+  category?: string;
+  file: string;
+}
+
+export interface SelectOptionsI {
+  name: string;
+  value: string;
 }
