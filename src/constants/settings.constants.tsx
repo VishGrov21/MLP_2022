@@ -199,22 +199,5 @@ export const CHILD_LABOUR_METRICS_ARR: ChildLabourMetricsI[] = [
     dataCollectionMethod: "screen",
   },
 ];
-export const PRODUCTS_FILTER_ARR = [ "Coffee", "Palm"];
-export const SUPPLIER_ARR = [ "ADM", "Cargill", "LDC", "Olam"];
+export const SUPPLIER_ARR = ["ADM", "Cargill", "LDC", "Olam"];
 export const CUSTOMER_ARR = ["Mars", "Nestle", "PepsiCo", "Starbucks", "Unilever"];
-export const ORIGIN_FILTER_ARR = [
- 
-  "Brazil",
-  "Colombia",
-  "Congo (DRC)",
-  "Guatemala",
-  "Honduras",
-  "India",
-  "Indonesia",
-  "Laos",
-  "Mexico",
-  "Nicaragua",
-  "Peru",
-  "Uganda",
-  "Vietnam",
-];
