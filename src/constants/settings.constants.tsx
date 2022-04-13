@@ -199,3 +199,5 @@ export const CHILD_LABOUR_METRICS_ARR: ChildLabourMetricsI[] = [
     dataCollectionMethod: "screen",
   },
 ];
+export const SUPPLIER_ARR = ["ADM", "Cargill", "LDC", "Olam"];
+export const CUSTOMER_ARR = ["Mars", "Nestle", "PepsiCo", "Starbucks", "Unilever"];

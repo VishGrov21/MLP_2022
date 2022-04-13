@@ -4,6 +4,7 @@ import grievacesIcon from "assets/images/grievacesIcon.svg";
 import programsIcon from "assets/images/programsIcon.svg";
 import settingsIcon from "assets/images/settingsIcon.svg";
 import helpIcon from "assets/images/helpIcon.svg";
+import footPrintIcon from "assets/images/footPrintIcon.svg";
 
 export const sideNavArr = [
   {
@@ -15,6 +16,11 @@ export const sideNavArr = [
     name: "Supply Chain Metrics",
     path: "/supply-metrics",
     iconSrc: supplyMetricsIcon,
+  },
+  {
+    name: "Footprint Calculator",
+    path: "/footprint-calculator",
+    iconSrc: footPrintIcon,
   },
   {
     name: "Grievances",

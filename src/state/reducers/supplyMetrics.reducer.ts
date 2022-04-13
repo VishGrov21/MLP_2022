@@ -8,12 +8,12 @@ import {
 
 interface MetricsStateI {
   tilesData: SupplyMetricsTabsI[];
-  filterData: object;
+  filteredData: object;
 }
 
 const initialState: MetricsStateI = {
   tilesData: [],
-  filterData: {},
+  filteredData: {},
 };
 
 export const SupplyMetrics = (state: MetricsStateI = initialState, action: AnyAction): MetricsStateI => {
@@ -21,7 +21,7 @@ export const SupplyMetrics = (state: MetricsStateI = initialState, action: AnyAc
     case METRIC_TILES_DATA:
       return { ...state, tilesData: action.payload };
     case FOOTPRINT_FILTER:
-      return { ...state, filterData: action.payload };
+      return { ...state, filteredData: action.payload };
 
     default:
       return state;
