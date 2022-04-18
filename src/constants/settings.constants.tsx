@@ -116,7 +116,7 @@ export const CONFIG_METRICS_MOCK_DATA: MetricsConfigManagerI[] = [
   },
 ];
 
-export const STARTING_POINT_ARR = ["FG1", "FG2", "FG3"];
+export const STARTING_POINT_ARR = ["All", "FG1", "FG2", "FG3"];
 export const CHILD_LABOUR_METRICS_ARR: ChildLabourMetricsI[] = [
   {
     id: 0,
@@ -199,5 +199,5 @@ export const CHILD_LABOUR_METRICS_ARR: ChildLabourMetricsI[] = [
     dataCollectionMethod: "screen",
   },
 ];
-export const SUPPLIER_ARR = ["ADM", "Cargill", "LDC", "Olam"];
-export const CUSTOMER_ARR = ["Mars", "Nestle", "PepsiCo", "Starbucks", "Unilever"];
+export const SUPPLIER_ARR = ["All", "ADM", "Cargill", "LDC", "Olam"];
+export const CUSTOMER_ARR = ["All", "Mars", "Nestle", "PepsiCo", "Starbucks", "Unilever"];

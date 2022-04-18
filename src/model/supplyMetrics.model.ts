@@ -22,10 +22,10 @@ export interface SupplyMetricsTabsContentI {
 }
 
 export interface FootPrintFilterI {
-  product: string;
+  product: string[];
   destination: string[];
   startingPoint: string[];
-  volume: string;
+  volume: string[];
   originCountry: string[];
   customer?: string[];
   supplier?: string[];
