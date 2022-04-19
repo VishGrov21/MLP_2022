@@ -123,7 +123,7 @@ const FootprintCalculator = () => {
    * @param e The form values entered
    */
   const handleFormSubmit = (e: typeof FilterInitState) => {
-    dispatch(footPrintFilterActionCreator(e));
+    // dispatch(footPrintFilterActionCreator(e));
   };
 
   return (
